@@ -9,5 +9,5 @@
   - Go to the bin directory in the .venv directory
   - Run the activation script
 5. Run ```pip freeze``` to see the list of currently installed packages
-6. Run ```python manage.py runserver localhost:8000
+6. Run ```python manage.py runserver localhost:8000```
 7. In the browser go to localhost:8000 to see the initial starting page
