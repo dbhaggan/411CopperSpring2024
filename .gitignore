@@ -1,1 +1,13 @@
-./db.sqlite3
+# ignore virtual environment
+./venv
+
+# ignore all cache files
+*.cache
+
+# ignore python specific files
+
+
+# ignore django specific files
+
+
+# ignore database files
