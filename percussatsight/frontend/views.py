@@ -14,3 +14,11 @@ def homepage(request):
 def sheetspage(request):
     template = loader.get_template('sheetspage.html')
     return HttpResponse(template.render())
+
+def loginpage(request):
+    template = loader.get_template('login.html')
+    return HttpResponse(template.render())
+
+def signuppage(request):
+    template = loader.get_template('signup.html')
+    return HttpResponse(template.render())
