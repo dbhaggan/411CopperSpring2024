@@ -10,7 +10,35 @@
     </style>
   </head>
   <body>
+    
     <h1> Creates sheets here </h1>
-    <p> Do the following to create sheets </p>
+    <p> Do the following to create sheets </p> 
+
+    <div id="generatedScore"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
+    <script>
+      const { Factory, EasyScore, System } = Vex.Flow;
+
+      const vf = new Factory({
+        renderer: { elementId: 'generatedScore', width: 500, height: 200 },
+      });
+
+      const score = vf.EasyScore();
+      const system = vf.System();
+
+      system
+        .addStave({
+          voices: [
+            score.voice(score.notes('C#5/q, B4, A4, G#4', { stem: 'up' })),
+            score.voice(score.notes('C#4/h, C#4', { stem: 'down' })),
+          ],
+        })
+        .addClef('percussion')
+        .addTimeSignature('4/4');
+
+      vf.draw();
+    </script>
   </body>
 </html>
