@@ -1,13 +1,33 @@
 # 411CopperSpring2024
 ---
-# To use the virtual environment please do the following
-1. Clone the Github repo
-2. Install python onto your machine
-3. Either start the virtual environment
-4. To start the virtual environment run the following inside the directory of the clone repo
-  - python -m venv .venv
-  - Go to the bin directory in the .venv directory
-  - Run the activation script
-5. Run ```pip freeze``` to see the list of currently installed packages
-6. Run ```python manage.py runserver localhost:8000```
-7. In the browser go to localhost:8000 to see the initial starting page
+# Setup the Django environment locally on Windows
+1. Clone the 411CopperSpring2024 Repository to your local machine. 
+
+2. Create a folder adjacent to the 411CopperSpring2024 repo you just clone.
+   ```mkdir virtualenv```
+ 
+3. Create the virtual environment
+   ```python -m venv virtualenv```
+
+4. Activate the virtual environment
+   ```cd virtualenv\Scripts```
+   ```.\activate```
+   On windows due to security, certain scripts cannot be run
+   Use this link to help over come the issue: https://www.stanleyulili.com/powershell/solution-to-running-scripts-is-disabled-on-this-system-error-on-powershell 
+   For more information use the following link: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.4
+
+5. Once the virtual environment is activated you will now need to install the required 
+   ```python -m pip install -r requirements.txt```
+
+6. Navigate to the 411CopperSpring2024 Git repo that you just cloned.
+
+7. In the local repo, there will be a percussatsight folder, navigate to that
+
+8. In the percussatsight folder, run the following to get the app running on your local machine
+   ```python manage.py runserver localhost:8080```
+
+9. After the development server is initialized, in the browser go to 
+   ```localhost:8080```
+
+---
+# Setup the Django environment locally on Linux
