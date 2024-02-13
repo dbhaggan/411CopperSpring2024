@@ -3,7 +3,7 @@
 # Setup the Django environment locally on Windows
 1. Clone the 411CopperSpring2024 Repository to your local machine. 
 
-2. Create a folder adjacent to the 411CopperSpring2024 repo you just clone.
+2. Create a folder adjacent to the 411CopperSpring2024 repo you just cloned.
    ```mkdir virtualenv```
  
 3. Create the virtual environment
@@ -31,3 +31,26 @@
 
 ---
 # Setup the Django environment locally on Linux
+1. Clone the 411CopperSrping2024 Repository to your local machine.
+
+2. Create a folder adjacent to the 411CopperSpring2024 repo you just cloned. 
+   ```mkdir virtualenv```
+
+3. Install the utility needed to created the virtualenv. 
+   ```pip3 install virtualenv```
+
+4. Create the virtual environment.
+   ```virtualenv (adjacent directory to the cloned repo)```
+   ```virtualenv virtualenv```
+
+5. Activate the virtual environment. 
+   ```source virtualenv/bin/activate```
+
+6. Navigate back to the 411CopperSpring2024 repo you cloned. 
+
+7. With the virtual environment currently active, install the requirements.txt. 
+   ```pip3 install --upgrade pip```
+   ```pip3 install -r requirements.txt```
+
+8. You should now be able to run the demo server to view a demo site.
+   ```python manage.py runserver localhost:8080```
