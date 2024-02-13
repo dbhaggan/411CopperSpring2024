@@ -1,14 +1,18 @@
 FROM python:3.11
 
+RUN apt install bash
+
 WORKDIR /usr/src/app
 
-COPY percussatsight .
+COPY requirements.txt .
+COPY startup.sh .
 
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
-EXPOSE 8080
+EXPOSE 80
 
-
-
-CMD ["python", "percussatsight/manage.py", "runserver", "0.0.0.0:8080"]
+COPY percussatsight .
+COPY startup.sh .
+#CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+ENTRYPOINT "./startup.sh"
