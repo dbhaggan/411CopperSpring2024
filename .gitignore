@@ -2,7 +2,8 @@
 ./venv
 
 # ignore all cache files
-*.cache
+__pychache__
+*.pyc
 
 # ignore python specific files
 
@@ -11,3 +12,4 @@
 
 
 # ignore database files
+*dbsqlite3*
