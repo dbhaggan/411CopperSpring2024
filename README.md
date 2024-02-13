@@ -54,3 +54,5 @@
 
 8. You should now be able to run the demo server to view a demo site.
    ```python manage.py runserver localhost:8080```
+
+9. In the browser you can type localhost:8080 in the search bar and that should take you to the site.
