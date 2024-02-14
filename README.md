@@ -16,17 +16,17 @@
    Use this link to help over come the issue: https://www.stanleyulili.com/powershell/solution-to-running-scripts-is-disabled-on-this-system-error-on-powershell 
    For more information use the following link: https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.4
 
-6. Navigate to the 411CopperSpring2024 Git repo that you just cloned.
-
-7. Once the virtual environment is activated you will now need to install the required 
+5. Once the virtual environment is activated you will now need to install the required 
    ```python -m pip install -r requirements.txt```
 
-8. In the local repo, there will be a percussatsight folder, navigate to that
+6. Navigate to the 411CopperSpring2024 Git repo that you just cloned.
 
-9. In the percussatsight folder, run the following to get the app running on your local machine
+7. In the local repo, there will be a percussatsight folder, navigate to that
+
+8. In the percussatsight folder, run the following to get the app running on your local machine
    ```python manage.py runserver localhost:8080```
 
-10. After the development server is initialized, in the browser go to 
+9. After the development server is initialized, in the browser go to 
    ```localhost:8080```
 
 ---
