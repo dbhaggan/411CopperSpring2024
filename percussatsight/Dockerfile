@@ -12,7 +12,7 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE 80
 
-COPY percussatsight .
-COPY startup.sh .
+COPY . .
+
 #CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
 ENTRYPOINT "./startup.sh"

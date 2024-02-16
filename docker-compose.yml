@@ -1,7 +1,8 @@
 version: "1.0"
 services:
   django:
-    image: django:latest
+   # image: django:latest
+    build: percussatsight/.
     container_name: django-backend
     ports: 
       - "80:80"
@@ -10,12 +11,12 @@ services:
   database:
     image: mysql:latest
     container_name: database
-    expose:
-      - "3306"
+    ports:
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=p@sSw0Rd
       - MYSQL_DATABASE=users
-      - MYSQL_URSER=root
+      - MYSQL_USER=django
       - MYSQL_PASSWORD=p@sSw0Rd
-    volumes:
-      - ./database:/var/lib/mysql/
+#    volumes:
+#      - ./database:/etc/mysq/
