@@ -1,0 +1,215 @@
+.signup-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+  }
+  .signup-container1 {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(90deg, rgb(153, 86, 29) 31.00%,rgba(240, 203, 53, 0) 100.00%);
+  }
+  .signup-container2 {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(90deg, rgba(153, 86, 29, 0.94) 3.00%,rgba(240, 144, 53, 0) 85.00%);
+  }
+  .signup-image {
+    width: 200px;
+    object-fit: cover;
+  }
+  .signup-navbar-interactive {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: var(--dl-space-space-twounits);
+    padding-left: var(--dl-space-space-threeunits);
+    padding-right: var(--dl-space-space-threeunits);
+    padding-bottom: var(--dl-space-space-twounits);
+    justify-content: space-between;
+    background-image: linear-gradient(90deg, rgba(153, 86, 29, 0.94) 2.00%,rgba(115, 74, 8, 0) 78.00%);
+  }
+  .signup-desktop-menu {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    background-image: linear-gradient(90deg, rgb(153, 86, 29) 0.00%,rgba(240, 144, 53, 0) 14.00%);
+  }
+  .signup-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .signup-login {
+    color: var(--dl-color-gray-white);
+    width: var(--dl-size-size-large);
+    font-style: normal;
+    font-family: "Arial";
+    font-weight: 700;
+    background-color: rgb(30, 47, 134);
+  }
+  .signup-sign-up {
+    color: var(--dl-color-gray-white);
+    width: var(--dl-size-size-large);
+    font-style: normal;
+    font-family: "Arial";
+    font-weight: 700;
+    background-color: var(--dl-color-primary-pasblue);
+  }
+  .signup-practice {
+    color: var(--dl-color-gray-white);
+    width: var(--dl-size-size-large);
+    height: 100%;
+    align-self: stretch;
+    font-style: normal;
+    font-family: "Arial";
+    font-weight: 700;
+    background-color: var(--dl-color-primary-pasblue);
+  }
+  .signup-burger-menu {
+    display: none;
+  }
+  .signup-icon {
+    width: var(--dl-size-size-medium);
+    height: var(--dl-size-size-xsmall);
+  }
+  .signup-mobile-menu {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    padding: 32px;
+    z-index: 100;
+    position: absolute;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+  }
+  .signup-nav {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .signup-top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--dl-space-space-threeunits);
+    justify-content: space-between;
+  }
+  .signup-logo {
+    height: 2rem;
+  }
+  .signup-close-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .signup-icon02 {
+    width: var(--dl-size-size-xsmall);
+    height: var(--dl-size-size-xsmall);
+  }
+  .signup-links {
+    flex: 0 0 auto;
+    display: flex;
+    align-self: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .signup-text {
+    margin-bottom: var(--dl-space-space-unit);
+  }
+  .signup-text1 {
+    margin-bottom: var(--dl-space-space-unit);
+  }
+  .signup-text2 {
+    margin-bottom: var(--dl-space-space-unit);
+  }
+  .signup-text3 {
+    margin-bottom: var(--dl-space-space-unit);
+  }
+  .signup-text4 {
+    margin-bottom: var(--dl-space-space-unit);
+  }
+  .signup-buttons1 {
+    display: flex;
+    margin-top: var(--dl-space-space-unit);
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .signup-login1 {
+    margin-right: var(--dl-space-space-twounits);
+  }
+  .signup-icon04 {
+    width: var(--dl-size-size-xsmall);
+    height: var(--dl-size-size-xsmall);
+    margin-right: var(--dl-space-space-twounits);
+  }
+  .signup-icon06 {
+    width: var(--dl-size-size-xsmall);
+    height: var(--dl-size-size-xsmall);
+    margin-right: var(--dl-space-space-twounits);
+  }
+  .signup-icon08 {
+    width: var(--dl-size-size-xsmall);
+    height: var(--dl-size-size-xsmall);
+  }
+  @media(max-width: 991px) {
+    .signup-desktop-menu {
+      display: none;
+    }
+    .signup-burger-menu {
+      display: flex;
+    }
+  }
+  @media(max-width: 767px) {
+    .signup-navbar-interactive {
+      padding-left: var(--dl-space-space-twounits);
+      padding-right: var(--dl-space-space-twounits);
+    }
+    .signup-burger-menu {
+      align-items: center;
+      justify-content: center;
+    }
+    .signup-text {
+      margin-bottom: var(--dl-space-space-unit);
+    }
+    .signup-text1 {
+      margin-left: 0;
+      margin-bottom: var(--dl-space-space-unit);
+    }
+    .signup-text2 {
+      margin-left: 0;
+      margin-bottom: var(--dl-space-space-unit);
+    }
+    .signup-text3 {
+      margin-left: 0;
+      margin-bottom: var(--dl-space-space-unit);
+    }
+    .signup-text4 {
+      margin-left: 0;
+      margin-bottom: var(--dl-space-space-unit);
+    }
+  }
+  @media(max-width: 479px) {
+    .signup-navbar-interactive {
+      padding: var(--dl-space-space-unit);
+    }
+    .signup-mobile-menu {
+      padding: 16px;
+    }
+  }
+  
