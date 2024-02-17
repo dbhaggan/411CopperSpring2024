@@ -1,15 +1,6 @@
-# ignore virtual environment
 ./venv
-
-# ignore all cache files
 __pychache__
 *.pyc
-
-# ignore python specific files
-
-
-# ignore django specific files
-
-
-# ignore database files
 *dbsqlite3*
+database/
+virtualenv
