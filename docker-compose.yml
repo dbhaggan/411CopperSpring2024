@@ -5,7 +5,7 @@ services:
     build: percussatsight/.
     container_name: django-backend
     ports: 
-      - "80:80"
+      - "8080:8080"
     volumes: 
       - ./percussatsight/:/usr/src/app/ #connect percussatsight to the container
   database:
@@ -16,7 +16,12 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=p@sSw0Rd
       - MYSQL_DATABASE=users
-      - MYSQL_USER=django
+      - MYSQL_USER=root
       - MYSQL_PASSWORD=p@sSw0Rd
-#    volumes:
-#      - ./database:/etc/mysq/
+    volumes:
+      - ./database:/etc/mysq/
+  vue-frontend:
+    build: vue/.
+    container_name: vue-frontend
+    ports: 
+      - "80:80"
