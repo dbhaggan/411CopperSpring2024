@@ -1,4 +1,4 @@
-version: "1.0"
+version: "3.0"
 services:
   django:
    # image: django:latest
@@ -16,7 +16,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=p@sSw0Rd
       - MYSQL_DATABASE=users
-      - MYSQL_USER=root
+      # - MYSQL_USER=root
       - MYSQL_PASSWORD=p@sSw0Rd
     volumes:
       - ./database:/etc/mysq/
