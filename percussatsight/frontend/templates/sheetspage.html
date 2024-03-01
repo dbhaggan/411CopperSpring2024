@@ -17,8 +17,223 @@
     <div id="generatedScore"></div>
 
 
+    
     <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
     <script>
+
+      const {
+        Renderer, Stave, StaveNote, Voice, Formatter} = Vex.Flow; 
+
+      // Create an SVG renderer and attach it to the DIV element named "boo".
+      const div = document.getElementById('generatedScore');
+      const renderer = new Renderer(div, Renderer.Backends.SVG);
+
+      // Configure the rendering context.
+      renderer.resize(500, 500);
+      const context = renderer.getContext();
+
+      // Create a stave of width 400 at position 10, 40 on the canvas.
+      const stave = new Stave(10, 40, 400);
+
+      // Add a clef and time signature.
+      stave.addClef('treble').addTimeSignature('4/4');
+
+      // Connect it to the rendering context and draw!
+      stave.setContext(context).draw();
+
+
+
+
+
+        // TODO: Add 16th notes and half notes 
+
+        // I have left alot of console.logs for debugging, but will delete them later 
+
+
+        // random notes in the future about this data: 
+        // the contents of these three pools can by changed by generator settings 
+        // in instrument catalog we'll have to include more note pools to represent different key signatures 
+
+        // for now we're sticking to the key of C major/ A minor 
+        notePool = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];  
+        octavePool = ['/4', '/5'];              // excluding octaves 1-3 and 6-8 to prevent creating several ledger lines 
+        durationPool = ['q','8'];     // DELETE LATER, for testing 
+        //durationPool = ['w', 'q','8', '16']   # USE THIS LATER 
+        
+
+      function pickRandomArrayIndex(Array){   
+      // ensure randomness with just 2 values in array 
+        if (Array.length == 2){ 
+          let randDecimalVal = Math.random(); // outputs decimal value, instead of whole number 
+            console.log('Inside pickRandomArrayIndex: Testing two values, before: ' + randDecimalVal); // DELETE LATER 
+          randDecimalVal = randDecimalVal < 0.50 ? 0 : 1; 
+            console.log('Testing two values, after: ' + randDecimalVal); // DELETE LATER 
+
+          randomIndex = randDecimalVal; 
+        }  
+        else {
+          randomIndex = Math.floor(Math.random() * Array.length) + 0; // subtracting 1 to match the max array index 
+          if(randomIndex != 0){ // to prevent -1 index and undefined error 
+              randomIndex--; 
+            }
+        }
+        console.log("Final random Index: " + randomIndex); // DELETE LATER  
+
+        return randomIndex; 
+      }
+
+
+      function randomizeNoteAndOctave(){
+        Note = notePool[pickRandomArrayIndex(notePool)];  
+          console.log("Inside randomizeNoteAndOCtave(): notePool value After pickRandomArrayIndex call : " + Note);   // DELETE LATER 
+        Octave = octavePool[pickRandomArrayIndex(octavePool)]; 
+          console.log("octavePool value After pickRandomArrayIndex call : " + Octave);   // DELETE LATER 
+
+        return Note + Octave; 
+      }
+      console.log ("Final Note and Octave : " + randomizeNoteAndOctave()); 
+
+
+      function randomizeDuration(){
+        Duration = durationPool[pickRandomArrayIndex(durationPool)];  
+          console.log("Inside randomizeDuration(): durationPool value After pickRandomArrayIndex call : " + Duration);   // DELETE LATER 
+
+        return Duration; 
+      }
+      console.log ("Final Note and Octave : " + randomizeDuration()); 
+
+
+
+      // for looping through a for loop to get different output for context variable ('{{testNote.randomizeNoteAndOctave}}')
+
+      /* 
+      {% for lol in arrayLol %}
+
+        console.log('{{testNote.randomizeNoteAndOctave}}'); 
+
+      {% endfor %}
+
+      */
+
+
+      const notes = []; 
+      let beatsTotal = 8; 
+
+      // beatsTotal = 4; 
+
+
+      function setBeatsLeftInMeasure (durationToSet) {
+        console.log("Insided setBeatsLeftInMeasure: durationToSet: " +durationToSet); // DELETE LATER 
+
+        if ( beatsTotal == 1 && durationToSet == 'q'){  // catches situation if beatsTotal = 1, but the note randomize is 'q' 
+          console.log("ENTER if (beatsTotal == 1)")
+          beatsTotal = beatsTotal - 1; 
+          randomDuration = '8';     // Changes Duration to there's sufficient notes in measure, not less, not more 
+          console.log("FOUND 8");  
+        }
+        else if(durationToSet == 'q'){
+          beatsTotal = beatsTotal - 2; // q = quarter note, 1 quarter note = 2 eigth notes 
+          console.log("FOUND Q"); 
+        }
+        else if (durationToSet == '8') {
+          beatsTotal = beatsTotal - 1; 
+          console.log("FOUND 8");  
+          // console.log(beatsTotal); 
+        }
+        durationToSet = this.durationToSet; // if q = 2, if 8 = 1     
+      }
+
+
+      // Adding accidentals, still working on this 
+      /* function addAccidentals (){
+        let test = 
+        return .addModifier(new Accidental("#"),0);  // MAKE accidentalPool 
+      } */
+
+      let randomizedNote;
+      let randomizedDuration; 
+
+      function createRandomNote(){
+        randomNote = randomizeNoteAndOctave();  // CALL THIS randomizeNoteAndOctave() 
+          console.log("Inside createRandomNote: " + randomNote); 
+        randomDuration =  randomizeDuration(); //'{{testNote.randomizeNoteDuration}}'; 
+          //console.log(randomNote);    // DELETE LATER  
+        setBeatsLeftInMeasure (randomDuration); 
+          console.log("AFTER setBeatsLeftInMeasure(): beatsTotal " + beatsTotal); 
+          console.log("AFTER setBeatsLeftInMeasure(): randomDuration " + randomDuration); 
+        
+          return new Vex.Flow.StaveNote ({
+          keys: [randomNote],
+          duration: randomDuration
+        });
+      }
+
+
+
+
+      let randomNote; 
+
+      while(beatsTotal != 0) {
+        randomNote = createRandomNote();
+          console.log(beatsTotal); 
+        if (notes.length > 7){
+          console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
+          break;  
+        }
+        else {
+          notes.push(randomNote); 
+        }
+      }
+
+
+
+
+      const notes2 = [new StaveNote({
+        keys: [randomizeNoteAndOctave()],  //'{{testNote.randomizeNoteAndOctave}}', '{{testNote.randomizeNoteAndOctave}}', '{{testNote.randomizeNoteAndOctave}}'],
+        duration: 'w'
+      })];
+
+      // Create a voice in 4/4 and add above notes
+      const voices = [
+        new Voice({
+          num_beats: 4,
+          beat_value: 4
+        }).addTickables(notes),
+        new Voice({
+          num_beats: 4,
+          beat_value: 4
+        }).addTickables(notes2),
+      ];
+
+      // Format and justify the notes to 400 pixels.
+      new Formatter().joinVoices(voices).format(voices, 350);
+
+      // Render voices.
+      voices.forEach(function(v) {
+        v.draw(context, stave);
+      });
+
+    </script>  
+
+    <script>
+      const scorePosition = document.getElementById('generatedScore');
+
+      centerScore = () => {
+        scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
+        scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
+      }
+
+      centerScore();
+      window.addEventListener('resize', centerScore); 
+
+    </script>
+   
+    <script>
+
+      /*
+
+      // Old code, may delete this later 
+      
       const { Factory, EasyScore, System } = Vex.Flow;
 
       const vf = new Factory({
@@ -38,7 +253,7 @@
         .addClef('percussion')
         .addTimeSignature('4/4');
 
-      vf.draw();
+      vf.draw();  */ 
     </script>
   </body>
 </html>
