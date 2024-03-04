@@ -17,6 +17,8 @@
     <div id="generatedScore"></div>
 
 
+      
+   
     
     <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
     <script>
@@ -65,9 +67,7 @@
       // ensure randomness with just 2 values in array 
         if (Array.length == 2){ 
           let randDecimalVal = Math.random(); // outputs decimal value, instead of whole number 
-            console.log('Inside pickRandomArrayIndex: Testing two values, before: ' + randDecimalVal); // DELETE LATER 
           randDecimalVal = randDecimalVal < 0.50 ? 0 : 1; 
-            console.log('Testing two values, after: ' + randDecimalVal); // DELETE LATER 
 
           randomIndex = randDecimalVal; 
         }  
@@ -77,7 +77,6 @@
               randomIndex--; 
             }
         }
-        console.log("Final random Index: " + randomIndex); // DELETE LATER  
 
         return randomIndex; 
       }
@@ -85,82 +84,46 @@
 
       function randomizeNoteAndOctave(){
         Note = notePool[pickRandomArrayIndex(notePool)];  
-          console.log("Inside randomizeNoteAndOCtave(): notePool value After pickRandomArrayIndex call : " + Note);   // DELETE LATER 
         Octave = octavePool[pickRandomArrayIndex(octavePool)]; 
-          console.log("octavePool value After pickRandomArrayIndex call : " + Octave);   // DELETE LATER 
 
         return Note + Octave; 
       }
-      console.log ("Final Note and Octave : " + randomizeNoteAndOctave()); 
 
 
       function randomizeDuration(){
         Duration = durationPool[pickRandomArrayIndex(durationPool)];  
-          console.log("Inside randomizeDuration(): durationPool value After pickRandomArrayIndex call : " + Duration);   // DELETE LATER 
 
         return Duration; 
       }
-      console.log ("Final Note and Octave : " + randomizeDuration()); 
-
-
-
-      // for looping through a for loop to get different output for context variable ('{{testNote.randomizeNoteAndOctave}}')
-
-      /* 
-      {% for lol in arrayLol %}
-
-        console.log('{{testNote.randomizeNoteAndOctave}}'); 
-
-      {% endfor %}
-
-      */
 
 
       const notes = []; 
-      let beatsTotal = 8; 
-
-      // beatsTotal = 4; 
+      let beatsTotal = 8;  // Total number of beats in the measure, will change this to make it dynamic later 
 
 
       function setBeatsLeftInMeasure (durationToSet) {
-        console.log("Insided setBeatsLeftInMeasure: durationToSet: " +durationToSet); // DELETE LATER 
-
         if ( beatsTotal == 1 && durationToSet == 'q'){  // catches situation if beatsTotal = 1, but the note randomize is 'q' 
-          console.log("ENTER if (beatsTotal == 1)")
           beatsTotal = beatsTotal - 1; 
-          randomDuration = '8';     // Changes Duration to there's sufficient notes in measure, not less, not more 
-          console.log("FOUND 8");  
+          randomDuration = '8';     // Changes Duration so there's a sufficient number of notes in measure 
         }
         else if(durationToSet == 'q'){
-          beatsTotal = beatsTotal - 2; // q = quarter note, 1 quarter note = 2 eigth notes 
-          console.log("FOUND Q"); 
+          beatsTotal = beatsTotal - 2; 
         }
         else if (durationToSet == '8') {
           beatsTotal = beatsTotal - 1; 
-          console.log("FOUND 8");  
-          // console.log(beatsTotal); 
         }
-        durationToSet = this.durationToSet; // if q = 2, if 8 = 1     
       }
 
-
-      // Adding accidentals, still working on this 
-      /* function addAccidentals (){
-        let test = 
-        return .addModifier(new Accidental("#"),0);  // MAKE accidentalPool 
-      } */
 
       let randomizedNote;
       let randomizedDuration; 
 
+      // creates the random Note and Duration then outputs it into Vexflow API 
       function createRandomNote(){
-        randomNote = randomizeNoteAndOctave();  // CALL THIS randomizeNoteAndOctave() 
-          console.log("Inside createRandomNote: " + randomNote); 
-        randomDuration =  randomizeDuration(); //'{{testNote.randomizeNoteDuration}}'; 
-          //console.log(randomNote);    // DELETE LATER  
+        randomNote = randomizeNoteAndOctave();  
+        randomDuration =  randomizeDuration(); 
+
         setBeatsLeftInMeasure (randomDuration); 
-          console.log("AFTER setBeatsLeftInMeasure(): beatsTotal " + beatsTotal); 
-          console.log("AFTER setBeatsLeftInMeasure(): randomDuration " + randomDuration); 
         
           return new Vex.Flow.StaveNote ({
           keys: [randomNote],
@@ -169,19 +132,17 @@
       }
 
 
-
-
       let randomNote; 
 
       while(beatsTotal != 0) {
         randomNote = createRandomNote();
           console.log(beatsTotal); 
-        if (notes.length > 7){
+        if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
           console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
           break;  
         }
         else {
-          notes.push(randomNote); 
+          notes.push(randomNote); // push created notes in array for vexflow to format and render to screen 
         }
       }
 
@@ -189,7 +150,7 @@
 
 
       const notes2 = [new StaveNote({
-        keys: [randomizeNoteAndOctave()],  //'{{testNote.randomizeNoteAndOctave}}', '{{testNote.randomizeNoteAndOctave}}', '{{testNote.randomizeNoteAndOctave}}'],
+        keys: [randomizeNoteAndOctave()],  
         duration: 'w'
       })];
 
@@ -230,30 +191,6 @@
    
     <script>
 
-      /*
-
-      // Old code, may delete this later 
-      
-      const { Factory, EasyScore, System } = Vex.Flow;
-
-      const vf = new Factory({
-        renderer: { elementId: 'generatedScore', width: 500, height: 200 },
-      });
-
-      const score = vf.EasyScore();
-      const system = vf.System();
-
-      system
-        .addStave({
-          voices: [
-            score.voice(score.notes('C#5/q, B4, A4, G#4', { stem: 'up' })),
-            score.voice(score.notes('C#4/h, C#4', { stem: 'down' })),
-          ],
-        })
-        .addClef('percussion')
-        .addTimeSignature('4/4');
-
-      vf.draw();  */ 
     </script>
   </body>
 </html>
