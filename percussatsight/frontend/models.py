@@ -16,7 +16,7 @@ class Instrument(models.Model):
     # created this if there are intricate percussion families
     family = models.CharField(max_length=255)
 
-class Sheet_Music(models.Model):
+class SheetMusic(models.Model):
     # song/sheet music name
     title = models.CharField(max_length=255)
 
@@ -33,19 +33,19 @@ class Note(models.Model):
     # duration time
     duration = models.FloatField()
 
-class Sheet_Music_Note(models.Model):
+class SheetMusicNote(models.Model):
     # sheet music played
-    sheet_music = models.ForeignKey(Sheet_Music, on_delete = models.CASCADE)
+    sheet_music = models.ForeignKey(SheetMusic, on_delete = models.CASCADE)
 
     # notes played
     note = models.ForeignKey(Note, on_delete = models.CASCADE)
 
-class User_Progress(models.Model):
+class UserProgress(models.Model):
     # user name
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # music played
-    sheet_music = models.ForeignKey(Sheet_Music, on_delete=models.CASCADE)
+    sheet_music = models.ForeignKey(SheetMusic, on_delete=models.CASCADE)
 
     # music completed
     completed = models.BooleanField(default=False)
@@ -61,7 +61,7 @@ class Feedback (models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # music just played
-    sheet_music = models.ForeignKey(Sheet_Music, on_delete=models.CASCADE)
+    sheet_music = models.ForeignKey(SheetMusic, on_delete=models.CASCADE)
 
     # algorithmic feedback
     feedback_text = models.TextField()
@@ -71,7 +71,7 @@ class Feedback (models.Model):
 
 # class Rhythm (models.Model): do we need this? we will have a rhythm api already
 
-class Practice_Session (models.Model):
+class PracticeSession (models.Model):
     # user name
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
