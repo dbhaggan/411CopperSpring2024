@@ -23,16 +23,21 @@ class Sheet_Music(models.Model):
     # difficulty scale (1-5?)
     difficulty = models.IntegerField()
 
-    # original artist name
-    # created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-
 class Note(models.Model):
+    # name of note
     name = models.CharField(max_length = 2)
+
+    # octave number
     octave = models.IntegerField()  
+
+    # duration time
     duration = models.FloatField()
 
 class Sheet_Music_Note(models.Model):
+    # sheet music played
     sheet_music = models.ForeignKey(Sheet_Music, on_delete = models.CASCADE)
+
+    # notes played
     note = models.ForeignKey(Note, on_delete = models.CASCADE)
 
 class User_Progress(models.Model):
