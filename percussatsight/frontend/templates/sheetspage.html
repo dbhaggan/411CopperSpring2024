@@ -12,13 +12,21 @@
   <body>
     
     <h1> Creates sheets here </h1>
-    <p> Do the following to create sheets </p> 
+    <p> Click the button to generate another score. </p> 
 
     <div id="generatedScore"></div>
 
 
+    <button onclick = "reloadPage()"> Generate </button> 
       
    
+    <script> 
+    // this will reload the page to generate the score.  
+    // This function is temporary and will be replace with a function call to sheet generator 
+      function reloadPage(){
+        window.location.reload(); 
+      } 
+    </script>
     
     <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
     <script>
@@ -48,8 +56,6 @@
 
 
         // TODO: Add 16th notes and half notes 
-
-        // I have left alot of console.logs for debugging, but will delete them later 
 
 
         // random notes in the future about this data: 
