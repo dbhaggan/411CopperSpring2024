@@ -35,7 +35,7 @@
       const context = renderer.getContext();
 
       // Create a stave of width 400 at position 10, 40 on the canvas.
-      const stave = new Stave(10, 40, 400);
+      const stave = new Stave(10, 40, 420);
 
       // Add a clef and time signature.
       stave.addClef('treble').addTimeSignature('4/4');
@@ -56,12 +56,15 @@
         // the contents of these three pools can by changed by generator settings 
         // in instrument catalog we'll have to include more note pools to represent different key signatures 
 
-        // for now we're sticking to the key of C major/ A minor 
+        // for now we're sticking to the key of C major/ A minor and 8th notes as the highest subdivision 
         notePool = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];  
         octavePool = ['/4', '/5'];              // excluding octaves 1-3 and 6-8 to prevent creating several ledger lines 
-        durationPool = ['q','8'];     // DELETE LATER, for testing 
+        durationPool = ['q','8'];     // DELETE LATER, for testing   q = quarter notes, 8 = eigth notes 
         //durationPool = ['w', 'q','8', '16']   # USE THIS LATER 
         
+        generatedNotesArray = []; 
+
+
 
       function pickRandomArrayIndex(Array){   
       // ensure randomness with just 2 values in array 
@@ -125,6 +128,8 @@
 
         setBeatsLeftInMeasure (randomDuration); 
         
+        generatedNotesArray.push(randomNote, randomDuration); // store notes to use for Smart Feedback Algorithm 
+
           return new Vex.Flow.StaveNote ({
           keys: [randomNote],
           duration: randomDuration
@@ -146,6 +151,15 @@
         }
       }
 
+
+
+      // Show Stored Notes of Array in Console Log, DELETE LATER 
+      let it = 0; 
+      console.log("Array's Content that's storing Generated Notes: ")
+      while (it < generatedNotesArray.length){
+        console.log(generatedNotesArray[it]); 
+        it++; 
+      }
 
 
 
