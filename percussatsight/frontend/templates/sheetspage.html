@@ -12,29 +12,35 @@
   <body>
     
     <h1> Creates sheets here </h1>
-    <p> Click the button to generate another score. </p> 
+    <p> Click the "Generate" button to create a score and click again to create another </p> 
 
-    <div id="generatedScore"></div>
+    <div id="generatedScore"></div> 
+
+    <button onclick = "runSheetGenerator()"> Generate </button> 
 
 
-    <button onclick = "reloadPage()"> Generate </button> 
-      
-   
-    <script> 
-    // this will reload the page to generate the score.  
-    // This function is temporary and will be replace with a function call to sheet generator 
-      function reloadPage(){
-        window.location.reload(); 
-      } 
-    </script>
     
     <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
     <script>
 
-      const {
+    function runSheetGenerator(){
+
+      // Check if a Score exists and deletes it 
+      let existingScore = document.getElementById("generatedScore"); 
+      if(existingScore){
+        existingScore.parentNode.removeChild(existingScore); 
+      }
+
+      // Adds a new div/svg element with same name to house Score 
+      let newScore = document.createElement("div"); 
+      newScore.id = "generatedScore"; 
+      document.body.appendChild(newScore); 
+
+
+      const {        
         Renderer, Stave, StaveNote, Voice, Formatter} = Vex.Flow; 
 
-      // Create an SVG renderer and attach it to the DIV element named "boo".
+      // Create an SVG renderer and attach it to the DIV element named "generatedScore".
       const div = document.getElementById('generatedScore');
       const renderer = new Renderer(div, Renderer.Backends.SVG);
 
@@ -42,20 +48,22 @@
       renderer.resize(500, 500);
       const context = renderer.getContext();
 
-      // Create a stave of width 400 at position 10, 40 on the canvas.
+      // Create a stave of width 420 at position 10, 40 on the canvas.
       const stave = new Stave(10, 40, 420);
 
-      // Add a clef and time signature.
+      // Add a clef and time signature. // This will be dynamic later in generator settings algorithm 
       stave.addClef('treble').addTimeSignature('4/4');
 
       // Connect it to the rendering context and draw!
       stave.setContext(context).draw();
 
 
-
+      
 
 
         // TODO: Add 16th notes and half notes 
+
+        // I have left alot of console.logs for debugging, but will delete them later 
 
 
         // random notes in the future about this data: 
@@ -67,10 +75,15 @@
         octavePool = ['/4', '/5'];              // excluding octaves 1-3 and 6-8 to prevent creating several ledger lines 
         durationPool = ['q','8'];     // DELETE LATER, for testing   q = quarter notes, 8 = eigth notes 
         //durationPool = ['w', 'q','8', '16']   # USE THIS LATER 
+      
         
+        const notes = []; 
+        let beatsTotal = 8;  // Total number of beats in the measure, will change this to make it dynamic later 
+
         generatedNotesArray = []; 
 
-
+      
+      
 
       function pickRandomArrayIndex(Array){   
       // ensure randomness with just 2 values in array 
@@ -104,10 +117,6 @@
 
         return Duration; 
       }
-
-
-      const notes = []; 
-      let beatsTotal = 8;  // Total number of beats in the measure, will change this to make it dynamic later 
 
 
       function setBeatsLeftInMeasure (durationToSet) {
@@ -167,8 +176,6 @@
         it++; 
       }
 
-
-
       const notes2 = [new StaveNote({
         keys: [randomizeNoteAndOctave()],  
         duration: 'w'
@@ -193,12 +200,10 @@
       voices.forEach(function(v) {
         v.draw(context, stave);
       });
+    
 
-    </script>  
-
-    <script>
+      // Positioning score in middle of page 
       const scorePosition = document.getElementById('generatedScore');
-
       centerScore = () => {
         scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
         scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
@@ -206,10 +211,7 @@
 
       centerScore();
       window.addEventListener('resize', centerScore); 
-
-    </script>
-   
-    <script>
+    }
 
     </script>
   </body>
