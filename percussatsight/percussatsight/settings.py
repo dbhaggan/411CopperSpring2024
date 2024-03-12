@@ -81,10 +81,10 @@ WSGI_APPLICATION = 'percussatsight.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'users',
-	'USER': 'root',
+        'NAME': 'percussatsight',
+	'USER': 'django',
 	'PASSWORD': 'p@sSw0Rd',
-	'HOST': 'database',
+	'HOST': '172.24.0.2',
 	'PORT': '3306'
     }
 }

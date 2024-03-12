@@ -4,3 +4,4 @@ __pychache__
 *dbsqlite3*
 database/
 virtualenv
+migrations
