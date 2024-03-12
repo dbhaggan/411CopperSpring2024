@@ -10,10 +10,18 @@
     <login></login>
     <practice></practice>
     <signup></signup>
+
+    <!-- Render fetched data from backend -->
+    <div v-if="loaded">
+      <div v-for="item in items" :key="item.id">
+        {{ item.name }}
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import HelloWorld from './components/HelloWorld.vue'
 import app-settings from './components/app-settings.vue'
 import Feedback from './components/Feedback.vue'
@@ -36,8 +44,32 @@ export default {
     login,
     practice,
     signup
-  }
-}
+  },
+
+  data() {
+    return {
+      items: [], // hold fetched data
+      loaded: false, //flag to track if data is loaded
+    };
+  },
+
+  mounted() {
+    // fetch data from Django backend when component is mounted
+    axios.get('http://localhost:8080/api/items')
+      .then(response => {
+        // asign fetched data to items array
+        this.items = response.data;
+
+        // set loaded flag to true
+        this.loaded = true;
+      })
+
+      .catch(error => {
+        console.error('Error fetching items:', error);
+        // handle error if needed
+      });
+  },
+};
 </script>
 
 <style>
