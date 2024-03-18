@@ -87,7 +87,7 @@
 
       function pickRandomArrayIndex(Array){   
       // ensure randomness with just 2 values in array 
-        if (Array.length == 2){ 
+        /*if (Array.length == 2){ 
           let randDecimalVal = Math.random(); // outputs decimal value, instead of whole number 
           randDecimalVal = randDecimalVal < 0.50 ? 0 : 1; 
 
@@ -100,7 +100,9 @@
             }
         }
 
-        return randomIndex; 
+        return randomIndex; */
+
+        return Math.floor(Math.random() * Array.length); //generate random # between [0,1), mult by array length to get [0,length), round down, return
       }
 
 
