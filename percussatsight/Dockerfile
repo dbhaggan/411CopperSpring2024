@@ -14,5 +14,4 @@ EXPOSE 8080
 
 COPY . .
 
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
 ENTRYPOINT "./startup.sh"
