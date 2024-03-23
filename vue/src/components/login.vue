@@ -5,7 +5,7 @@
       <div class="login-container1">
         <div class="login-container2">
           <a href="homepage.html" class="login-navlink">
-            <img alt="image" src="/percussatsight_logo-1500h.png" class="login-image" />
+            <img alt="image" src="./assets/PercussAtSight_logo.png" class="login-image" />
           </a>
         </div>
         <header data-thq="thq-navbar" class="login-navbar-interactive">
@@ -22,7 +22,7 @@
           <input type="text" placeholder="Password" class="login-textinput1 input" />
           <label class="login-text5">Username:</label>
           <label class="login-text6">Password:</label>
-          <img src="/percussatsight_logo-1500h.png" alt="image" class="login-image1" />
+          <img src="./assets/PercussAtSight_logo.png" alt="image" class="login-image1" />
         </form>
       </div>
     </div>

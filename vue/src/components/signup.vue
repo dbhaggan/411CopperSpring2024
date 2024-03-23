@@ -6,7 +6,7 @@
           <a href="homepage.html" class="signup-navlink">
             <img
               alt="image"
-              src="/percussatsight_logo-1500h.png"
+              src="./assets/PercussAtSight_logo.png"
               class="signup-image"
             />
           </a>
@@ -95,7 +95,7 @@
           <label class="signup-text6">Last Name:</label>
           <label class="signup-text7">Email:</label>
           <img
-            src="/percussatsight_logo-1500h.png"
+            src="./assets/PercussAtSight_logo.png"
             alt="image"
             class="signup-image1"
           />
