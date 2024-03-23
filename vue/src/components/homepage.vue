@@ -1,36 +1,45 @@
 <template>
-  <div>
-    <link href="./homepage.css" rel="stylesheet" />
-    <div class="homepage-container">
-      <div class="homepage-logo-placement">
-        <div class="homepage-container1">
-          <a href="login.html" class="homepage-login button">Login</a>
-          <button name="sign-up" class="homepage-sign-up button">Sign-up</button>
-          <button name="practice" class="homepage-practice button">Practice</button>
-          <a href="homepage.html" class="homepage-navlink">
-            <img alt="image" src="/percussatsight_logo-200h.png" class="homepage-image" />
-          </a>
-        </div>
+  <div class="homepage-container">
+    <div class="homepage-logo-placement">
+      <div class="homepage-container1">
+        <router-link to="/login" class="homepage-login button">Login</router-link>
+        <button name="sign-up" class="homepage-sign-up button">Sign-up</button>
+        <button name="practice" class="homepage-practice button">Practice</button>
+        <router-link to="/" class="homepage-navlink">
+          <img
+            alt="image"
+            src="./assets/PercussAtSight_logo.png"
+            class="homepage-image"
+          />
+        </router-link>
       </div>
-      <img
-        alt="image"
-        src="/screenshot%202024-02-16%20133150-1200h.png"
-        loading="eager"
-        class="homepage-image1"
-      />
     </div>
+    <img
+      alt="image"
+      src="./assets/backdrop.png"
+      loading="eager"
+      class="homepage-image1"
+    />
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HomePage',
-  // Add any script logic here if needed
-};
+  name: 'Homepage',
+  props: {},
+  metaInfo: {
+    title: 'PercussAtSight',
+    meta: [
+      {
+        property: 'og:title',
+        content: 'PercussAtSight',
+      },
+    ],
+  },
+}
 </script>
 
 <style scoped>
-/* Your CSS styles go here */
 .homepage-container {
   width: 100%;
   display: flex;
@@ -53,20 +62,17 @@ export default {
   position: relative;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(
-    90deg,
-    rgba(153, 86, 29, 0.94) 1.00%,
-    rgba(240, 144, 53, 0) 83.00%
-  );
+  background-image: linear-gradient(90deg, rgba(153, 86, 29, 0.94) 1.00%,rgba(240, 144, 53, 0) 83.00%);
 }
 .homepage-login {
   top: 53px;
-  left: 1328px;
+  left: left;
   color: var(--dl-color-gray-white);
+  right: 290px;
   width: var(--dl-size-size-large);
   position: absolute;
   font-style: normal;
-  font-family: 'Arial';
+  font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
   background-color: #1e2f86;
@@ -78,7 +84,7 @@ export default {
   width: var(--dl-size-size-large);
   position: absolute;
   font-style: normal;
-  font-family: 'Arial';
+  font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
   background-color: var(--dl-color-primary-pasblue);
@@ -91,7 +97,7 @@ export default {
   position: absolute;
   align-self: center;
   font-style: normal;
-  font-family: 'Arial';
+  font-family: "Arial";
   font-weight: 700;
   background-color: var(--dl-color-primary-pasblue);
 }
