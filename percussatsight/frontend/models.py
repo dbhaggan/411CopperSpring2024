@@ -10,10 +10,23 @@ class User(models.Model):
     emailAddress = models.CharField(max_length=255)
 
 class Instrument(models.Model):
-    # instrument anme
+    # instrument name
     name = models.CharField(max_length=255)
     # created this if there are intricate percussion families
     family = models.CharField(max_length=255)
+    # Whether the instrument is pitched or not
+    pitched = models.BooleanField(default=False)
+
+
+class InstrumentNote(models.Model):
+    # Instrument linked
+    instrument = models.ForeignKey(Instrument, on_delete=models.CASCADE)
+    # Note of the instrument
+    note = models.CharField(max_length=255)
+    # Octave of the note
+    octave = models.CharField(max_length=255)
+    # Duration of the note
+    duration = models.CharField(max_length=255)
 
 class SheetMusic(models.Model):
     # song/sheet music name
