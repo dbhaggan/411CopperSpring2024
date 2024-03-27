@@ -138,7 +138,10 @@
       let randomizedDuration; 
 
       // creates the random Note and Duration then outputs it into Vexflow API 
-      function createNote(note, duration) { //creates a note and duration, then outputs it into Vexflow API 
+      function createRandomNote() { //creates a randomized note and duration, then outputs it into Vexflow API 
+
+        randomNote = randomizeNoteAndOctave(); //randomize note & octave
+        randomDuration = randomizeDuration(); //randomize duration
         
         setBeatsLeftInMeasure (duration); //set beats left in measure given duration
         
@@ -148,13 +151,6 @@
           keys: [note],
           duration: duration
         });
-      }
-
-      function createRandomNote() { //creates randomized note and duration, then outputs it into Vexflow API
-        randomNote = randomizeNoteAndOctave(); //randomize note & octave
-        randomDuration = randomizeDuration(); //randomize duration
-        
-        return createNote(randomNote, randomDuration); //randomize note & duration, then run the pre-built function
       }
 
 
