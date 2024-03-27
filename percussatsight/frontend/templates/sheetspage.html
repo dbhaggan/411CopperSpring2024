@@ -189,7 +189,7 @@
         duration: 'w'
         })];
 
-        var text = new Vex.Flow.TextNote({ 
+        var text = new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
         text: "Render TEXT TEST",
         font: {
             family: "Arial",
@@ -198,7 +198,7 @@
         },
         duration: 'w'               
         })
-        .setLine(0) 
+        .setLine(-3) // -3 highest, 3 low (Increase context if needed)
         .setStave(stave)
         .setJustification(Vex.Flow.TextNote.Justification.LEFT);
 
@@ -214,11 +214,15 @@
             num_beats: 4,
             beat_value: 4
         }).addTickables(notes2),
+        new Voice({
+            num_beats: 4,
+            beat_value: 4
+        }).addTickables([text]), // added voice for TextNote 
         ];
 
 
 
-        voice2.addTickables([text]);
+        // voice2.addTickables([text]);   DELETE THIS LATER 
 
 
         // Format and justify the notes to 400 pixels.
