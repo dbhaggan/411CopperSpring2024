@@ -143,13 +143,13 @@
         randomNote = randomizeNoteAndOctave(); //randomize note & octave
         randomDuration = randomizeDuration(); //randomize duration
         
-        setBeatsLeftInMeasure (duration); //set beats left in measure given duration
+        setBeatsLeftInMeasure (randomDuration); //set beats left in measure given duration
         
-        generatedNotesArray.push(note, duration); // store notes to use for Smart Feedback Algorithm 
+        generatedNotesArray.push(randomNote, randomDuration); // store notes to use for Smart Feedback Algorithm 
 
           return new Vex.Flow.StaveNote ({ //load into Vexflow API & return result
-          keys: [note],
-          duration: duration
+          keys: [randomNote],
+          duration: randomDuration
         });
       }
 
