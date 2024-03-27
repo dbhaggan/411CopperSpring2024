@@ -6,11 +6,13 @@ services:
     container_name: django-backend
     ports:
       - "8080:8080"
+    expose:
+      - "3306"
     volumes:
       - ./percussatsight/:/usr/src/app/ #connect percussatsight to the container
-    networks:
-      default:
-        ipv4_address: 172.24.0.1
+#    networks:
+#      default:
+#        ipv4_address: 172.24.0.1
     depends_on:
       - database
   database:
@@ -25,21 +27,22 @@ services:
       - MYSQL_PASSWORD=p@sSw0Rd
     volumes:
       - ./database:/etc/mysq/
-    networks:
-      default:
-        ipv4_address: 172.24.0.2
+#    networks:
+#      default:
+#        ipv4_address: 172.24.0.2
   vue-frontend:
     build: vue/.
     container_name: vue-frontend
     ports:
       - "80:80"
-    networks:
-      default:
-        ipv4_address: 172.24.0.3
-networks:
-  default:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 172.24.0.0/24
-          gateway: 172.24.0.254
+#    networks:
+#      default:
+#        ipv4_address: 172.24.0.3
+#networks:
+#  default:
+#    driver: bridge
+#    ipam:
+#      driver: default
+#      config:
+#        - subnet: 172.24.0.0/24
+#          gateway: 172.24.0.254

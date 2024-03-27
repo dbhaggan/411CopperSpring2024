@@ -10,6 +10,7 @@ COPY startup.sh .
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
+EXPOSE 3306
 EXPOSE 8080
 
 COPY . .
