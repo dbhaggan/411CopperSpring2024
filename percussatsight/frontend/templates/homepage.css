@@ -24,10 +24,12 @@
 }
 .homepage-login {
   top: 53px;
-  left: 1328px;
-  color: var(--dl-color-gray-white);
+  left: left;
+  color: white;
+  right: 290px;
   width: var(--dl-size-size-large);
   position: absolute;
+  align-self: center;
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
@@ -36,19 +38,20 @@
 }
 .homepage-sign-up {
   top: 53px;
-  color: var(--dl-color-gray-white);
+  color: white;
   right: 146px;
   width: var(--dl-size-size-large);
   position: absolute;
+  align-self: center;
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: var(--dl-color-primary-pasblue);
+  background-color: #1e2f86;
 }
 .homepage-practice {
   top: 53px;
-  color: var(--dl-color-gray-white);
+  color: white;
   right: 0px;
   width: var(--dl-size-size-large);
   position: absolute;
@@ -56,7 +59,8 @@
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
-  background-color: var(--dl-color-primary-pasblue);
+  text-decoration: none;
+  background-color: #1e2f86;
 }
 .homepage-navlink {
   display: contents;

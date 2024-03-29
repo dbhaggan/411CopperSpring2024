@@ -1,45 +1,49 @@
 <template>
-  <div class="homepage-container">
-    <div class="homepage-logo-placement">
-      <div class="homepage-container1">
-        <router-link to="/login" class="homepage-login button">Login</router-link>
-        <button name="sign-up" class="homepage-sign-up button">Sign-up</button>
-        <button name="practice" class="homepage-practice button">Practice</button>
-        <router-link to="/" class="homepage-navlink">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <title>PercussAtSight</title>
+      <meta property="og:title" content="PercussAtSight" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta charset="utf-8" />
+      <meta property="twitter:card" content="summary_large_image" />
+    </head>
+    <body>
+      <link rel="stylesheet" href="./style.css" />
+      <div>
+        <link href="./homepage.css" rel="stylesheet" />
+  
+        <div class="homepage-container">
+          <div class="homepage-logo-placement">
+            <div class="homepage-container1">
+              <a href="login.html" class="homepage-login button">Login</a>
+              <a href="signup.html" class="homepage-sign-up button">Sign-up</a>
+              <button name="practice" class="homepage-practice button">
+                Practice
+              </button>
+              <a href="homepage.html" class="homepage-navlink">
+                <img
+                  alt="logo"
+                  src="/vue/src/assets/PercussAtSight_Logo.png"
+                  class="homepage-image"
+                />
+              </a>
+            </div>
+          </div>
           <img
-            alt="image"
-            src="./assets/PercussAtSight_logo.png"
-            class="homepage-image"
+            alt="back drop"
+            src="/vue/src/assets/backdrop.png"
+            loading="eager"
+            class="homepage-image1"
           />
-        </router-link>
+        </div>
       </div>
-    </div>
-    <img
-      alt="image"
-      src="./assets/backdrop.png"
-      loading="eager"
-      class="homepage-image1"
-    />
-  </div>
+    </body>
+  </html>
+  
 </template>
 
-<script>
-export default {
-  name: 'Homepage',
-  props: {},
-  metaInfo: {
-    title: 'PercussAtSight',
-    meta: [
-      {
-        property: 'og:title',
-        content: 'PercussAtSight',
-      },
-    ],
-  },
-}
-</script>
-
-<style scoped>
+<style>
 .homepage-container {
   width: 100%;
   display: flex;
@@ -67,10 +71,11 @@ export default {
 .homepage-login {
   top: 53px;
   left: left;
-  color: var(--dl-color-gray-white);
+  color: white;
   right: 290px;
   width: var(--dl-size-size-large);
   position: absolute;
+  align-self: center;
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
@@ -79,19 +84,20 @@ export default {
 }
 .homepage-sign-up {
   top: 53px;
-  color: var(--dl-color-gray-white);
+  color: white;
   right: 146px;
   width: var(--dl-size-size-large);
   position: absolute;
+  align-self: center;
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: var(--dl-color-primary-pasblue);
+  background-color: #1e2f86;
 }
 .homepage-practice {
   top: 53px;
-  color: var(--dl-color-gray-white);
+  color: white;
   right: 0px;
   width: var(--dl-size-size-large);
   position: absolute;
@@ -99,7 +105,8 @@ export default {
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
-  background-color: var(--dl-color-primary-pasblue);
+  text-decoration: none;
+  background-color: #1e2f86;
 }
 .homepage-navlink {
   display: contents;
@@ -119,4 +126,5 @@ export default {
   height: 1120px;
   object-fit: cover;
 }
+
 </style>
