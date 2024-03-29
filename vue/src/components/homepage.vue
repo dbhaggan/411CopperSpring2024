@@ -66,7 +66,7 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(90deg, rgba(153, 86, 29, 0.94) 1.00%,rgba(240, 144, 53, 0) 83.00%);
+  background-image: white;
 }
 .homepage-login {
   top: 53px;
