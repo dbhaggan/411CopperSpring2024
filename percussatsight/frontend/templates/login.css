@@ -14,7 +14,7 @@
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  background-image: linear-gradient(90deg, rgb(153, 86, 29) 31.00%,rgba(240, 203, 53, 0) 100.00%);
+  background-image: white;
 }
 .login-container2 {
   flex: 0 0 auto;
@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(90deg, rgba(153, 86, 29, 0.94) 3.00%,rgba(240, 144, 53, 0) 85.00%);
+  background-color: white;
 }
 .login-navlink {
   display: contents;
@@ -42,13 +42,13 @@
   padding-right: var(--dl-space-space-threeunits);
   padding-bottom: var(--dl-space-space-twounits);
   justify-content: space-between;
-  background-image: linear-gradient(90deg, rgba(153, 86, 29, 0.94) 2.00%,rgba(115, 74, 8, 0) 78.00%);
+  background-color: white;
 }
 .login-desktop-menu {
   flex: 1;
   display: flex;
   justify-content: space-between;
-  background-image: linear-gradient(90deg, rgb(153, 86, 29) 0.00%,rgba(240, 144, 53, 0) 14.00%);
+  background-color: white;
 }
 .login-buttons {
   display: flex;
@@ -57,32 +57,32 @@
   justify-content: space-between;
 }
 .login-login {
-  color: var(--dl-color-gray-white);
+  color: white;
   width: var(--dl-size-size-large);
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: rgb(30, 47, 134);
+  background-color: #1e2f86;
 }
 .login-sign-up {
-  color: var(--dl-color-gray-white);
+  color: white;
   width: var(--dl-size-size-large);
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: var(--dl-color-primary-pasblue);
+  background-color: #1e2f86;
 }
 .login-practice {
-  color: var(--dl-color-gray-white);
+  color: white;
   width: var(--dl-size-size-large);
   height: 100%;
   align-self: stretch;
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
-  background-color: var(--dl-color-primary-pasblue);
+  background-color: #1e2f86;
 }
 .login-burger-menu {
   display: none;
@@ -181,6 +181,7 @@
   position: relative;
   align-items: center;
   justify-content: flex-end;
+  background-color: var(--dl-color-gray-white);
 }
 .login-textinput {
   top: 204px;
@@ -222,6 +223,13 @@
   align-self: center;
   object-fit: cover;
 }
+
+.login-button {
+  top: 430px;
+  left: 475px;
+  position: absolute;
+}
+
 @media(max-width: 991px) {
   .login-desktop-menu {
     display: none;

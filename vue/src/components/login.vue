@@ -1,42 +1,53 @@
 <template>
-  <div>
-    <link href="./login.css" rel="stylesheet" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>login - PercussAtSight</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
     <div class="login-container">
-      <div class="login-container1">
-        <div class="login-container2">
-          <a href="homepage.html" class="login-navlink">
-            <img alt="image" src="./assets/PercussAtSight_logo.png" class="login-image" />
-          </a>
-        </div>
-        <header data-thq="thq-navbar" class="login-navbar-interactive">
-          <div data-thq="thq-navbar-nav" class="login-desktop-menu">
-            <div class="login-buttons">
-              <a href="login.html" class="login-login button">Login</a>
-              <button name="sign-up" class="login-sign-up button">Sign-up</button>
-              <button name="practice" class="login-practice button">Practice</button>
+        <div class="login-container1">
+            <div class="login-container2">
+                <a href="homepage.html" class="login-navlink">
+                    <img src="/vue/src/assets/logo.png" alt="logo" class="login-image">
+                </a>
             </div>
-          </div>
-        </header>
-        <form class="login-form">
-          <input type="text" placeholder="Username" class="login-textinput input" />
-          <input type="text" placeholder="Password" class="login-textinput1 input" />
-          <label class="login-text5">Username:</label>
-          <label class="login-text6">Password:</label>
-          <img src="./assets/PercussAtSight_logo.png" alt="image" class="login-image1" />
-        </form>
-      </div>
+            <header class="login-navbar-interactive">
+                <div class="login-desktop-menu">
+                    <div class="login-buttons">
+                        <a href="login.html" class="login-login button">Login</a>
+                    </div>
+                    <a href="signup.html" name="sign-up" class="login-sign-up button">Sign-up</a>
+                    <button name="practice" class="login-practice button">Practice</button>
+                </div>
+            </header>
+            <form class="login-form">
+                <label class="login-text5">Username:</label>
+                <input type="text" placeholder="Username" class="login-textinput input">
+                
+                <label class="login-text6">Password:</label>
+                <input type="password" placeholder="Password" class="login-textinput1 input">
+
+                <img
+                    alt="logo"
+                    src="/vue/src/assets/logo.png"
+                    class="login-image1"
+                />
+
+                <button type="submit" name="log-in" class="login-button button">Log-In</button>
+            </form>
+        </div>
     </div>
-  </div>
+</body>
+</html>
 </template>
 
-<script>
-export default {
-  name: 'LoginPage',
-};
-</script>
 
-<style scoped>
-/* Your CSS styles go here */
+<style>
 .login-container {
   width: 100%;
   display: flex;
@@ -53,11 +64,7 @@ export default {
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  background-image: linear-gradient(
-    90deg,
-    rgb(153, 86, 29) 31.00%,
-    rgba(240, 203, 53, 0) 100.00%
-  );
+  background-image: white;
 }
 .login-container2 {
   flex: 0 0 auto;
@@ -66,11 +73,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(
-    90deg,
-    rgba(153, 86, 29, 0.94) 3.00%,
-    rgba(240, 144, 53, 0) 85.00%
-  );
+  background-color: white;
 }
 .login-navlink {
   display: contents;
@@ -89,21 +92,13 @@ export default {
   padding-right: var(--dl-space-space-threeunits);
   padding-bottom: var(--dl-space-space-twounits);
   justify-content: space-between;
-  background-image: linear-gradient(
-    90deg,
-    rgba(153, 86, 29, 0.94) 2.00%,
-    rgba(115, 74, 8, 0) 78.00%
-  );
+  background-color: white;
 }
 .login-desktop-menu {
   flex: 1;
   display: flex;
   justify-content: space-between;
-  background-image: linear-gradient(
-    90deg,
-    rgb(153, 86, 29) 0.00%,
-    rgba(240, 144, 53, 0) 14.00%
-  );
+  background-color: white;
 }
 .login-buttons {
   display: flex;
@@ -112,32 +107,122 @@ export default {
   justify-content: space-between;
 }
 .login-login {
-  color: var(--dl-color-gray-white);
+  color: white;
   width: var(--dl-size-size-large);
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: rgb(30, 47, 134);
+  background-color: #1e2f86;
 }
 .login-sign-up {
-  color: var(--dl-color-gray-white);
+  color: white;
   width: var(--dl-size-size-large);
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: var(--dl-color-primary-pasblue);
+  background-color: #1e2f86;
 }
 .login-practice {
-  color: var(--dl-color-gray-white);
+  color: white;
   width: var(--dl-size-size-large);
   height: 100%;
   align-self: stretch;
   font-style: normal;
   font-family: "Arial";
   font-weight: 700;
-  background-color: var(--dl-color-primary-pasblue);
+  background-color: #1e2f86;
+}
+.login-burger-menu {
+  display: none;
+}
+.login-icon {
+  width: var(--dl-size-size-medium);
+  height: var(--dl-size-size-xsmall);
+}
+.login-mobile-menu {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  padding: 32px;
+  z-index: 100;
+  position: absolute;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fff;
+}
+.login-nav {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.login-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--dl-space-space-threeunits);
+  justify-content: space-between;
+}
+.login-logo {
+  height: 2rem;
+}
+.login-close-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-icon02 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+}
+.login-links {
+  flex: 0 0 auto;
+  display: flex;
+  align-self: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.login-text {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.login-text1 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.login-text2 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.login-text3 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.login-text4 {
+  margin-bottom: var(--dl-space-space-unit);
+}
+.login-buttons1 {
+  display: flex;
+  margin-top: var(--dl-space-space-unit);
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.login-login1 {
+  margin-right: var(--dl-space-space-twounits);
+}
+.login-icon04 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+  margin-right: var(--dl-space-space-twounits);
+}
+.login-icon06 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
+  margin-right: var(--dl-space-space-twounits);
+}
+.login-icon08 {
+  width: var(--dl-size-size-xsmall);
+  height: var(--dl-size-size-xsmall);
 }
 .login-form {
   width: 100%;
@@ -146,6 +231,7 @@ export default {
   position: relative;
   align-items: center;
   justify-content: flex-end;
+  background-color: var(--dl-color-gray-white);
 }
 .login-textinput {
   top: 204px;
@@ -187,9 +273,56 @@ export default {
   align-self: center;
   object-fit: cover;
 }
-@media (max-width: 991px) {
+
+.login-button {
+  top: 430px;
+  left: 475px;
+  position: absolute;
+}
+
+@media(max-width: 991px) {
   .login-desktop-menu {
     display: none;
+  }
+  .login-burger-menu {
+    display: flex;
+  }
+}
+@media(max-width: 767px) {
+  .login-navbar-interactive {
+    padding-left: var(--dl-space-space-twounits);
+    padding-right: var(--dl-space-space-twounits);
+  }
+  .login-burger-menu {
+    align-items: center;
+    justify-content: center;
+  }
+  .login-text {
+    margin-bottom: var(--dl-space-space-unit);
+  }
+  .login-text1 {
+    margin-left: 0;
+    margin-bottom: var(--dl-space-space-unit);
+  }
+  .login-text2 {
+    margin-left: 0;
+    margin-bottom: var(--dl-space-space-unit);
+  }
+  .login-text3 {
+    margin-left: 0;
+    margin-bottom: var(--dl-space-space-unit);
+  }
+  .login-text4 {
+    margin-left: 0;
+    margin-bottom: var(--dl-space-space-unit);
+  }
+}
+@media(max-width: 479px) {
+  .login-navbar-interactive {
+    padding: var(--dl-space-space-unit);
+  }
+  .login-mobile-menu {
+    padding: 16px;
   }
 }
 </style>
