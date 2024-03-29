@@ -1,6 +1,6 @@
 from django.contrib import admin
 # from .models import User, SheetMusic, Note, SheetMusicNote, UserProgress, Feedback, Instrument, InstrumentNote, PracticeSession
-from .models import Instrument, InstrumentNote
+from .models import Instrument, InstrumentNote, User
 
 
 # admin.site.register(User)
@@ -25,3 +25,15 @@ InstrumentNote.objects.create(instrument=marimba, note='G', octave='3', duration
 InstrumentNote.objects.create(instrument=bells, note='C#', octave='5', duration='Half Note')
 InstrumentNote.objects.create(instrument=snare_drum, note='Snare', octave='', duration='Sixteenth Note')
 InstrumentNote.objects.create(instrument=drumset, note='Kick Drum', octave='', duration='Whole Note')
+
+
+john = User.objects.create(firstName='John', lastName='Doe', userName='johndoe', passWord='password', emailAddress='john@example.com')
+
+# Adding instruments to the user
+john.instruments.add(timpani)
+john.instruments.add(marimba)
+
+# Accessing instruments associated with the user
+instruments_of_john = john.instruments.all()
+for instrument in instruments_of_john:
+    print(instrument.name)
