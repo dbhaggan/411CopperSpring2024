@@ -8,6 +8,7 @@ class User(models.Model):
     userName = models.CharField(max_length=255)
     passWord = models.CharField(max_length=255)
     emailAddress = models.CharField(max_length=255)
+    instruments = models.ManyToManyField('Instrument', related_name='users')
 
 class Instrument(models.Model):
     # instrument name
