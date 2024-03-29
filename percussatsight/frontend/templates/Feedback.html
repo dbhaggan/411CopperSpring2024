@@ -3,7 +3,8 @@
 <body style="background-color:#003e7d">
 
 <div>
-  <link href="./feedback.css" rel="stylesheet" />
+  {% load static%}
+  <link href="{% static 'feedback.css'%}" rel="stylesheet" />
   <div class="feedback-container">
     <span class="feedback-text">Feedback Report</span>
     <span class="feedback-text01">Play Time:</span>

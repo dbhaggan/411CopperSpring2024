@@ -1,12 +1,13 @@
 <div>
-  <link href="./login.css" rel="stylesheet" />
+  {% load static %}
+  <link href="{% static 'login.css'%}" rel="stylesheet" />
   <div class="login-container">
     <div class="login-container1">
       <div class="login-container2">
-        <a href="homepage.html" class="login-navlink">
+        <a href="homepage" class="login-navlink">
           <img
             alt="image"
-            src="/percussatsight_logo-1500h.png"
+            src="{% static 'percussatsight_logo-1500h.png'%}"
             class="login-image"
           />
         </a>
@@ -14,7 +15,7 @@
       <header data-thq="thq-navbar" class="login-navbar-interactive">
         <div data-thq="thq-navbar-nav" class="login-desktop-menu">
           <div class="login-buttons">
-            <a href="login.html" class="login-login button">Login</a>
+            <a href="login" class="login-login button">Login</a>
           </div>
           <button name="sign-up" class="login-sign-up button">Sign-up</button>
           <button name="practice" class="login-practice button">
@@ -87,7 +88,7 @@
         <label class="login-text5">Username:</label>
         <label class="login-text6">Password:</label>
         <img
-          src="/percussatsight_logo-1500h.png"
+          src="{% static 'percussatsight_logo-1500h.png' %}"
           alt="image"
           class="login-image1"
         />

@@ -1,9 +1,10 @@
 <div>
-  <link href="./homepage.css" rel="stylesheet" />
+  {% load static %}
+  <link href="{% static 'homepage.css'%} " rel="stylesheet" />
   <div class="homepage-container">
     <div class="homepage-logo-placement">
       <div class="homepage-container1">
-        <a href="login.html" class="homepage-login button">Login</a>
+        <a href="" class="homepage-login button">Login</a>
         <button name="sign-up" class="homepage-sign-up button">Sign-up</button>
         <button name="practice" class="homepage-practice button">
           Practice
@@ -11,7 +12,7 @@
         <a href="homepage.html" class="homepage-navlink">
           <img
             alt="image"
-            src="/percussatsight_logo-200h.png"
+            src="{% static 'percussatsight_logo-200h.png'%}"
             class="homepage-image"
           />
         </a>
@@ -19,7 +20,7 @@
     </div>
     <img
       alt="image"
-      src="/screenshot%202024-02-16%20133150-1200h.png"
+      src="/static/screenshot%202024-02-16%20133150-1200h.png"
       loading="eager"
       class="homepage-image1"
     />

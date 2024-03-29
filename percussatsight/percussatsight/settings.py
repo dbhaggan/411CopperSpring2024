@@ -82,7 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'percussatsight',
-	'USER': 'root',
+	'USER': 'django',
 	'PASSWORD': 'p@sSw0Rd',
 	'HOST': 'database',
 	'PORT': '3306'

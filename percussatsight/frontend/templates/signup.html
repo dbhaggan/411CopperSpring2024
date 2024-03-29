@@ -1,12 +1,13 @@
 <div>
-  <link href="./signup.css" rel="stylesheet" />
+  {% load static %}
+  <link href="{% static 'signup.css' %}" rel="stylesheet" />
   <div class="signup-container">
     <div class="signup-container1">
       <div class="signup-container2">
         <a href="homepage.html" class="signup-navlink">
           <img
             alt="image"
-            src="/percussatsight_logo-1500h.png"
+            src="{% static 'percussatsight_logo-1500h.png'%}"
             class="signup-image"
           />
         </a>
@@ -93,7 +94,7 @@
         <label class="signup-text6">Last Name:</label>
         <label class="signup-text7">Email:</label>
         <img
-          src="/percussatsight_logo-1500h.png"
+          src="{% static 'percussatsight_logo-1500h.png'%}"
           alt="image"
           class="signup-image1"
         />
