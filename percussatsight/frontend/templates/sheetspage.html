@@ -80,13 +80,22 @@
         let octavePool = ['/4', '/5'];              // excluding octaves 1-3 and 6-8 to prevent creating several ledger lines 
         let durationPool = ['q','8'];    // DELETE LATER, for testing   q = quarter notes, 8 = eigth notes 
             //durationPool = ['w', 'q','8', '16']   # USE THIS LATER 
+        
+        // Represents Snare Drum data 
+        let snareDrumNotePool = ['C']; 
+        let snareDrumOctavePool = ['/5']; 
+
         let randomIndex; 
 
         const notes = []; 
         let beatsTotal = 8;  // Total number of beats in the measure, will change this to make it dynamic later 
-
+        // Store array for dynamically adding them to Voices 
+        let storeArrayForVoices = []; 
+        
         // For Feedback algorithm 
         let generatedNotesArray = []; 
+        //For testing Sticking and Instrument Switching 
+        let storeDruationForTextNote = []; 
         
         let randomNote; 
         let randomDuration; 
@@ -108,17 +117,6 @@
 
         return randomIndex; 
         }
-
-
-        function randomizeNoteAndOctave(){
-        let Note = notePool[pickRandomArrayIndex(notePool)];  
-        let Octave = octavePool[pickRandomArrayIndex(octavePool)]; 
-        // percussNoteHead = percussionNoteHeadPool[pickRandomArrayIndex(percussionNoteHeadPool)]; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
-
-        // return Note + Octave + percussNoteHead; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
-        return Note + Octave; //+ percussNoteHead  
-        }
-
 
         function randomizeDuration(){
         let Duration = durationPool[pickRandomArrayIndex(durationPool)];  
@@ -142,9 +140,47 @@
         }
 
         // creates the random Note and Duration then outputs it into Vexflow API 
-        function createRandomNote(){    
+        function createRandomNoteForGlock(){
+            function randomizeNoteAndOctave(){
+                let Note = notePool[pickRandomArrayIndex(notePool)];  
+                let Octave = octavePool[pickRandomArrayIndex(octavePool)]; 
+                // percussNoteHead = percussionNoteHeadPool[pickRandomArrayIndex(percussionNoteHeadPool)]; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
+
+                // return Note + Octave + percussNoteHead; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
+            return Note + Octave; //+ percussNoteHead  
+            }
+
             randomNote = randomizeNoteAndOctave();  
             randomDuration =  randomizeDuration(); 
+            storeDruationForTextNote[randomDuration]; // Stores duration for TextNote 
+
+            if (beatsTotal === 1 && randomDuration === "q"){
+            let durationInQuestion = randomDuration; 
+            randomDuration = setBeatsLeftInMeasure(durationInQuestion); 
+            }
+            else{
+                setBeatsLeftInMeasure (randomDuration); 
+            }
+
+          return new Vex.Flow.StaveNote ({
+          keys: [randomNote],
+          duration: randomDuration
+        });
+        }
+      
+        function createRandomNoteForSnareDrum(){
+            function randomizeNoteAndOctaveForSnare(){
+                let Note = snareDrumNotePool[pickRandomArrayIndex(snareDrumNotePool)];  
+                let Octave = snareDrumOctavePool[pickRandomArrayIndex(snareDrumOctavePool)]; 
+                // percussNoteHead = percussionNoteHeadPool[pickRandomArrayIndex(percussionNoteHeadPool)]; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
+
+                // return Note + Octave + percussNoteHead; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
+            return Note + Octave; //+ percussNoteHead  
+            }
+        
+            randomNote = randomizeNoteAndOctaveForSnare();  
+            randomDuration =  randomizeDuration(); 
+            storeDruationForTextNote[randomDuration]; // Stores duration for TextNote 
 
             if (beatsTotal === 1 && randomDuration === "q"){
             let durationInQuestion = randomDuration; 
@@ -161,10 +197,14 @@
         }
       
 
+
+
+
         
 
         while(beatsTotal != 0) {
-        randomNote = createRandomNote();
+        // randomNote = createRandomNoteForGlock(); 
+        randomNote = createRandomNoteForSnareDrum(); 
             console.log(beatsTotal); 
         if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
             console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
@@ -174,6 +214,7 @@
             notes.push(randomNote); // push created notes in array for vexflow to format and render to screen 
         }
         }
+        storeArrayForVoices.push(notes); // store array for voices 
 
         // For Feedback Algorithm 
         // Show Stored Notes of Array in Console Log, DELETE LATER 
@@ -184,27 +225,95 @@
         it++; 
         }
 
-        const notes2 = [new StaveNote({
+        /* const notes2 = [new StaveNote({
         keys: [randomizeNoteAndOctave()],  
         duration: 'w'
+        })]; */
+
+        const notes2 = [new StaveNote({  // hardcoding this BUT EDIT THIS LATER TO MAKE MORE DYNCAMIC 
+        keys: ['E/4'],  
+        duration: 'w'
         })];
-
-        var text = new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
-        text: "Render TEXT TEST",
-        font: {
-            family: "Arial",
-            size: 12,
-            weight: ""
-        },
-        duration: 'w'               
-        })
-        .setLine(-3) // -3 highest, 3 low (Increase context if needed)
-        .setStave(stave)
-        .setJustification(Vex.Flow.TextNote.Justification.LEFT);
+        storeArrayForVoices.push(notes2); 
 
 
+        // Use array that's storing the note duration in place of the TextNotes' durations 
+        j = 0; 
+        let testingTextNote = [
+        // var text = new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
+        
+            new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
+            text: "THIS IS A TEST",
+            font: {
+                family: "Arial",
+                size: 12,
+                weight: ""
+            },
+            duration: 'q'               
+            })
+            .setLine(-3) // -3 highest, 3 low (Increase context if needed)
+            .setStave(stave)
+            .setJustification(Vex.Flow.TextNote.Justification.CENTER),
+            new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
+            text: "R",
+            font: {
+                family: "Arial",
+                size: 12,
+                weight: ""
+            },
+            duration: 'q'               
+            })
+            .setLine(-3) // -3 highest, 3 low (Increase context if needed)
+            .setStave(stave)
+            .setJustification(Vex.Flow.TextNote.Justification.CENTER),
+            new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
+            text: "R",
+            font: {
+                family: "Arial",
+                size: 12,
+                weight: ""
+            },
+            duration: 'q'               
+            })
+            .setLine(-3) // -3 highest, 3 low (Increase context if needed)
+            .setStave(stave)
+            .setJustification(Vex.Flow.TextNote.Justification.CENTER),
+            new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
+            text: "R",
+            font: {
+                family: "Arial",
+                size: 12,
+                weight: ""
+            },
+            duration: 'q'               
+            })
+            .setLine(-3) // -3 highest, 3 low (Increase context if needed)
+            .setStave(stave)
+            .setJustification(Vex.Flow.TextNote.Justification.CENTER)
 
-        // Create a voice in 4/4 and add above notes
+        ]
+        storeArrayForVoices.push(testingTextNote); 
+
+        const voices = []; 
+            
+        function addVoices(Array){
+            console.log(Array); 
+            return new Voice({
+            num_beats: 4,
+            beat_value: 4
+            }).addTickables(Array);            
+        }
+        let tempVoiceVar = []; 
+
+        for (let k = 0; k < storeArrayForVoices.length; k++){
+            tempVoiceVar = addVoices(storeArrayForVoices[k]);
+                console.log("TESTING THE tempVoiceVar " + tempVoiceVar); 
+            voices.push(tempVoiceVar); 
+        
+            
+        }
+        
+        /* // Create a voice in 4/4 and add above notes
         const voices = [
         new Voice({
             num_beats: 4,
@@ -217,8 +326,8 @@
         new Voice({
             num_beats: 4,
             beat_value: 4
-        }).addTickables([text]), // added voice for TextNote 
-        ];
+        }).addTickables(testingTextNote), // added voice for TextNote 
+        ]; */
 
 
 
