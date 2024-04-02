@@ -26,6 +26,10 @@ def signuppage(request):
     template = loader.get_template('signup.html')
     return HttpResponse(template.render())
 
+def practicepage(request):
+    template = loader.get_template('practice.html')
+    return HttpResponse(template.render())
+
 class userViewSet(viewsets.ModelViewSet):
     queryset = models.User.objects.all()
     serializer_class = serializers.userSerializer

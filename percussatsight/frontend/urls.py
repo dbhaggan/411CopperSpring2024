@@ -13,6 +13,7 @@ urlpatterns = [
     path("", loginpage, name="login"),
     path("signup", signuppage, name="signup"),
     path("api/", include(router.urls)),
+    path("practice", practicepage, name="practice"),
     #path("api", include('rest_framework.urls')),
 ]
 
