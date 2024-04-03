@@ -50,7 +50,7 @@
         const renderer = new Renderer(div, Renderer.Backends.SVG);
 
         // Configure the rendering context.
-        renderer.resize(500, 500);
+        renderer.resize(1200, 1200);
         const context = renderer.getContext();
 
 
@@ -77,11 +77,15 @@
 
         let randomIndex; 
 
-        const notes = []; 
+        // Using these arrays locally in function, delete them later 
+        // const notes = []; 
+        // const voices = []; 
+        // let storeArrayForVoices = []; 
+
         let beatsTotal = 8;  // Total number of beats in the measure, will change this to make it dynamic later 
         // Store array for dynamically adding them to Voices 
-        let storeArrayForVoices = []; 
-        const voices = []; 
+        
+        let staveArray = []; 
         
         // For Feedback algorithm 
         let generatedNotesArray = []; 
@@ -90,6 +94,27 @@
         
         let randomNote; 
         let randomDuration; 
+        let stave; 
+
+        function setStave(newStave) {
+            stave = newStave;
+        }
+        
+        function getStave() {
+            return stave;
+        }
+
+        function addStave(x,y,width) { 
+          stave = new Stave (x,y,width)
+          stave.addClef(clefVal).addTimeSignature('4/4'); 
+          stave.setContext(context).draw(); 
+          staveArray.push(stave); 
+          setStave(stave); 
+        }  
+ 
+        function setStave(currentStave) {
+            return currentStave; 
+        }
 
         function pickRandomArrayIndex(Array){   
         // ensure randomness with just 2 values in array 
@@ -160,29 +185,33 @@
         }
 
         function createMeasureForGlock(){
-            // ADD ID OR VARIABLE TO KEEP TRACK IF THE INSTRUMENT'S BEEN CHANGED 
-            // Create a stave of width 420 at position 10, 40 on the canvas.
-            const stave = new Stave(10, 40, 420);
-            // Add a clef and time signature. // This will be dynamic later in generator settings algorithm 
-            stave.addClef(clefVal).addTimeSignature('4/4');
-            // Connect it to the rendering context and draw!
-            stave.setContext(context).draw();
 
+            for (let i = 1; i < 3; i++){
+                const prevStave = staveArray[i - 1]; 
+                addStave(prevStave.width + prevStave.x, 40, 280); 
+            
+                // ADD ID OR VARIABLE TO KEEP TRACK IF THE INSTRUMENT'S BEEN CHANGED 
 
-            while(beatsTotal != 0) {
-                // createNotesForSnareDrum(); 
-            // randomNote = createRandomNoteForGlock(); 
-            randomNote = createRandomGlockNote(); 
-                console.log(beatsTotal); 
-                if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
-                    console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
-                    break;  
+                // reinitialize variables with new measure 
+                let notes = []; 
+                let voices = []; 
+                let storeArrayForVoices = []; 
+                beatsTotal = 8; 
+                while(beatsTotal != 0) {
+                    // createNotesForSnareDrum(); 
+                    // randomNote = createRandomNoteForGlock(); 
+                    randomNote = createRandomGlockNote(); 
+                    console.log(beatsTotal); 
+                    if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
+                        console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
+                        break;  
+                    }
+                    else {
+                        notes.push(randomNote); // push created notes in array for vexflow to format and render to screen 
+                    }
                 }
-                else {
-                    notes.push(randomNote); // push created notes in array for vexflow to format and render to screen 
-                }
-            }
-            storeArrayForVoices.push(notes); // store array for voices 
+                storeArrayForVoices.push(notes); // store array for voices 
+            
 
             function addVoices(Array){
                 console.log(Array); 
@@ -199,12 +228,13 @@
                 voices.push(tempVoiceVar);     
             }
 
-            new Formatter().joinVoices(voices).format(voices, 350);
+            new Formatter().joinVoices(voices).format(voices, 200);
 
             // Render voices.
             voices.forEach(function(v) {
             v.draw(context, stave);
             });
+        }
         }
       
         
@@ -238,12 +268,18 @@
 
         function createMeasureForSnareDrum(){
             // ADD ID OR VARIABLE TO KEEP TRACK IF THE INSTRUMENT'S BEEN CHANGED 
-            // Create a stave of width 420 at position 10, 40 on the canvas.
+
+            for (let i = 1; i < 2; i++){
+                const prevStave = staveArray[i - 1]; 
+                addStave(prevStave.width + prevStave.x, 40, 280); 
+            }
+
+            /* // Create a stave of width 420 at position 10, 40 on the canvas.
             const stave = new Stave(10, 40, 420);
             // Add a clef and time signature. // This will be dynamic later in generator settings algorithm 
             stave.addClef(clefVal).addTimeSignature('4/4');
             // Connect it to the rendering context and draw!
-            stave.setContext(context).draw();
+            stave.setContext(context).draw(); */
 
 
             while(beatsTotal != 0) {
@@ -283,6 +319,8 @@
             v.draw(context, stave);
             });
         }
+
+        addStave(0, 0, 0); 
         
         // createMeasureForSnareDrum(); 
         createMeasureForGlock(); 
