@@ -31,7 +31,7 @@
               </span>
             </button>
           </div>
-          <button type="button" class="practice-button4 button" @click = "runSheetGenerator">
+          <button type="button" class="practice-button4 button" v-on:click = "runSheetGenerator">
             <span>
               <br />
               <br />
@@ -134,10 +134,10 @@
 
   export default {
     name: 'VexflowComponent',
-    mounted(){
-   // methods: {
+    //mounted(){
+   methods: {
       
-     // data: function runSheetGenerator(){
+    runSheetGenerator(){
 
 // Check if a Score exists and deletes it 
         let existingScore = document.getElementById("generatedScore"); 
@@ -326,7 +326,7 @@
 
         centerScore();
         window.addEventListener('resize', centerScore); 
-//}
+}
     }
   }
 
