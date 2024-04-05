@@ -16,7 +16,7 @@
     <app-settings></app-settings>
     <SmartFeedback></SmartFeedback>
     <generator-settings></generator-settings>
-    <homepage></homepage>
+    <HomePage></HomePage>
     <instrument-selection></instrument-selection>
     <login></login>
     <PracticePage></PracticePage>
@@ -28,7 +28,7 @@
 import axios from "axios";
 // import app-settings from './components/app-settings.vue'
 // import generator-settings from './components/generator-settings.vue'
-import homepage from "./components/HomePage.vue";
+import HomePage from "./components/homepage.vue";
 // import instrument-selection from './components/instrument-selection.vue'
 import login from "./componentsLogIn.vue";
 import signup from "./components/SignUp.vue";
@@ -41,7 +41,7 @@ export default {
     // app-settings,
     SmartFeedback,
     // generator-settings,
-    homepage,
+    HomePage,
     // instrument-selection,
     login,
     PracticePage,

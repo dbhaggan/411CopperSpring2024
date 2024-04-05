@@ -1,51 +1,68 @@
 <template>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>login - PercussAtSight</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="./login.css">
-</head>
-<body>
-    <div class="login-container">
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <title>login - PercussAtSight</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="./style.css" />
+      <link rel="stylesheet" href="./login.css" />
+    </head>
+    <body>
+      <div class="login-container">
         <div class="login-container1">
-            <div class="login-container2">
-                <a href="homepage.html" class="login-navlink">
-                    <img src="/vue/src/assets/logo.png" alt="logo" class="login-image">
-                </a>
+          <div class="login-container2">
+            <a href="homepage.html" class="login-navlink">
+              <img
+                src="/vue/src/assets/logo.png"
+                alt="logo"
+                class="login-image"
+              />
+            </a>
+          </div>
+          <header class="login-navbar-interactive">
+            <div class="login-desktop-menu">
+              <div class="login-buttons">
+                <a href="login.html" class="login-login button">Login</a>
+              </div>
+              <a href="signup.html" name="sign-up" class="login-sign-up button"
+                >Sign-up</a
+              >
+              <button name="practice" class="login-practice button">
+                Practice
+              </button>
             </div>
-            <header class="login-navbar-interactive">
-                <div class="login-desktop-menu">
-                    <div class="login-buttons">
-                        <a href="login.html" class="login-login button">Login</a>
-                    </div>
-                    <a href="signup.html" name="sign-up" class="login-sign-up button">Sign-up</a>
-                    <button name="practice" class="login-practice button">Practice</button>
-                </div>
-            </header>
-            <form class="login-form">
-                <label class="login-text5">Username:</label>
-                <input type="text" placeholder="Username" class="login-textinput input">
-                
-                <label class="login-text6">Password:</label>
-                <input type="password" placeholder="Password" class="login-textinput1 input">
+          </header>
+          <form class="login-form">
+            <label class="login-text5">Username:</label>
+            <input
+              type="text"
+              placeholder="Username"
+              class="login-textinput input"
+            />
 
-                <img
-                    alt="logo"
-                    src="/vue/src/assets/logo.png"
-                    class="login-image1"
-                />
+            <label class="login-text6">Password:</label>
+            <input
+              type="password"
+              placeholder="Password"
+              class="login-textinput1 input"
+            />
 
-                <button type="submit" name="log-in" class="login-button button">Log-In</button>
-            </form>
+            <img
+              alt="logo"
+              src="/vue/src/assets/logo.png"
+              class="login-image1"
+            />
+
+            <button type="submit" name="log-in" class="login-button button">
+              Log-In
+            </button>
+          </form>
         </div>
-    </div>
-</body>
-</html>
+      </div>
+    </body>
+  </html>
 </template>
-
 
 <style>
 .login-container {
@@ -280,7 +297,7 @@
   position: absolute;
 }
 
-@media(max-width: 991px) {
+@media (max-width: 991px) {
   .login-desktop-menu {
     display: none;
   }
@@ -288,7 +305,7 @@
     display: flex;
   }
 }
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   .login-navbar-interactive {
     padding-left: var(--dl-space-space-twounits);
     padding-right: var(--dl-space-space-twounits);
@@ -317,7 +334,7 @@
     margin-bottom: var(--dl-space-space-unit);
   }
 }
-@media(max-width: 479px) {
+@media (max-width: 479px) {
   .login-navbar-interactive {
     padding: var(--dl-space-space-unit);
   }
