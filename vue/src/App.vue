@@ -28,10 +28,10 @@
 import axios from "axios";
 // import app-settings from './components/app-settings.vue'
 // import generator-settings from './components/generator-settings.vue'
-import homepage from "./components/homepage.vue";
+import homepage from "./components/HomePage.vue";
 // import instrument-selection from './components/instrument-selection.vue'
-import login from "./components/login.vue";
-import signup from "./components/signup.vue";
+import login from "./componentsLogIn.vue";
+import signup from "./components/SignUp.vue";
 import SmartFeedback from "./components/SmartFeedback.vue";
 import PracticePage from "./components/PracticePage.vue";
 
