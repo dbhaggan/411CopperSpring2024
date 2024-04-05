@@ -28,9 +28,9 @@
 import axios from "axios";
 // import app-settings from './components/app-settings.vue'
 // import generator-settings from './components/generator-settings.vue'
-import HomePage from "./components/homepage.vue";
+import HomePage from "./components/HomePage.vue";
 // import instrument-selection from './components/instrument-selection.vue'
-import login from "./componentsLogIn.vue";
+import login from "./components/LogIn.vue";
 import signup from "./components/SignUp.vue";
 import SmartFeedback from "./components/SmartFeedback.vue";
 import PracticePage from "./components/PracticePage.vue";

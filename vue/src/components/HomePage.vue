@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="./style.css" />
       <div>
         <link href="./homepage.css" rel="stylesheet" />
-  
+        test
         <div class="homepage-container">
           <div class="homepage-logo-placement">
             <div class="homepage-container1">
@@ -24,7 +24,7 @@
               <a href="homepage.html" class="homepage-navlink">
                 <img
                   alt="logo"
-                  src="/vue/src/assets/PercussAtSight_Logo.png"
+                  src="../assets/PercussAtSight_Logo.png"
                   class="homepage-image"
                 />
               </a>
@@ -32,7 +32,7 @@
           </div>
           <img
             alt="back drop"
-            src="/vue/src/assets/backdrop.png"
+            src="../assets/backdrop.png"
             loading="eager"
             class="homepage-image1"
           />
@@ -40,7 +40,6 @@
       </div>
     </body>
   </html>
-  
 </template>
 
 <style>
@@ -126,5 +125,4 @@
   height: 1120px;
   object-fit: cover;
 }
-
 </style>
