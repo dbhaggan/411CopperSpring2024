@@ -14,7 +14,7 @@
           <div class="login-container2">
             <a href="homepage.html" class="login-navlink">
               <img
-                src="/vue/src/assets/logo.png"
+                src="../assets/PercussAtSight_Logo.png"
                 alt="logo"
                 class="login-image"
               />
@@ -50,7 +50,7 @@
 
             <img
               alt="logo"
-              src="/vue/src/assets/logo.png"
+              src="../assets/PercussAtSight_Logo.png"
               class="login-image1"
             />
 

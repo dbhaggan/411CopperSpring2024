@@ -13,7 +13,7 @@
       <div class="signup-container1">
           <div class="signup-container2">
               <a href="homepage.html" class="login-navlink">
-                  <img src="/vue/src/assets/logo.png" alt="logo" class="login-image">
+                  <img src="../assets/PercussAtSight_Logo.png" alt="logo" class="login-image">
               </a>
           </div>
           <header class="signup-navbar-interactive">
@@ -37,7 +37,7 @@
   
               <img
               alt="logo"
-              src="/vue/src/assets/logo.png"
+              src="../assets/PercussAtSight_Logo.png"
               class="login-image1"
               />
   
