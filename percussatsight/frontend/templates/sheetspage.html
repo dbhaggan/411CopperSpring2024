@@ -50,7 +50,7 @@
         const renderer = new Renderer(div, Renderer.Backends.SVG);
 
         // Configure the rendering context.
-        renderer.resize(1200, 1200);
+        // renderer.resize(1200, 1200);          DELETE THIS LATER 
         const context = renderer.getContext();
 
 
@@ -98,8 +98,40 @@
         let currentInstrument; 
         let previousInstrument; 
         let switchedInstrumentFlag = false; 
+        
+        let measureLength = 40; 
+        let maxMeasuresInRow = 5; 
 
+        
+
+        // Generator Settings 
         let initialInstrument = "snare_drum";   
+        let instrumentArray = ["snare_drum", "glock"]; // include initial and addtional chosen instruments 
+        let numberOfMeasures = 10; 
+
+        function checkToMakeNewRow () {
+            measureLength+=140;  
+            addStave(10, measureLength, 280); 
+        }
+
+        function setRenderSize () {
+          let baseRenderSize = 200; 
+          return dynamicRenderSize = baseRenderSize * Math.floor(numberOfMeasures / 4); 
+        } 
+
+        function splitMeasuresRandomly(totalNumOfMeasures) {
+          let random1 = Math.floor(Math.random() * totalNumOfMeasures);
+          let random2 = Math.floor(Math.random() * (totalNumOfMeasures - random1));
+          let random3 = totalNumOfMeasures - random1 - random2;
+
+        return [random1, random2, random3]; 
+        }
+
+
+        function pickWhenToSwitchInstrument (){   
+        // picks a random array index 
+        return Math.floor(Math.random() * numberOfMeasures); 
+        }
 
         function drawSwitchInstrumentText (){
             debugger
@@ -159,21 +191,8 @@
     
 
         function pickRandomArrayIndex(Array){   
-        // ensure randomness with just 2 values in array 
-        if (Array.length == 2){ 
-            let randDecimalVal = Math.random(); // outputs decimal value, instead of whole number 
-            randDecimalVal = randDecimalVal < 0.50 ? 0 : 1; 
-
-            randomIndex = randDecimalVal; 
-        }  
-        else {
-            randomIndex = Math.floor(Math.random() * Array.length) + 0; // subtracting 1 to match the max array index 
-            if(randomIndex != 0){ // to prevent -1 index and undefined error 
-                randomIndex--; 
-            }
-        }
-
-        return randomIndex; 
+        // picks a random array index 
+        return Math.floor(Math.random() * Array.length); 
         }
 
         function randomizeDuration(){
@@ -226,11 +245,21 @@
         });
         }
 
-        function createMeasureForGlock(){
+        function createMeasureForGlock(numOfMeasures){
             currentInstrument = "glock"; 
-            for (let i = 1; i < 3; i++){
-                const prevStave = staveArray[staveArray.length - 1]; 
-                addStave(prevStave.width + prevStave.x, 40, 280); 
+
+            debugger 
+
+            // for (let i = 1; i < numOfMeasures; i++){ 
+                for (let i = 1; i < 18; i++){
+                if (staveArray.length === maxMeasuresInRow) { 
+                    maxMeasuresInRow+=4;  
+                    checkToMakeNewRow (); 
+                }
+                else {
+                    const prevStave = staveArray[staveArray.length - 1]; 
+                    addStave(prevStave.width + prevStave.x, measureLength, 280); 
+                }
 
                 // reinitialize variables with new measure 
                 let notes = []; 
@@ -322,37 +351,45 @@
         });
         }
 
-        function createMeasureForSnareDrum(){
+        function createMeasureForSnareDrum(numOfMeasures){
             currentInstrument = "snare_drum"; 
 
-            for (let i = 1; i < 3; i++){
-                    const prevStave = staveArray[staveArray.length - 1]; 
-                    addStave(prevStave.width + prevStave.x, 40, 280); 
-                
-                    // ADD ID OR VARIABLE TO KEEP TRACK IF THE INSTRUMENT'S BEEN CHANGED 
+            debugger
 
-                    // reinitialize variables with new measure 
-                    let notes = []; 
-                    let voices = []; 
-                    let storeArrayForVoices = []; 
-                    let textNoteArray = []; 
-                    beatsTotal = 8; 
-                    while(beatsTotal != 0) {
-                        // createNotesForSnareDrum(); 
-                        // randomNote = createRandomNoteForGlock(); 
-                        randomNote = createRandomSnareDrumNote(); 
-                        console.log(beatsTotal); 
-                        if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
-                            console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
-                            break;  
-                        }
-                        else {
-                            notes.push(randomNote); // push created notes in array for vexflow to format and render to screen 
-                        }
+            // for (let i = 1; i < numOfMeasures; i++){
+                for (let i = 1; i < 9; i++){
+                if (staveArray.length === maxMeasuresInRow) { 
+                    maxMeasuresInRow+=4;  
+                    checkToMakeNewRow (); 
+                }
+                else {
+                    const prevStave = staveArray[staveArray.length - 1]; 
+                    addStave(prevStave.width + prevStave.x, measureLength, 280); 
+                }
+                // ADD ID OR VARIABLE TO KEEP TRACK IF THE INSTRUMENT'S BEEN CHANGED 
+
+                // reinitialize variables with new measure 
+                let notes = []; 
+                let voices = []; 
+                let storeArrayForVoices = []; 
+                let textNoteArray = []; 
+                beatsTotal = 8; 
+                while(beatsTotal != 0) {
+                    // createNotesForSnareDrum(); 
+                    // randomNote = createRandomNoteForGlock(); 
+                    randomNote = createRandomSnareDrumNote(); 
+                    console.log(beatsTotal); 
+                    if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
+                        console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
+                        break;  
                     }
-                    storeArrayForVoices.push(notes); // store array for voices 
-            
-                    let tempTextVar = drawSwitchInstrumentText (); 
+                    else {
+                        notes.push(randomNote); // push created notes in array for vexflow to format and render to screen 
+                    }
+                }
+                storeArrayForVoices.push(notes); // store array for voices 
+        
+                let tempTextVar = drawSwitchInstrumentText (); 
 
                 if (switchedInstrumentFlag === true && staveArray.length != 2){
                     textNoteArray.push(tempTextVar); 
@@ -387,16 +424,43 @@
 
         debugger 
 
+        // renderer.resize(1200, setRenderSize()); 
+        renderer.resize(1200, 2000); 
         addInitialStave(0,0,0); 
+
+        /* if (staveArray.length === maxMeasuresInRow) {
+            maxMeasuresInRow+=4;  
+            checkToMakeNewRow (); 
+          }
+        else {
+            const prevStave = staveArray[i - 1]; 
+            addStave(prevStave.width + prevStave.x, length, 280); 
+        }
+ */
+        /* for (let i = 0; i < numberOfMeasure; i++) {
+
+        }
+         */
+
+
+
+
+
+        // let [section1, section2, section3] = splitMeasuresRandomly(numberOfMeasures);
+
         
+
         if(initialInstrument === "snare_drum"){
             createMeasureForSnareDrum(); 
             createMeasureForGlock();     
+            createMeasureForSnareDrum(); 
         }
         else if(initialInstrument === "glock"){
-            createMeasureForGlock();     
-            createMeasureForSnareDrum(); 
-        }        
+            createMeasureForGlock(section1);     
+            createMeasureForSnareDrum(section2); 
+            createMeasureForGlock(section3);  
+        }
+
 
         // Positioning score in middle of page 
         const scorePosition = document.getElementById('generatedScore');
