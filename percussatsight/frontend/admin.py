@@ -1,6 +1,7 @@
 from django.contrib import admin
 # from .models import User, SheetMusic, Note, SheetMusicNote, UserProgress, Feedback, Instrument, InstrumentNote, PracticeSession
 from .models import Instrument, InstrumentNote, User
+from .models import CorrectlyPlayedAudio, IncorrectlyPlayedAudio, CorrectlyPlayedMIDI, IncorrectlyPlayedMIDI
 
 
 # admin.site.register(User)
@@ -26,6 +27,19 @@ InstrumentNote.objects.create(instrument=bells, note='C#', octave='5', duration=
 InstrumentNote.objects.create(instrument=snare_drum, note='Snare', octave='', duration='Sixteenth Note')
 InstrumentNote.objects.create(instrument=drumset, note='Kick Drum', octave='', duration='Whole Note')
 
+
+admin.site.register(CorrectlyPlayedAudio)
+admin.site.register(IncorrectlyPlayedAudio)
+admin.site.register(CorrectlyPlayedMIDI)
+admin.site.register(IncorrectlyPlayedMIDI)
+
+CorrectlyPlayedAudio.objects.create(notes='D D G A B G')
+
+IncorrectlyPlayedAudio.objects.create(notes='Db D G A B F')
+
+CorrectlyPlayedMIDI.objects.create(notes='Bb Ab Bb C Db')
+
+IncorrectlyPlayedMIDI.objects.create(notes='Bb Ab Bb B(natural) D(natural)')
 
 john = User.objects.create(firstName='John', lastName='Doe', userName='johndoe', passWord='password', emailAddress='john@example.com')
 
