@@ -81,3 +81,16 @@ class PracticeSession (models.Model):
     end_time = models.DateTimeField()
     # time taken for session
     duration = models.DurationField()
+
+
+class CorrectlyPlayedAudio(models.Model):
+    notes = models.CharField(max_length=255)
+
+class IncorrectlyPlayedAudio(models.Model):
+    notes = models.CharField(max_length=255)
+
+class CorrectlyPlayedMIDI(models.Model):
+    notes = models.CharField(max_length=255)
+
+class IncorrectlyPlayedMIDI(models.Model):
+    notes = models.CharField(max_length=255)
