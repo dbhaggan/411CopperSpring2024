@@ -5,8 +5,8 @@
       <meta charset="utf-8" />
       <title>login - PercussAtSight</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="./style.css" />
-      <link rel="stylesheet" href="./login.css" />
+      <link rel="stylesheet" href="../assets/style.css" />
+      <link rel="stylesheet" href="../assets/login.css" />
     </head>
     <body>
       <div class="login-container">
@@ -63,6 +63,12 @@
     </body>
   </html>
 </template>
+
+<script>
+  export default {
+    name: 'LoginPage',
+  }
+</script>
 
 <style>
 .login-container {
