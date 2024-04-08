@@ -1,3 +1,48 @@
+<template>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <title>PercussAtSight</title>
+      <meta property="og:title" content="PercussAtSight" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta charset="utf-8" />
+      <meta property="twitter:card" content="summary_large_image" />
+    </head>
+    <body>
+      <link rel="stylesheet" href="./style.css" />
+      <div>
+        <link href="./homepage.css" rel="stylesheet" />
+        test
+        <div class="homepage-container">
+          <div class="homepage-logo-placement">
+            <div class="homepage-container1">
+              <a href="login.html" class="homepage-login button">Login</a>
+              <a href="signup.html" class="homepage-sign-up button">Sign-up</a>
+              <button name="practice" class="homepage-practice button">
+                Practice
+              </button>
+              <a href="homepage.html" class="homepage-navlink">
+                <img
+                  alt="logo"
+                  src="../assets/PercussAtSight_Logo.png"
+                  class="homepage-image"
+                />
+              </a>
+            </div>
+          </div>
+          <img
+            alt="back drop"
+            src="../assets/backdrop.png"
+            loading="eager"
+            class="homepage-image1"
+          />
+        </div>
+      </div>
+    </body>
+  </html>
+</template>
+
+<style>
 .homepage-container {
   width: 100%;
   display: flex;
@@ -20,7 +65,7 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  background-image: linear-gradient(90deg, rgba(153, 86, 29, 0.94) 1.00%,rgba(240, 144, 53, 0) 83.00%);
+  background-image: white;
 }
 .homepage-login {
   top: 53px;
@@ -80,3 +125,4 @@
   height: 1120px;
   object-fit: cover;
 }
+</style>

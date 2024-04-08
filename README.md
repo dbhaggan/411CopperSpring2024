@@ -63,3 +63,20 @@ Then verify installation with
    ```python manage.py runserver localhost:8080```
 
 10. In the browser you can type localhost:8080 in the search bar and that should take you to the site.
+
+
+
+
+
+
+From here, all Chris saw was the "Welcome to Vue" File. Here's what he had to do to actually see the percussatsight homepage (though it wasn't rendered properly):
+
+docker-compose up -d
+pip3 install -r requirements.txt (from the directory "requirements.txt" was in)
+
+Then, I commented out the HOST IP from percussatsight/percussatsight/settings.py, and replaced the IP address with 127.0.0.1
+
+Then I ran
+python3 manage.py runserver
+
+I got a red warning message, but it was fine. I then went to the IP address listed in the terminal.

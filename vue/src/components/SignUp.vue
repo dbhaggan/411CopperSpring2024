@@ -1,3 +1,55 @@
+<template>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="utf-8">
+      <title>signup - PercussAtSight</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="./style.css">
+      <link rel="stylesheet" href="./signup.css">
+  </head>
+  <body>
+    <div class="signup-container">
+      <div class="signup-container1">
+          <div class="signup-container2">
+              <a href="homepage.html" class="login-navlink">
+                  <img src="../assets/PercussAtSight_Logo.png" alt="logo" class="login-image">
+              </a>
+          </div>
+          <header class="signup-navbar-interactive">
+              <div class="signup-desktop-menu">
+                  <div class="signup-buttons">
+                      <a href="login.html" class="signup-login button">Login</a>
+                  </div>
+                  <a href="signup.html" name="sign-up" class="signup-sign-up button">Sign-up</a>
+                  <button name="practice" class="login-practice button">Practice</button>
+              </div>
+          </header>
+          <form class="signup-form">
+              <label class="signup-text5">First Name:</label>
+              <input type="text" placeholder="First Name" class="signup-textinput input" />
+  
+              <label class="signup-text6">Last Name:</label>
+              <input type="text" placeholder="Last Name" class="signup-textinput1 input" />
+  
+              <label class="signup-text7">Email:</label>
+              <input type="email" placeholder="Email" class="signup-textinput2 input" />
+  
+              <img
+              alt="logo"
+              src="../assets/PercussAtSight_Logo.png"
+              class="login-image1"
+              />
+  
+              <button name="signup" type="submit" class="signup-signup button">Sign Up</button>
+          </form>
+      </div>
+    </div>
+  </body>
+  </html>
+</template>
+
+<style>
 .signup-container {
   width: 100%;
   display: flex;
@@ -288,3 +340,5 @@
     padding: 16px;
   }
 }
+
+</style>
