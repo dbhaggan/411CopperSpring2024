@@ -62,6 +62,12 @@
 </html>
 </template>
 
+<script>
+export default {
+  name: 'InstrumentPage',
+};
+</script>
+
 <style>
 .instrument-selection-container {
   width: 100%;

@@ -114,3 +114,31 @@
     ></script>
   </body>
 </html>
+<div>
+  {% load static %}
+  <link href="{% static 'homepage.css'%} " rel="stylesheet" />
+  <div class="homepage-container">
+    <div class="homepage-logo-placement">
+      <div class="homepage-container1">
+        <a href="" class="homepage-login button">Login</a>
+        <button name="sign-up" class="homepage-sign-up button">Sign-up</button>
+        <button name="practice" class="homepage-practice button">
+          Practice
+        </button>
+        <a href="home" class="homepage-navlink">
+          <img
+            alt="image"
+            src="{% static 'percussatsight_logo-200h.png'%}"
+            class="homepage-image"
+          />
+        </a>
+      </div>
+    </div>
+    <img
+      alt="image"
+      src="{% static 'screenshot%202024-02-16%20133150-1200h.png'%}"
+      loading="eager"
+      class="homepage-image1"
+    />
+  </div>
+</div>
