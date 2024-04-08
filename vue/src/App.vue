@@ -1,6 +1,15 @@
 <template>
   <div id="app">
     <img alt="PercussAtSight" src="./assets/logo.png" />
+    <nav>
+      <router-link to="/home">Home</router-link> |
+      <router-link to="/login">Login</router-link> |
+      <router-link to="/signup">Sign Up</router-link> |
+      <router-link to="/app-settings">App Settings</router-link> |
+      <router-link to="/practice">Practice</router-link> |
+      <router-link to="/generator-settings">Generator Settings</router-link> |
+      <router-link to="/feedback">Feedback</router-link>
+    </nav>
     <h2>Users</h2>
     <div v-if="!loaded">Loading users...</div>
     <div v-if="loaded">
@@ -13,39 +22,33 @@
         </ul>
       </div>
     </div>
-    <app-settings></app-settings>
-    <SmartFeedback></SmartFeedback>
-    <generator-settings></generator-settings>
-    <homepage></homepage>
-    <instrument-selection></instrument-selection>
-    <login></login>
-    <PracticePage></PracticePage>
-    <signup></signup>
   </div>
+  <router-view/>
 </template>
 
 <script>
 import axios from "axios";
 // import app-settings from './components/app-settings.vue'
 // import generator-settings from './components/generator-settings.vue'
-import homepage from "./components/homepage.vue";
+//import homepage from "./components/homepage.vue";
 // import instrument-selection from './components/instrument-selection.vue'
-import login from "./components/login.vue";
-import signup from "./components/signup.vue";
-import SmartFeedback from "./components/SmartFeedback.vue";
-import PracticePage from "./components/PracticePage.vue";
+//import login from "./components/login.vue";
+//import signup from "./components/signup.vue";
+//import SmartFeedback from "./components/SmartFeedback.vue";
+//import PracticePage from "./components/PracticePage.vue";
+
 
 export default {
   name: "App",
   components: {
     // app-settings,
-    SmartFeedback,
+    //SmartFeedback,
     // generator-settings,
-    homepage,
+    //homepage,
     // instrument-selection,
-    login,
-    PracticePage,
-    signup,
+    //login,
+    //PracticePage,
+    //signup,
   },
 
   data() {

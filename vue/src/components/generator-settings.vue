@@ -65,6 +65,12 @@
 </div>
 </template>
 
+<script>
+export default {
+  name: 'GeneratorSettingsPage',
+};
+</script>
+
 <style>
 .generator-settings-container {
   width: 100%;
