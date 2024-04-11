@@ -1,6 +1,6 @@
 <template>
 <div>
-  <link href="./app-settings.css" rel="stylesheet" />
+  <link href="../assets/app-settings.css" rel="stylesheet" />
   <div class="app-settings-container">
     <h1 class="app-settings-text">Settings</h1>
     <span class="app-settings-text01">Trial Info:</span>
@@ -47,6 +47,12 @@
   </div>
 </div>
 </template>
+
+<script>
+export default {
+  name: 'AppSettingsPage',
+};
+</script>
 
 <style>
 .app-settings-container {

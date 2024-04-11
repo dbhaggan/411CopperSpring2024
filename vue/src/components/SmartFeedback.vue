@@ -48,6 +48,12 @@
   </html>
 </template>
 
+<script>
+export default {
+  name: 'SmartFeedback',
+};
+</script>
+
 <style>
 .container {
   width: 100%;

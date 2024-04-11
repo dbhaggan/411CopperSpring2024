@@ -44,6 +44,12 @@
   </html>
 </template>
 
+<script>
+export default {
+  name: 'PracticePage',
+};
+</script>
+
 <style>
 .practice-container {
   width: 100%;
