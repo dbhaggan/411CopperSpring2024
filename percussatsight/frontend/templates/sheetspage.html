@@ -89,8 +89,7 @@
         
         // For Feedback algorithm 
         let generatedNotesArray = []; 
-        //For testing Sticking and Instrument Switching 
-        let storeDruationForTextNote = []; 
+        
         
         let randomNote; 
         let randomDuration; 
@@ -105,9 +104,38 @@
         
 
         // Generator Settings 
-        let initialInstrument = "snare_drum";   
         let instrumentArray = ["snare_drum", "glock"]; // include initial and addtional chosen instruments 
-        let numberOfMeasures = 10; 
+        let initialInstrument = instrumentArray[1];   
+        let numberOfMeasures = 16; 
+
+        function randomizeSticking (storeDurationForSticking, randomSticking) {
+            
+            debugger 
+            
+            let stickingPool = ['R', 'L']; 
+
+            for (let i = 0; i < storeDurationForSticking.length; i++){
+                randomSticking.push(stickingPool[pickRandomArrayIndex(stickingPool)]); 
+            }
+        }
+
+        function createStickingText (tempDurationVar, tempStickingVar) {
+            
+            debugger 
+
+            return new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
+                text: tempStickingVar,
+                font: {
+                    family: "Arial",
+                    size: 13,
+                    weight: "", 
+                },
+                duration: tempDurationVar               
+                })
+                .setLine(0) // -3 highest, 3 low (Increase context if needed)
+                .setStave(stave)
+                .setJustification(Vex.Flow.TextNote.Justification.LEFT)  
+        }
 
         function checkToMakeNewRow () {
             measureLength+=140;  
@@ -120,13 +148,31 @@
         } 
 
         function splitMeasuresRandomly(totalNumOfMeasures) {
-          let random1 = Math.floor(Math.random() * totalNumOfMeasures);
-          let random2 = Math.floor(Math.random() * (totalNumOfMeasures - random1));
-          let random3 = totalNumOfMeasures - random1 - random2;
+            let randomSectionArray = []; 
 
+            if (totalNumOfMeasures < instrumentArray.length || totalNumOfMeasures < 3) { 
+                alert("Error! Pick a higher measure count!"); 
+            }
+            else if (totalNumOfMeasures <= 12) { 
+                do {
+                    random1 = Math.floor(Math.random() * totalNumOfMeasures);
+                    random2 = Math.floor(Math.random() * (totalNumOfMeasures - random1));
+                    random3 = totalNumOfMeasures - random1 - random2;
+                    } while (random1 === 0 || random2 === 0 || random3 === 0);  
+                }  
+            else {
+                do {
+                random1 = Math.floor(Math.random() * totalNumOfMeasures);
+                random2 = Math.floor(Math.random() * (totalNumOfMeasures - random1));
+                random3 = totalNumOfMeasures - random1 - random2;
+                } while (random1 <= 3 || random2 <= 3 || random3 <= 3
+                            || random1 === 0 || random2 === 0 || random3 === 0);
+                } 
+        
         return [random1, random2, random3]; 
         }
 
+        
 
         function pickWhenToSwitchInstrument (){   
         // picks a random array index 
@@ -134,10 +180,7 @@
         }
 
         function drawSwitchInstrumentText (){
-            debugger
-            if ((switchedInstrumentFlag === true && staveArray.length === 2) || switchedInstrumentFlag === false){
-            }
-            else{
+            if ((switchedInstrumentFlag != true && staveArray.length != 2) || switchedInstrumentFlag != false){
                 return new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
                 text: currentInstrument,
                 font: {
@@ -221,15 +264,12 @@
             function randomizeNoteAndOctave(){
                 let Note = notePool[pickRandomArrayIndex(notePool)];  
                 let Octave = octavePool[pickRandomArrayIndex(octavePool)]; 
-                // percussNoteHead = percussionNoteHeadPool[pickRandomArrayIndex(percussionNoteHeadPool)]; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
 
-                // return Note + Octave + percussNoteHead; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
             return Note + Octave; //+ percussNoteHead  
             }
 
             randomNote = randomizeNoteAndOctave();  
             randomDuration =  randomizeDuration(); 
-            storeDruationForTextNote[randomDuration]; // Stores duration for TextNote 
 
             if (beatsTotal === 1 && randomDuration === "q"){
             let durationInQuestion = randomDuration; 
@@ -248,10 +288,9 @@
         function createMeasureForGlock(numOfMeasures){
             currentInstrument = "glock"; 
 
-            debugger 
+            // debugger 
 
-            // for (let i = 1; i < numOfMeasures; i++){ 
-                for (let i = 1; i < 18; i++){
+            for (let i = 1; i <= numOfMeasures; i++){ 
                 if (staveArray.length === maxMeasuresInRow) { 
                     maxMeasuresInRow+=4;  
                     checkToMakeNewRow (); 
@@ -268,8 +307,6 @@
                 let textNoteArray = []; 
                 beatsTotal = 8; 
                 while(beatsTotal != 0) {
-                    // createNotesForSnareDrum(); 
-                    // randomNote = createRandomNoteForGlock(); 
                     randomNote = createRandomGlockNote(); 
                     console.log(beatsTotal); 
                     if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
@@ -289,11 +326,6 @@
                     storeArrayForVoices.push(textNoteArray);
                 }
                     
-                
-                // storeArrayForVoices.push(switchedInstrumentText); 
-                 
-
-
 
                 function addVoices(Array){
                     console.log(Array); 
@@ -321,25 +353,24 @@
       
         
 
-        function createRandomSnareDrumNote(){
+        function createRandomSnareDrumNote(storeDurationForSticking){
             function randomizeNoteAndOctaveForSnare(){
                 let Note = snareDrumNotePool[pickRandomArrayIndex(snareDrumNotePool)];  
                 let Octave = snareDrumOctavePool[pickRandomArrayIndex(snareDrumOctavePool)]; 
-                // percussNoteHead = percussionNoteHeadPool[pickRandomArrayIndex(percussionNoteHeadPool)]; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
 
-                // return Note + Octave + percussNoteHead; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
             return Note + Octave; //+ percussNoteHead  
             }
             randomNote = randomizeNoteAndOctaveForSnare();  
             randomDuration =  randomizeDuration(); 
-            storeDruationForTextNote[randomDuration]; // Stores duration for TextNote 
 
             if (beatsTotal === 1 && randomDuration === "q"){
             let durationInQuestion = randomDuration; 
             randomDuration = setBeatsLeftInMeasure(durationInQuestion); 
+            storeDurationForSticking.push(randomDuration); 
             }
             else{
                 setBeatsLeftInMeasure (randomDuration); 
+                storeDurationForSticking.push(randomDuration); 
             }
 
             /* const accent = new Vex.Flow.Articulation('a>');
@@ -354,10 +385,9 @@
         function createMeasureForSnareDrum(numOfMeasures){
             currentInstrument = "snare_drum"; 
 
-            debugger
+            // debugger
 
-            // for (let i = 1; i < numOfMeasures; i++){
-                for (let i = 1; i < 9; i++){
+            for (let i = 1; i <= numOfMeasures; i++){
                 if (staveArray.length === maxMeasuresInRow) { 
                     maxMeasuresInRow+=4;  
                     checkToMakeNewRow (); 
@@ -366,18 +396,19 @@
                     const prevStave = staveArray[staveArray.length - 1]; 
                     addStave(prevStave.width + prevStave.x, measureLength, 280); 
                 }
-                // ADD ID OR VARIABLE TO KEEP TRACK IF THE INSTRUMENT'S BEEN CHANGED 
 
                 // reinitialize variables with new measure 
                 let notes = []; 
                 let voices = []; 
                 let storeArrayForVoices = []; 
                 let textNoteArray = []; 
+                //For testing Sticking and Instrument Switching 
+                let storeDurationForSticking = []; 
+                let randomStickings = []; 
+                let stickingTextArray = []; 
                 beatsTotal = 8; 
                 while(beatsTotal != 0) {
-                    // createNotesForSnareDrum(); 
-                    // randomNote = createRandomNoteForGlock(); 
-                    randomNote = createRandomSnareDrumNote(); 
+                    randomNote = createRandomSnareDrumNote(storeDurationForSticking); 
                     console.log(beatsTotal); 
                     if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
                         console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
@@ -395,6 +426,19 @@
                     textNoteArray.push(tempTextVar); 
                     storeArrayForVoices.push(textNoteArray);
                 }
+
+                randomizeSticking(storeDurationForSticking, randomStickings); 
+
+                debugger 
+
+                for (let j = 0; j < storeDurationForSticking.length; j++){
+                    let tempDurationVar = storeDurationForSticking[j]; 
+                    let tempStickingVar = randomStickings[j]; 
+                    let stickingText = createStickingText(tempDurationVar, tempStickingVar); 
+
+                    stickingTextArray.push(stickingText); 
+                }
+                storeArrayForVoices.push(stickingTextArray);
 
                 function addVoices(Array){
                     console.log(Array); 
@@ -420,40 +464,17 @@
             }
         }
 
-        // addStave(0, 0, 0); 
-
-        debugger 
-
-        // renderer.resize(1200, setRenderSize()); 
         renderer.resize(1200, 2000); 
         addInitialStave(0,0,0); 
 
-        /* if (staveArray.length === maxMeasuresInRow) {
-            maxMeasuresInRow+=4;  
-            checkToMakeNewRow (); 
-          }
-        else {
-            const prevStave = staveArray[i - 1]; 
-            addStave(prevStave.width + prevStave.x, length, 280); 
-        }
- */
-        /* for (let i = 0; i < numberOfMeasure; i++) {
-
-        }
-         */
-
-
-
-
-
-        // let [section1, section2, section3] = splitMeasuresRandomly(numberOfMeasures);
+        let [section1, section2, section3] = splitMeasuresRandomly(numberOfMeasures);
 
         
 
         if(initialInstrument === "snare_drum"){
-            createMeasureForSnareDrum(); 
-            createMeasureForGlock();     
-            createMeasureForSnareDrum(); 
+            createMeasureForSnareDrum(section1); // DOING THIS ONLY BECAUSE THERE'S 2 INSTRUMENT, MAKE DYNAMIC LATER 
+            createMeasureForGlock(section2);     
+            createMeasureForSnareDrum(section3); 
         }
         else if(initialInstrument === "glock"){
             createMeasureForGlock(section1);     
