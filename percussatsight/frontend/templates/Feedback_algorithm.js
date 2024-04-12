@@ -27,11 +27,24 @@ function compareSheetMusic(sheet_orig, sheet_comp) { //compares two arrays that 
     }
     
     error = 0; //initialize error to 0
-    for(var n=1;n<sheet_orig.length;n++) { //loop through all sets of note
+    for(var n=1;n<sheet_orig.length;n++) { //loop through all sets of notes
         error += comparePercussionNotes(sheet_orig[n-1],sheet_orig[n],sheet_comp[n-1],sheet_comp[n]); //for each pair of notes, add how bad they match up on the original vs the one we're comparing
     }
     
     return error / (sheet_orig.length-1); //divide by # of pairs of notes & return
+}
+
+function noteByNoteAnalysis(sheet_orig, sheet_comp) { //compares two pieces of sheet music and returns an array saying how bad each pair of sequential notes is
+    if(sheet_orig.length!=sheet_comp.length) {
+        throw new Error("Sheets must have the same number of notes!");
+    }
+    
+    var comp = []; //array of all the note-by-note comparisons
+    for(var n=0;n<sheet_orig.length-1;n++) { //loop through all sets of notes
+        comp[n] = comparePercussionNotes(sheet_orig[n],sheet_orig[n+1],sheet_comp[n],sheet_comp[n+1]);
+    }
+    
+    return comp; //return the array
 }
 
 /*var sheet1 = [];
@@ -43,4 +56,5 @@ for(var n=0;n<64;n++) {
     sheet2[n] = new Note(n*freq+dev*(2*Math.random()-1), 0.2, 'c', 0, 7);
 }
 
-console.log(compareSheetMusic(sheet1, sheet2));*/
+console.log(compareSheetMusic(sheet1, sheet2));
+console.log(noteByNoteAnalysis(sheet1, sheet2));*/
