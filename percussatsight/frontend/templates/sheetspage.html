@@ -488,10 +488,15 @@
             }
         }
 
-      
+        // addStave(0, 0, 0); 
+
+
+
+        // renderer.resize(1200, setRenderSize()); 
         renderer.resize(1200, 2000); 
         addInitialStave(0,0,0); 
 
+        
 
         let [section1, section2, section3] = splitMeasuresRandomly(numberOfMeasures);
 
@@ -507,7 +512,6 @@
             createMeasureForSnareDrum(section2); 
             createMeasureForGlock(section3);  
         }
-
 
 
 
