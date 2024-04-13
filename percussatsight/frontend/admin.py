@@ -1,8 +1,12 @@
 from django.contrib import admin
 # from .models import User, SheetMusic, Note, SheetMusicNote, UserProgress, Feedback, Instrument, InstrumentNote, PracticeSession
 from .models import Instrument, InstrumentNote, User
-from .models import CorrectlyPlayedAudio, IncorrectlyPlayedAudio, CorrectlyPlayedMIDI, IncorrectlyPlayedMIDI
+from .models import MIDIFile, MIDINote, AudioFile, AudioNote
 
+admin.site.register(MIDIFile)
+admin.site.register(MIDINote)
+admin.site.register(AudioFile)
+admin.site.register(AudioNote)
 
 # admin.site.register(User)
 # admin.site.register(SheetMusic)
@@ -27,19 +31,24 @@ InstrumentNote.objects.create(instrument=bells, note='C#', octave='5', duration=
 InstrumentNote.objects.create(instrument=snare_drum, note='Snare', octave='', duration='Sixteenth Note')
 InstrumentNote.objects.create(instrument=drumset, note='Kick Drum', octave='', duration='Whole Note')
 
+# Creating MIDI Files
+correct_midi = MIDIFile.objects.create(type='correct', name='Mozart Sonata No. 11')
+incorrect_midi = MIDIFile.objects.create(type='incorrect', name='Mozart Sonata No. 11 with Mistakes')
 
-admin.site.register(CorrectlyPlayedAudio)
-admin.site.register(IncorrectlyPlayedAudio)
-admin.site.register(CorrectlyPlayedMIDI)
-admin.site.register(IncorrectlyPlayedMIDI)
+# Adding notes to the MIDI Files
+MIDINote.objects.create(midi_file=correct_midi, note='Bb', timing=1.00, correct=True)
+MIDINote.objects.create(midi_file=incorrect_midi, note='B(natural)', timing=1.00, correct=False)
 
-CorrectlyPlayedAudio.objects.create(notes='D D G A B G')
+# Creating Audio Files
+correct_audio = AudioFile.objects.create(type='correct', name='Beethoven Symphony No. 5')
+incorrect_audio = AudioFile.objects.create(type='incorrect', name='Beethoven Symphony No. 5 with Mistakes')
 
-IncorrectlyPlayedAudio.objects.create(notes='Db D G A B F')
+# Adding notes to the Audio Files
+AudioNote.objects.create(audio_file=correct_audio, note='G', timing=2.00, correct=True)
+AudioNote.objects.create(audio_file=incorrect_audio, note='G#', timing=2.00, correct=False)
 
-CorrectlyPlayedMIDI.objects.create(notes='Bb Ab Bb C Db')
 
-IncorrectlyPlayedMIDI.objects.create(notes='Bb Ab Bb B(natural) D(natural)')
+
 
 john = User.objects.create(firstName='John', lastName='Doe', userName='johndoe', passWord='password', emailAddress='john@example.com')
 
