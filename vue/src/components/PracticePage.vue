@@ -30,6 +30,7 @@
                 <br />
               </span>
             </button>
+            <div id="generatedScore"></div> 
           </div>
           <button type="button" class="practice-button4 button" v-on:click = "runSheetGenerator">
             <span>
@@ -38,17 +39,492 @@
             </span>
           </button>
         </div>
-        <div id="generatedScore"></div> 
       </div>
     </body>
   </html>
 </template>
 
 <script>
+  /* global Vex */
+
 export default {
-  name: 'PracticePage',
-};
-</script>
+  name: 'VexflowComponent',
+  methods: {  
+  //mounted(){
+
+    runSheetGenerator (){ 
+
+      let existingScore = document.getElementById("generatedScore"); 
+      if(existingScore){
+      existingScore.parentNode.removeChild(existingScore); 
+      }
+
+      // Adds a new div/svg element with same name to house Score 
+      let newScore = document.createElement("div"); 
+      newScore.id = "generatedScore"; 
+      document.body.appendChild(newScore); 
+
+
+
+      const {        
+      Renderer, Stave, Voice, Formatter} = Vex.Flow; 
+
+      // For generator settings 
+      let clefVal = 'percussion';  // percussion, treble, bass 
+                                      // SET CLEF BY REFRESHING PAGE (HAVE A BUTTON FOR THIS) 
+
+
+      // Create an SVG renderer and attach it to the DIV element named "generatedScore".
+      const div = document.getElementById('generatedScore');
+      const renderer = new Renderer(div, Renderer.Backends.SVG);
+
+      // Configure the rendering context.
+      const context = renderer.getContext();
+
+
+      let notePool = ['A', 'B', 'C', 'D', 'E', 'F', 'G']; 
+      let octavePool = ['/4', '/5'];              
+      let durationPool = ['q','8'];    
+
+      // Represents Snare Drum data 
+      let snareDrumNotePool = ['C']; 
+      let snareDrumOctavePool = ['/5']; 
+
+      let random1, random2, random3; 
+
+      let beatsTotal = 8; 
+
+
+      let staveArray = []; 
+
+
+      let randomNote; 
+      let randomDuration; 
+      let stave; 
+      let currentInstrument; 
+      let previousInstrument; 
+      let switchedInstrumentFlag = false; 
+      let lastStickingElement; 
+      let secondToLastStickingElement; 
+
+      let measureLength = 40; 
+      let maxMeasuresInRow = 5; 
+
+
+
+      // Generator Settings 
+      let instrumentArray = ["snare_drum", "glock"]; 
+      let initialInstrument = instrumentArray[1];   
+      let numberOfMeasures = 16; 
+      let stickingIsOn = true; 
+          let stickingBelowMeasure = false; 
+      let randomAccentsAreOne = true;  
+
+
+
+      function randomizeNoteAndOctaveForSnare(){
+          let Note = snareDrumNotePool[pickRandomArrayIndex(snareDrumNotePool)]; 
+          let Octave = snareDrumOctavePool[pickRandomArrayIndex(snareDrumOctavePool)]; 
+          
+          return Note + Octave; 
+      }
+
+      function randomizeNoteAndOctave(){
+              let Note = notePool[pickRandomArrayIndex(notePool)];  
+              let Octave = octavePool[pickRandomArrayIndex(octavePool)]; 
+              
+          return Note + Octave; 
+          }
+
+
+      function randomizeAccentsAndNotes (randomNote, randomDuration) {
+          if (randomAccentsAreOne === true){
+              if (Math.random() < 0.50){
+                  return addNotes(randomNote, randomDuration);
+              }
+              else {
+                  return addAccentedNotes(randomNote, randomDuration); 
+              }
+          }
+          else {
+              return addNotes(randomNote, randomDuration);
+          }   
+      }
+
+      function addNotes (randomNote, randomDuration) {
+          return new Vex.Flow.StaveNote ({
+          keys: [randomNote],
+          duration: randomDuration
+          });  
+      }
+
+      function addAccentedNotes (randomNote, randomDuration) {
+          return new Vex.Flow.StaveNote ({
+          keys: [randomNote],
+          duration: randomDuration
+          }).addModifier(new Vex.Flow.Articulation('a>').setPosition(3), 0);  
+      }
+
+      function randomizeSticking (storeDurationForSticking, randomSticking) {
+          let stickingPool = ['R', 'L']; 
+          
+
+          for (let i = 0; i < storeDurationForSticking.length; i++){
+              randomSticking.push(stickingPool[pickRandomArrayIndex(stickingPool)]); 
+              
+              // catch unique cases 
+              if ((randomSticking[i-2] === randomSticking[i] && randomSticking[i-1] === randomSticking[i]) ||
+                      (i === 0 && randomSticking[0] === lastStickingElement && randomSticking[0] === secondToLastStickingElement)  ||
+                      (i === 1 && randomSticking[0] === lastStickingElement && randomSticking[1] === lastStickingElement)    
+                      ){
+                      randomSticking[i] = (randomSticking[i] === 'R') ? 'L' : 'R';
+                  } 
+          }
+          lastStickingElement = randomSticking[randomSticking.length-1];  
+          secondToLastStickingElement = randomSticking[randomSticking.length-2];  
+      }
+
+      function createStickingText (tempDurationVar, tempStickingVar) {
+
+          let stickingTextPos = (stickingBelowMeasure === true) ? 9 : -1;  
+
+          return new Vex.Flow.TextNote({ 
+              text: tempStickingVar,
+              font: {
+                  family: "Arial",
+                  size: 13,
+                  weight: "", 
+              },
+              duration: tempDurationVar               
+              })
+              .setLine(stickingTextPos) 
+              .setStave(stave)
+              .setJustification(Vex.Flow.TextNote.Justification.LEFT)  
+      }
+
+      function checkToMakeNewRow () {
+          measureLength+=140;  
+          addStave(10, measureLength, 280); 
+      }
+
+      function splitMeasuresRandomly(totalNumOfMeasures) {
+
+          if (totalNumOfMeasures < instrumentArray.length || totalNumOfMeasures < 3) { 
+              alert("Error! Pick a measure count that's higher than the total number of instruments you've selected!"); 
+          }
+          else if (totalNumOfMeasures <= 12) { 
+              do {
+                  random1 = Math.floor(Math.random() * totalNumOfMeasures);
+                  random2 = Math.floor(Math.random() * (totalNumOfMeasures - random1));
+                  random3 = totalNumOfMeasures - random1 - random2;
+                  } while (random1 === 0 || random2 === 0 || random3 === 0);  
+              }  
+          else {
+              do {
+                random1 = Math.floor(Math.random() * totalNumOfMeasures);
+                random2 = Math.floor(Math.random() * (totalNumOfMeasures - random1));
+                random3 = totalNumOfMeasures - random1 - random2;
+              } while (random1 <= 3 || random2 <= 3 || random3 <= 3
+                          || random1 === 0 || random2 === 0 || random3 === 0);
+              } 
+
+      return [random1, random2, random3]; 
+      }
+
+
+      function drawSwitchInstrumentText (){
+          if ((switchedInstrumentFlag != true && staveArray.length != 2) || switchedInstrumentFlag != false){
+              return new Vex.Flow.TextNote({ // Added TextNote at top, initially declare it here 
+              text: currentInstrument,
+              font: {
+                  family: "Arial",
+                  size: 13,
+                  weight: "", 
+                  style: "italic"
+              },
+              duration: 'w'               
+              })
+              .setLine(-3) 
+              .setStave(stave)
+              .setJustification(Vex.Flow.TextNote.Justification.LEFT)  
+          }
+      }
+
+      function checkToUpdateClef() {
+          if(previousInstrument === currentInstrument){
+              switchedInstrumentFlag = false;  
+              return; 
+          }
+          else if (previousInstrument != currentInstrument){
+              if (currentInstrument === "snare_drum" || currentInstrument === "drumset"){ // test drumset later 
+                  clefVal = "percussion"; 
+                  previousInstrument = currentInstrument; 
+                  switchedInstrumentFlag = true; 
+                  return stave.addClef(clefVal).addTimeSignature('4/4'); 
+              }
+              else if (currentInstrument === "glock")
+                  clefVal = "treble"; 
+                  previousInstrument = currentInstrument; 
+                  switchedInstrumentFlag = true;  
+                  return stave.addClef(clefVal).addTimeSignature('4/4'); 
+              // CHANGE CLEF, check each instrument to determine the clef 
+          }
+      }
+
+      function addStave(x,y,width) { 
+        stave = new Stave (x,y,width)
+        checkToUpdateClef(); 
+        // stave.addClef(clefVal).addTimeSignature('4/4'); 
+        stave.setContext(context).draw(); 
+        staveArray.push(stave); 
+      }  
+
+      function addInitialStave(x,y,width) {  // invisible stave 
+        stave = new Stave (x,y,width)
+        staveArray.push(stave); 
+      }  
+
+
+
+      function pickRandomArrayIndex(Array){   
+      // picks a random array index 
+      return Math.floor(Math.random() * Array.length); 
+      }
+
+      function randomizeDuration(){
+      let Duration = durationPool[pickRandomArrayIndex(durationPool)];  
+
+      return Duration; 
+      }
+
+
+
+      function setBeatsLeftInMeasure (durationToSet) {
+      if ( beatsTotal === 1 && durationToSet == 'q'){  // catches situation if beatsTotal = 1, but the note randomize is 'q' 
+          beatsTotal = beatsTotal - 1; 
+          return '8';     // Changes Duration so there's a sufficient number of notes in measure 
+      }
+      else if(durationToSet == 'q'){
+          beatsTotal = beatsTotal - 2; 
+      }
+      else if (durationToSet == '8') {
+          beatsTotal = beatsTotal - 1; 
+      }
+      }
+
+      function addVoices(Array){
+        console.log(Array); 
+        return new Voice({
+        num_beats: 4,
+        beat_value: 4
+        }).addTickables(Array);            
+      }
+
+      // creates the random Note and Duration then outputs it into Vexflow API 
+      function createRandomGlockNote(){        
+          randomNote = randomizeNoteAndOctave();  
+          randomDuration =  randomizeDuration(); 
+
+          if (beatsTotal === 1 && randomDuration === "q"){
+          let durationInQuestion = randomDuration; 
+          randomDuration = setBeatsLeftInMeasure(durationInQuestion); 
+          }
+          else{
+              setBeatsLeftInMeasure (randomDuration); 
+          }
+
+      return randomizeAccentsAndNotes (randomNote, randomDuration); 
+
+      }
+
+      function createMeasureForGlock(numOfMeasures){
+          currentInstrument = "glock"; 
+
+          for (let i = 1; i <= numOfMeasures; i++){ 
+              if (staveArray.length === maxMeasuresInRow) { 
+                  maxMeasuresInRow+=4;  
+                  checkToMakeNewRow (); 
+              }
+              else {
+                  const prevStave = staveArray[staveArray.length - 1]; 
+                  addStave(prevStave.width + prevStave.x, measureLength, 280); 
+              }
+
+              // reinitialize variables with new measure 
+              let notes = []; 
+              let voices = []; 
+              let storeArrayForVoices = []; 
+              let textNoteArray = []; 
+              beatsTotal = 8; 
+              while(beatsTotal != 0) {
+                  randomNote = createRandomGlockNote(); 
+                  console.log(beatsTotal); 
+                  if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
+                      console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
+                      break;  
+                  }
+                  else {
+                      notes.push(randomNote); // push created notes in array for vexflow to format and render to screen 
+                  }
+              }
+              storeArrayForVoices.push(notes); // store array for voices 
+          
+              let tempTextVar = drawSwitchInstrumentText (); 
+
+              if (switchedInstrumentFlag === true && staveArray.length != 2){
+                  textNoteArray.push(tempTextVar); 
+                  storeArrayForVoices.push(textNoteArray);
+              }
+
+              let tempVoiceVar = []; 
+
+              for (let k = 0; k < storeArrayForVoices.length; k++){
+                  tempVoiceVar = addVoices(storeArrayForVoices[k]);
+                      console.log("TESTING THE tempVoiceVar " + tempVoiceVar); 
+                  voices.push(tempVoiceVar);     
+              }
+
+              new Formatter().joinVoices(voices).format(voices, 200);
+
+              // Render voices.
+              voices.forEach(function(v) {
+              v.draw(context, stave);
+              });
+          }
+      }
+
+
+
+      function createRandomSnareDrumNote(storeDurationForSticking){
+
+          randomNote = randomizeNoteAndOctaveForSnare();  
+          randomDuration =  randomizeDuration(); 
+
+          if (beatsTotal === 1 && randomDuration === "q"){
+          let durationInQuestion = randomDuration; 
+          randomDuration = setBeatsLeftInMeasure(durationInQuestion); 
+          storeDurationForSticking.push(randomDuration); 
+          }
+          else{
+              setBeatsLeftInMeasure (randomDuration); 
+              storeDurationForSticking.push(randomDuration); 
+          }
+
+      return randomizeAccentsAndNotes (randomNote, randomDuration); 
+
+      }
+
+      function createMeasureForSnareDrum(numOfMeasures){
+          currentInstrument = "snare_drum"; 
+
+          for (let i = 1; i <= numOfMeasures; i++){
+              if (staveArray.length === maxMeasuresInRow) { 
+                  maxMeasuresInRow+=4;  
+                  checkToMakeNewRow (); 
+              }
+              else {
+                  const prevStave = staveArray[staveArray.length - 1]; 
+                  addStave(prevStave.width + prevStave.x, measureLength, 280); 
+              }
+
+              // reinitialize variables with new measure 
+              let notes = []; 
+              let voices = []; 
+              let storeArrayForVoices = []; 
+              let textNoteArray = []; 
+              
+              let storeDurationForSticking = []; 
+              let randomStickings = []; 
+              let stickingTextArray = []; 
+              beatsTotal = 8; 
+              while(beatsTotal != 0) {
+                  randomNote = createRandomSnareDrumNote(storeDurationForSticking); 
+                  console.log(beatsTotal); 
+                  if (notes.length > 7){    
+                      console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
+                      break;  
+                  }
+                  else {
+                      notes.push(randomNote); 
+                  }
+              }
+              storeArrayForVoices.push(notes); 
+
+              let tempTextVar = drawSwitchInstrumentText (); 
+
+              if (switchedInstrumentFlag === true && staveArray.length != 2){
+                  textNoteArray.push(tempTextVar); 
+                  storeArrayForVoices.push(textNoteArray);
+              }
+
+            
+              if (stickingIsOn === true){
+                  // sticking 
+                  randomizeSticking(storeDurationForSticking, randomStickings); 
+
+                  for (let j = 0; j < storeDurationForSticking.length; j++){
+                      let tempDurationVar = storeDurationForSticking[j]; 
+                      let tempStickingVar = randomStickings[j]; 
+                      let stickingText = createStickingText(tempDurationVar, tempStickingVar); 
+
+                      stickingTextArray.push(stickingText); 
+                  }
+                  storeArrayForVoices.push(stickingTextArray); 
+              }
+
+              let tempVoiceVar = []; 
+
+              for (let k = 0; k < storeArrayForVoices.length; k++){
+                  tempVoiceVar = addVoices(storeArrayForVoices[k]);
+                      console.log("TESTING THE tempVoiceVar " + tempVoiceVar); 
+                  voices.push(tempVoiceVar);     
+              }
+
+              new Formatter().joinVoices(voices).format(voices, 200);
+
+              // Render voices.
+              voices.forEach(function(v) {
+              v.draw(context, stave);
+              });
+          }
+      }
+
+      renderer.resize(1200, 2000); 
+      addInitialStave(0,0,0); 
+
+
+
+      let [section1, section2, section3] = splitMeasuresRandomly(numberOfMeasures);
+
+
+
+      if(initialInstrument === "snare_drum"){
+          createMeasureForSnareDrum(section1); 
+          createMeasureForGlock(section2);     
+          createMeasureForSnareDrum(section3); 
+      }
+      else if(initialInstrument === "glock"){
+          createMeasureForGlock(section1);     
+          createMeasureForSnareDrum(section2); 
+          createMeasureForGlock(section3);  
+      }
+
+
+      // Positioning score in middle of page 
+      const scorePosition = document.getElementById('generatedScore');
+      const centerScore = () => {
+      scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
+      scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
+      }
+
+      centerScore();
+      window.addEventListener('resize', centerScore); 
+
+}
+    }
+  }
+
+      </script>
 
 <style>
 .practice-container {
@@ -133,207 +609,3 @@ export default {
   background-color: rgb(26, 143, 221);
 }
 </style>
-<script>
-
-
-      /* global Vex */
-
-  export default {
-    name: 'VexflowComponent',
-    //mounted(){
-   methods: {
-      
-    runSheetGenerator(){
-
-// Check if a Score exists and deletes it 
-        let existingScore = document.getElementById("generatedScore"); 
-        if(existingScore){
-        existingScore.parentNode.removeChild(existingScore); 
-        }
-
-        // Adds a new div/svg element with same name to house Score 
-        let newScore = document.createElement("div"); 
-        newScore.id = "generatedScore"; 
-        document.body.appendChild(newScore); 
-
-
-        const {        
-        Renderer, Stave, StaveNote, Voice, Formatter, Beam} = Vex.Flow; // ADDED BEAM 
-
-        // For generator settings 
-        let clefVal = 'percussion';  // percussion, treble, bass 
-                                        // SET CLEF BY REFRESHING PAGE (HAVE A BUTTON FOR THIS) 
-
-
-        // Create an SVG renderer and attach it to the DIV element named "generatedScore".
-        const div = document.getElementById('generatedScore'); 
-        const renderer = new Renderer(div, Renderer.Backends.SVG);
-
-        // Configure the rendering context.
-        renderer.resize(500, 500);
-        const context = renderer.getContext();
-
-        // Create a stave of width 420 at position 10, 40 on the canvas.
-        const stave = new Stave(10, 40, 420);
-
-        // Add a clef and time signature. // This will be dynamic later in generator settings algorithm 
-        stave.addClef(clefVal).addTimeSignature('4/4');
-
-        // Connect it to the rendering context and draw!
-        stave.setContext(context).draw();
-
-
-
-
-
-        // TODO: Add 16th notes and half notes 
-
-        // I have left alot of console.logs for debugging, but will delete them later 
-
-
-        // random notes in the future about this data: 
-        // the contents of these three pools can by changed by generator settings 
-        // in instrument catalog we'll have to include more note pools to represent different key signatures 
-
-        // for now we're sticking to the key of C major/ A minor and 8th notes as the highest subdivision 
-        
-        let notePool = ['A', 'B', 'C', 'D', 'E', 'F', 'G']; 
-        let octavePool = ['/4', '/5'];              // excluding octaves 1-3 and 6-8 to prevent creating several ledger lines 
-        let durationPool = ['q','8'];    // DELETE LATER, for testing   q = quarter notes, 8 = eigth notes 
-            //durationPool = ['w', 'q','8', '16']   # USE THIS LATER 
-        let randomIndex; 
-
-        const notes = []; 
-        let beatsTotal = 8;  // Total number of beats in the measure, will change this to make it dynamic later 
-
-        // For Feedback algorithm 
-        let generatedNotesArray = []; 
-        
-        let randomNote; 
-        let randomDuration; 
-
-        function pickRandomArrayIndex(Array){   
-        // picks a random array index 
-        return Math.floor(Math.random() * Array.length); 
-        }
-
-
-        function randomizeNoteAndOctave(){
-        let Note = notePool[pickRandomArrayIndex(notePool)];  
-        let Octave = octavePool[pickRandomArrayIndex(octavePool)]; 
-        // percussNoteHead = percussionNoteHeadPool[pickRandomArrayIndex(percussionNoteHeadPool)]; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
-
-        // return Note + Octave + percussNoteHead; // TAKE OUT PERCUSSION STUFF, HAVE TO BE IF STATEMENT 
-        return Note + Octave; //+ percussNoteHead  
-        }
-
-
-        function randomizeDuration(){
-        let Duration = durationPool[pickRandomArrayIndex(durationPool)];  
-
-        return Duration; 
-        }
-
-
-
-        function setBeatsLeftInMeasure (durationToSet) {
-        if ( beatsTotal === 1 && durationToSet == 'q'){  // catches situation if beatsTotal = 1, but the note randomize is 'q' 
-                console.log("AFTER  setBeatsLeftInMeasure IS CALLED: " + randomNote + randomDuration + beatsTotal);   
-            beatsTotal = beatsTotal - 1; 
-                console.log("8 AND IT'S 1 ");  
-                console.log("AFTER  setBeatsLeftInMeasure SUBTRACT IS DONE: " + randomNote + randomDuration + beatsTotal);   
-            return '8';     // Changes Duration so there's a sufficient number of notes in measure 
-        }
-        else if(durationToSet == 'q'){
-            beatsTotal = beatsTotal - 2; 
-        }
-        else if (durationToSet == '8') {
-            beatsTotal = beatsTotal - 1; 
-        }
-        }
-
-        let randomizedNote;
-        let randomizedDuration; 
-
-        function createRandomNote(){    
-            randomNote = randomizeNoteAndOctave();  
-            randomDuration =  randomizeDuration(); 
-
-            if (beatsTotal === 1 && randomDuration === "q"){
-              let durationInQuestion = randomDuration; 
-              randomDuration = setBeatsLeftInMeasure(durationInQuestion); 
-            }
-            else{
-                setBeatsLeftInMeasure (randomDuration); 
-            }
-
-          return new Vex.Flow.StaveNote ({
-          keys: [randomNote],
-          duration: randomDuration
-        });
-        }
-      
-
-        
-
-        while(beatsTotal != 0) {
-        randomNote = createRandomNote();
-            console.log(beatsTotal); 
-        if (notes.length > 7){    // Catches error where generated notes surpass array limit, Will make this more dynamic 
-            console.log("ERROR MAX ARRAY LIMIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   " + notes.length); 
-            break;  
-        }
-        else {
-            notes.push(randomNote); // push created notes in array for vexflow to format and render to screen 
-        }
-        }
-
-        // For Feedback Algorithm 
-        // Show Stored Notes of Array in Console Log, DELETE LATER 
-        let it = 0; 
-        console.log("Array's Content that's storing Generated Notes: ")
-        while (it < generatedNotesArray.length){
-        console.log(generatedNotesArray[it]); 
-        it++; 
-        }
-
-        const notes2 = [new StaveNote({
-        keys: [randomizeNoteAndOctave()],  
-        duration: 'w'
-        })];
-
-        // Create a voice in 4/4 and add above notes
-        const voices = [
-        new Voice({
-            num_beats: 4,
-            beat_value: 4
-        }).addTickables(notes),
-        new Voice({
-            num_beats: 4,
-            beat_value: 4
-        }).addTickables(notes2),
-        ];
-
-        // Format and justify the notes to 400 pixels.
-        new Formatter().joinVoices(voices).format(voices, 350);
-
-        // Render voices.
-        voices.forEach(function(v) {
-        v.draw(context, stave);
-        });
-
-
-        // Positioning score in middle of page 
-        const scorePosition = document.getElementById('generatedScore');
-        const centerScore = () => {
-        scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
-        scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
-        }
-
-        centerScore();
-        window.addEventListener('resize', centerScore); 
-}
-    }
-  }
-
-</script>
