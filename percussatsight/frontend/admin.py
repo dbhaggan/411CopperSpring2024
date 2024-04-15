@@ -37,7 +37,7 @@ incorrect_midi = MIDIFile.objects.create(type='incorrect', name='Mozart Sonata N
 
 # Adding notes to the MIDI Files
 MIDINote.objects.create(midi_file=correct_midi, note='Bb', timing=1.00, correct=True)
-MIDINote.objects.create(midi_file=incorrect_midi, note='B(natural)', timing=1.00, correct=False)
+MIDINote.objects.create(midi_file=incorrect_midi, note='B', timing=1.00, correct=False)
 
 # Creating Audio Files
 correct_audio = AudioFile.objects.create(type='correct', name='Beethoven Symphony No. 5')
