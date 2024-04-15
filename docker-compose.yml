@@ -6,6 +6,8 @@ services:
     container_name: django-backend
     ports:
       - "8080:8080"
+    expose:
+      - "3306"
     volumes:
       - ./percussatsight/:/usr/src/app/ #connect percussatsight to the container
     depends_on:
