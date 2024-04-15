@@ -455,7 +455,7 @@ export default {
               if (switchedInstrumentFlag === true && staveArray.length != 2){
                   textNoteArray.push(tempTextVar); 
                   storeArrayForVoices.push(textNoteArray);
-              }
+              } 
 
             
               if (stickingIsOn === true){
