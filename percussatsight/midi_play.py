@@ -1,6 +1,6 @@
 import pygame
 import os
-os.environ["PYGAME_MIDI"] = "alsa"
+#os.environ["PYGAME_MIDI"] = "alsa"
 
 def play_midi(midi_file):
     pygame.init()

@@ -5,3 +5,4 @@ djangorestframework
 python-rtmidi
 mido
 pygame
+#timidity

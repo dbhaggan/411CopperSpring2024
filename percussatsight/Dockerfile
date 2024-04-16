@@ -1,6 +1,6 @@
 FROM python:3.11
 
-RUN apt install bash \ timidity \ alsa-base
+RUN apt install bash
 
 WORKDIR /usr/src/app
 

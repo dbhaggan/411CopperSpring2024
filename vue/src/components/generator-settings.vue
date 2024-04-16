@@ -1,6 +1,6 @@
 <template>
 <div>
-  <link href="./generator-settings.css" rel="stylesheet" />
+  <link href="../assets/generator-settings.css" rel="stylesheet" />
   <div class="generator-settings-container">
     <div class="generator-settings-container1">
       <button type="button" class="generator-settings-button button">
