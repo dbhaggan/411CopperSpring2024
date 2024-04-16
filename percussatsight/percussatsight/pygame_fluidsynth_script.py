@@ -1,24 +1,16 @@
 import pygame
-import pygame.midi
 
 # initializing pygame
 pygame.init()
 
-#initializing the midi module
-pygame.midi.init()
+# loading soundfont
+pygame.mixer.init()
+soundfont = "C:\\Users\\imism\\411CopperSpring2024\\percussatsight\\percussatsight\\Marimba.sf2"
+pygame.mixer.music.load(soundfont)
 
-# creating a fluidsynth synthesizer instance
-fs = pygame.midi.FluidSynth()
+# loading midi file
+midi_file = "C:\\Users\\imism\\411CopperSpring2024\\percussatsight\\percussatsight\\Correctly_Played_Example.mid"
 
-# loading a soundfont file
-soundfont = "path_to_soundfont.sf2"  # later replace with the path to actual soundfont file
-fs.load_soundfont(soundfont)
-
-#loading midi file
-midi_file = "path_to_midi_file.mid"  # later replace with the path to actual midi file
-
-# open midi file
-midi = pygame.midi.Midi(midi_file)
-
-# play midi file through fluidsynth as audio
-fs.play_midi(midi)
+# playing midi file through mixer
+pygame.mixer.music.load(midi_file)
+pygame.mixer.music.play()
