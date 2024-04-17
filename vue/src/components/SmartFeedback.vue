@@ -1,7 +1,7 @@
 <template>
   <!DOCTYPE html>
   <html>
-    <body> <!--style="background-color: #003e7d">-->
+    <body> <!--style="background-color: #ffffff">-->
       <div>
         <link href="../assets/feedback.css" rel="stylesheet" />
         <div class="feedback-container">
@@ -64,7 +64,7 @@ export default {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: #003e7d;
+  background-color: #ffffff;
 }
 .text {
   top: 34px;
@@ -84,7 +84,7 @@ export default {
 .text02 {
   top: 382px;
   left: 738px;
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   font-size: 28px;
 }
@@ -105,7 +105,7 @@ export default {
 .text05 {
   top: 216px;
   left: 835px;
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   font-size: 28px;
 }
