@@ -70,6 +70,7 @@
       </span>
     </button>
   </div>
+  </div>
 </template>
 
 <script>
