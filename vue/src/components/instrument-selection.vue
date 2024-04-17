@@ -1,7 +1,7 @@
 <template>
 <!DOCTYPE html>
 <html>
-<body style="background-color:#003e7d">
+<body style="background-color:#ffffff">
 
 <div>
   <link href="./instrument-selection.css" rel="stylesheet" />
@@ -77,7 +77,7 @@ export default {
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: #003E7D;
+  background-color: #ffffff;
 }
 .instrument-selection-container1 {
   top: 186px;

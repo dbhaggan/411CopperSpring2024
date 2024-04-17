@@ -1,7 +1,7 @@
 <template>
   <!DOCTYPE html>
   <html>
-    <body style="background-color: #003e7d">
+    <body style="background-color: #ffffff">
       <div>
         <link href="../assets/practice.css" rel="stylesheet" />
         <div class="practice-container">
@@ -538,7 +538,7 @@ export default {
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  background-color: #003e7d;
+  background-color: #ffffff;
 }
 .practice-container1 {
   width: 181px;

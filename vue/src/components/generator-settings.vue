@@ -5,16 +5,16 @@
     <div class="generator-settings-container1">
       <span class="generator-settings-text">Settings</span>
       <select class="generator-settings-select">
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
+        <option value="percussion">percussion</option>
+        <option value="treble">treble</option>
+        <option value="bass">bass</option>
       </select>
       <textarea
-        placeholder="placeholder"
+        placeholder=""
         class="generator-settings-textarea textarea"
       ></textarea>
       <textarea
-        placeholder="placeholder"
+        placeholder=""
         class="generator-settings-textarea1 textarea"
       ></textarea>
       <span class="generator-settings-text01">Rudiments in Score:</span>
@@ -97,7 +97,7 @@ export default {
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  background-color: #003e7d;
+  background-color: #ffffff;
 }
 .generator-settings-container1 {
   right: 0px;
