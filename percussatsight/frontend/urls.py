@@ -9,6 +9,7 @@ router.register(r'instrument', instrumentViewSet, 'instrument')
 
 urlpatterns = [
     path("api/", include(router.urls)),
+    path("practice", practicepage, name="practice"),
     #path("api", include('rest_framework.urls')),
 ]
 
