@@ -1,4 +1,6 @@
 <template>
+<div>
+  <link href="../assets/generator-settings.css" rel="stylesheet" />
   <div class="generator-settings-container">
     <div class="generator-settings-container1">
       <span class="generator-settings-text">Settings</span>
