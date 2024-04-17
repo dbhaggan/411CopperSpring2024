@@ -3,7 +3,7 @@ import HomePage from '../components/HomePage.vue'
 import LoginPage from '../components/Login.vue'
 import SignupComponent from '../components/SignUp.vue'
 import SmartFeedback from '../components/SmartFeedback.vue'
-import PracticePage from '../components/PracticePage.vue'
+import Vexflowcomponent from '../components/PracticePage.vue'
 import GeneratorSettingsPage from '../components/generator-settings.vue'
 import AppSettingsPage from '../components/app-settings.vue'
 
@@ -21,7 +21,7 @@ const routes = [
         path: "/app-settings", name: "app-settings", component: AppSettingsPage
     },
     {
-        path: "/practice", name: "practice", component: PracticePage
+        path: "/practice", name: "practice", component: Vexflowcomponent
     },
     {
         path: "/generator-settings", name: "generator-settings", component: GeneratorSettingsPage

@@ -5,24 +5,30 @@
       <meta charset="utf-8">
       <title>signup - PercussAtSight</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="./style.css">
-      <link rel="stylesheet" href="./signup.css">
+      <link rel="stylesheet" href="../assets/style.css">
+      <link rel="stylesheet" href="../assets/signup.css">
   </head>
   <body>
     <div class="signup-container">
       <div class="signup-container1">
           <div class="signup-container2">
-              <a href="homepage.html" class="login-navlink">
+              <!--<a href="homepage.html" class="login-navlink">-->
+                <RouterLink to="/home" class="login-navlink">
                   <img src="../assets/PercussAtSight_Logo.png" alt="logo" class="login-image">
-              </a>
+                </RouterLink>  
+              <!--</a>-->
           </div>
           <header class="signup-navbar-interactive">
               <div class="signup-desktop-menu">
                   <div class="signup-buttons">
-                      <a href="login.html" class="signup-login button">Login</a>
+                      <!--<a href="login.html" class="signup-login button">Login</a>-->
+                      <RouterLink to="/login" name="login" class="signup-login button">Login</RouterLink>
                   </div>
-                  <a href="signup.html" name="sign-up" class="signup-sign-up button">Sign-up</a>
-                  <button name="practice" class="login-practice button">Practice</button>
+                  <!--<a href="signup.html" name="sign-up" class="signup-sign-up button">Sign-up</a>-->\
+                  <RouterLink to="/SignUp" name="sign-up" class="signup-sign-up button">Sign Up</RouterLink>
+                  <button name="practice" class="login-practice button">
+                    <RouterLink to="/practice" name="practice">Practice</RouterLink>
+                  </button>
               </div>
           </header>
           <form class="signup-form">
@@ -46,8 +52,15 @@
       </div>
     </div>
   </body>
+  <RouterView />
   </html>
 </template>
+
+<script>
+  export default {
+    name: "SignupPage"
+  }
+</script>
 
 <style>
 .signup-container {
