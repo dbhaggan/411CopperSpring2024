@@ -570,7 +570,7 @@
                     }
                     else {
                         notes.push(randomNote); 
-                    }
+                    } 
                 }
                 storeArrayForVoices.push(notes); 
   
