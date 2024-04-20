@@ -38,8 +38,7 @@
           </div>
           <button type="button" class="practice-button4 button" v-on:click = "runSheetGenerator">
             <span>
-              <br />
-              <br />
+              Play
             </span>
           </button>
         </div>
