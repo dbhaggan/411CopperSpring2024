@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="PercussAtSight" src="./assets/logo.png" />
+    <img alt="PercussAtSight" src="./assets/logo.png" width="400px"/>
     <nav>
       <router-link to="/home" name="Home">Home</router-link> |
       <router-link to="/login">Login</router-link> |
