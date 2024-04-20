@@ -85,9 +85,9 @@
       
       
 
-      function pickRandomArrayIndex(Array){   
+      function pickRandomlyFromArray(Array){   //picks a uniformly random element from an array
       // ensure randomness with just 2 values in array 
-        if (Array.length == 2){ 
+        /*if (Array.length == 2){ 
           let randDecimalVal = Math.random(); // outputs decimal value, instead of whole number 
           randDecimalVal = randDecimalVal < 0.50 ? 0 : 1; 
 
@@ -100,35 +100,36 @@
             }
         }
 
-        return randomIndex; 
+        return randomIndex; */
+
+        var index = Math.floor(Math.random() * Array.length); //generate random # between [0,1), mult by array length to get [0,length), round down
+        return Array[index]; //return the item at that index
       }
 
 
       function randomizeNoteAndOctave(){
-        Note = notePool[pickRandomArrayIndex(notePool)];  
-        Octave = octavePool[pickRandomArrayIndex(octavePool)]; 
+        Note = pickRandomlyFromArray(notePool);  //randomize note
+        Octave = pickRandomlyFromArray(octavePool);  //randomize octave
 
-        return Note + Octave; 
+        return Note + Octave;  //return the note in that octave
       }
 
 
       function randomizeDuration(){
-        Duration = durationPool[pickRandomArrayIndex(durationPool)];  
-
-        return Duration; 
+        return pickRandomlyFromArray(durationPool);  //randomize duration and return
       }
 
 
       function setBeatsLeftInMeasure (durationToSet) {
         if ( beatsTotal == 1 && durationToSet == 'q'){  // catches situation if beatsTotal = 1, but the note randomize is 'q' 
-          beatsTotal = beatsTotal - 1; 
+          beatsTotal --; 
           randomDuration = '8';     // Changes Duration so there's a sufficient number of notes in measure 
         }
         else if(durationToSet == 'q'){
-          beatsTotal = beatsTotal - 2; 
+          beatsTotal -= 2; 
         }
         else if (durationToSet == '8') {
-          beatsTotal = beatsTotal - 1; 
+          beatsTotal --; 
         }
       }
 
@@ -137,15 +138,16 @@
       let randomizedDuration; 
 
       // creates the random Note and Duration then outputs it into Vexflow API 
-      function createRandomNote(){
-        randomNote = randomizeNoteAndOctave();  
-        randomDuration =  randomizeDuration(); 
+      function createRandomNote() { //creates a randomized note and duration, then outputs it into Vexflow API 
 
-        setBeatsLeftInMeasure (randomDuration); 
+        randomNote = randomizeNoteAndOctave(); //randomize note & octave
+        randomDuration = randomizeDuration(); //randomize duration
+        
+        setBeatsLeftInMeasure (randomDuration); //set beats left in measure given duration
         
         generatedNotesArray.push(randomNote, randomDuration); // store notes to use for Smart Feedback Algorithm 
 
-          return new Vex.Flow.StaveNote ({
+          return new Vex.Flow.StaveNote ({ //load into Vexflow API & return result
           keys: [randomNote],
           duration: randomDuration
         });
@@ -168,13 +170,18 @@
 
 
 
-      // Show Stored Notes of Array in Console Log, DELETE LATER 
-      let it = 0; 
+      // Show stored notes of array in console log, DELETE LATER 
+      console.log("Array's Content that's storing Generated Notes: ");
+      for(it of generatedNotesArray) { //iterate through generated notes array
+        console.log(it); //log each one to the console
+      }
+      
+      /*let it = 0; // number of iterations
       console.log("Array's Content that's storing Generated Notes: ")
       while (it < generatedNotesArray.length){
         console.log(generatedNotesArray[it]); 
         it++; 
-      }
+      }*/
 
       const notes2 = [new StaveNote({
         keys: [randomizeNoteAndOctave()],  

@@ -23,11 +23,11 @@
           <header class="login-navbar-interactive">
             <div class="login-desktop-menu">
               <div class="login-buttons">
-                <a href="login.html" class="login-login button">Login</a>
+                <!-- <a href="login.html" class="login-login button">Login</a>-->
+                <RouterLink to="/Login" class="login-login button">Login</RouterLink>
               </div>
-              <a href="signup.html" name="sign-up" class="login-sign-up button"
-                >Sign-up</a
-              >
+              <!--<a href="signup.html" name="sign-up" class="login-sign-up button">Sign-up</a>-->
+              <RouterLink to="/SignUp" name="sign-up" class="login-sign-up button">Sign Up</RouterLink>
               <button name="practice" class="login-practice button">
                 Practice
               </button>
@@ -61,6 +61,7 @@
         </div>
       </div>
     </body>
+  <RouterView />
   </html>
 </template>
 
