@@ -1,21 +1,20 @@
-# this is the script with the code to use the pyaudio api
 import pyaudio
 import wave
 
-# Define audio parameters
+# defining audio parameters
 FORMAT = pyaudio.paInt16
-CHANNELS = 1
+CHANNELS = 2
 RATE = 44100
 CHUNK = 1024
-FILE_PATH = "input.wav"
+FILE_PATH = "music_sample.wav"
 
-# Initialize pyaudio
+# initializing pyaudio
 p = pyaudio.PyAudio()
 
-# Open the audio file
+# opening th audio file
 wf = wave.open(FILE_PATH, 'rb')
 
-# Open stream
+# opening stream
 stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
                 channels=wf.getnchannels(),
                 rate=wf.getframerate(),
@@ -23,7 +22,7 @@ stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
 
 print("* Playing audio...")
 
-# Read data from file and play
+# reading data from file and playing
 data = wf.readframes(CHUNK)
 while data:
     stream.write(data)
@@ -31,7 +30,7 @@ while data:
 
 print("* Finished playing")
 
-# Stop stream
+# stopping stream
 stream.stop_stream()
 stream.close()
 p.terminate()
