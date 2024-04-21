@@ -26,32 +26,6 @@
         [Instrument 5]
       </button>
     </div>
-    <div class="instrument-selection-container2">
-      <button type="button" class="instrument-selection-button05 button">
-        <span class="instrument-selection-text03">
-          <span>Practice</span>
-          <br />
-        </span>
-      </button>
-      <button type="button" class="instrument-selection-button06 button">
-        <span class="instrument-selection-text06">
-          <span>Collaborative Learning</span>
-          <br />
-        </span>
-      </button>
-      <button type="button" class="instrument-selection-button07 button">
-        <span>
-          <span>Settings</span>
-          <br />
-        </span>
-      </button>
-      <button type="button" class="instrument-selection-button08 button">
-        <span class="instrument-selection-text12">
-          <span>Home</span>
-          <br />
-        </span>
-      </button>
-    </div>
     <button type="button" class="instrument-selection-button09 button">
       Don&apos;t see your instrument? Request to add it!
     </button>
@@ -138,65 +112,12 @@ export default {
   position: absolute;
   font-size: 28px;
 }
-.instrument-selection-container2 {
-  width: 181px;
-  height: 1080px;
-  display: flex;
-  position: relative;
-  align-self: flex-start;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-color: #0055FF;
-}
-.instrument-selection-button05 {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  font-size: 24px;
-  border-color: #80AAFF;
-  border-width: 3px;
-  text-transform: capitalize;
-  background-color: rgb(0, 85, 255);
-}
 .instrument-selection-text03 {
   text-align: center;
-}
-.instrument-selection-button06 {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  border-color: #80AAFF;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
 }
 .instrument-selection-text06 {
   font-size: 24px;
   text-align: center;
-}
-.instrument-selection-button07 {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  font-size: 24px;
-  border-color: #80AAFF;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
-}
-.instrument-selection-button08 {
-  color: rgb(128, 170, 255);
-  right: 0px;
-  width: 181px;
-  bottom: 0px;
-  height: 90px;
-  opacity: 1;
-  position: absolute;
-  border-color: #80AAFF;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
 }
 .instrument-selection-text12 {
   font-size: 24px;
