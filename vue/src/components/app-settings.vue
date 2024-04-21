@@ -1,16 +1,12 @@
 <template>
 <div>
-  <link href="../assets/app-settings.css" rel="stylesheet" />
   <div class="app-settings-container">
     <h1 class="app-settings-text">Settings</h1>
-    <span class="app-settings-text01">Trial Info:</span>
-    <button type="button" class="app-settings-button button">
-      <span class="app-settings-text02">
-        <span>Become a Subscriber!</span>
-        <br />
-      </span>
+    <span class="trial-info">Trial Info:</span>
+    <button type="button" class="subscribe button">
+      Become a Subscriber!
     </button>
-    <span class="app-settings-text05">
+    <span class="subscription-info">
       <span>Subscription Info:</span>
       <br />
     </span>
@@ -18,30 +14,30 @@
     <span class="app-settings-text09">Peripheral Settings:</span>
     <span class="app-settings-text10">Subscription Plan:</span>
     <span class="app-settings-text11">Payment Info:</span>
-    <button type="button" class="app-settings-button1 button">
+    <button type="button" class="change-plan button">
       Change Your Plan?
     </button>
-    <button type="button" class="app-settings-button2 button">
+    <button type="button" class="cancel button">
       Cancel Subscription
     </button>
-    <button type="button" class="app-settings-button3 button">
+    <button type="button" class="change-payment button">
       Change Payment Details
     </button>
     <span class="app-settings-text12">Username:</span>
-    <button type="button" class="app-settings-button4 button">Edit</button>
+    <button type="button" class="edit button">Edit</button>
     <span class="app-settings-text13">
       <span>Email:</span>
       <br />
     </span>
-    <button type="button" class="app-settings-button5 button">
+    <button type="button" class="change-password button">
       Change Password
     </button>
     <span class="app-settings-text16">MIDI Device:</span>
     <span class="app-settings-text17">Microphone:</span>
-    <button type="button" class="app-settings-button6 button">
+    <button type="button" class="change-device-1 button">
       Change Device
     </button>
-    <button type="button" class="app-settings-button7 button">
+    <button type="button" class="change-device-2 button">
       Change Device
     </button>
   </div>
@@ -72,7 +68,7 @@ export default {
   position: absolute;
   font-size: 4em;
 }
-.app-settings-text01 {
+.trial-info {
   top: 177px;
   left: 167px;
   color: #000000;
@@ -80,29 +76,19 @@ export default {
   font-size: 36px;
   text-decoration: underline;
 }
-.app-settings-button {
+.subscribe {
   top: 227px;
   left: 160px;
+  color: #000000;
+  font-size: 16px;
   width: 175px;
   height: 27px;
   display: flex;
   position: absolute;
-  border-width: 0px;
   flex-direction: row;
-  background-color: #00ffff;
+  background-color: #ffffff;
 }
-.app-settings-text02 {
-  top: 3px;
-  left: 5px;
-  position: absolute;
-  font-size: 16px;
-  text-align: center;
-  border-color: var(--dl-color-gray-black);
-  border-width: 0px;
-  border-radius: var(--dl-radius-radius-radius4);
-  background-color: rgb(0, 255, 255);
-}
-.app-settings-text05 {
+.subscription-info {
   top: 334px;
   left: 156px;
   color: #000000;
@@ -140,34 +126,41 @@ export default {
   position: absolute;
   font-size: 24px;
 }
-.app-settings-button1 {
+.change-plan {
   top: 418px;
   left: 157px;
+  color: #000000;
   width: 157px;
   height: 38px;
+  font-size: 16px;
   position: absolute;
   padding-top: 0px;
   padding-left: 0px;
   padding-right: 0px;
   padding-bottom: 0px;
-  background-color: #00ffff;
+  background-color: #ffffff;
 }
-.app-settings-button2 {
+.cancel {
   top: 417px;
   left: 363px;
-  color: #404040;
+  font-size: 16px;
+  color: #000000;
   width: 170px;
   height: 40px;
   position: absolute;
   padding-left: 0px;
   padding-right: 0px;
-  background-color: #ff0000;
+  background-color: #ffffff;
 }
-.app-settings-button3 {
+.change-payment {
   top: 463px;
   left: 636px;
+  color: #000000;
+  font-size: 16px;
+  width: 200px;
+  height: 40px;
   position: absolute;
-  background-color: #00ffff;
+  background-color: #ffffff;
 }
 .app-settings-text12 {
   top: 606px;
@@ -176,9 +169,14 @@ export default {
   position: absolute;
   font-size: 24px;
 }
-.app-settings-button4 {
+.edit {
   top: 597px;
   left: 466px;
+  font-size: 16px;
+  width: 74px;
+  height: 30px;
+  color: #000000;
+  background-color: #ffffff;
   position: absolute;
 }
 .app-settings-text13 {
@@ -188,10 +186,15 @@ export default {
   position: absolute;
   font-size: 24px;
 }
-.app-settings-button5 {
+.change-password {
   top: 686px;
   left: 168px;
+  font-size: 16px;
+  width: 200px;
+  height: 40px;
   position: absolute;
+  color: #000000;
+  background-color: #ffffff;
 }
 .app-settings-text16 {
   top: 808px;
@@ -203,18 +206,26 @@ export default {
 .app-settings-text17 {
   left: 165px;
   color: #000000;
-  bottom: 77px;
+  bottom: 221px;
   position: absolute;
   font-size: 24px;
 }
-.app-settings-button6 {
+.change-device-1 {
   left: 156px;
-  bottom: 121px;
+  bottom: 265px;
+  height: 40px;
+  font-size: 16px;
   position: absolute;
+  color: #000000;
+  background-color: #ffffff;
 }
-.app-settings-button7 {
+.change-device-2 {
   left: 160px;
-  bottom: 29px;
+  bottom: 160px;
+  height: 40px;
+  font-size: 16px;
   position: absolute;
+  color: #000000;
+  background-color: #ffffff;
 }
 </style>
