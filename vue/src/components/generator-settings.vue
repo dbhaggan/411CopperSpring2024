@@ -178,8 +178,11 @@
         // let octavePool = ['/4', '/5'];              
         let octavePool = [];  
         
-        if(this.octaveInputArray.length === 0) {
-            octavePool = [...this.tempOctaveArray];              
+          if(this.octaveInputArray.length === 0 && this.tempOctaveArray.length === 0) {
+            alert("Please pick an Octave (enter a number between 1-7) \n (and pick an Instrument if not selecte already)");           
+          } 
+          if(this.octaveInputArray.length === 0) {
+            octavePool = [...this.tempOctaveArray];    
           }
           else {
             octavePool = []; 
@@ -268,7 +271,7 @@
             else {
                 return addNotes(randomNote, randomDuration);
             }   
-        }
+        } 
   
         function addNotes (randomNote, randomDuration) {
             return new Vex.Flow.StaveNote ({
@@ -651,198 +654,199 @@
   </script>
   
   <style scoped>
-  .generator-settings-container {
-    width: 100%;
-    display: flex;
-    overflow: auto;
-    min-height: 100vh;
-    align-items: center;
-    flex-direction: column;
-    background-color: #ffffff;
-  }
-  .generator-settings-container1 {
-    right: 0px;
-    width: 518px;
-    bottom: 0px;
-    height: 739px;
-    display: flex;
-    position: absolute;
-    align-self: flex-end;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: #001f3e;
-  }
-  .generator-settings-text {
-    color: rgb(255, 255, 255);
-    font-size: 32px;
-  }
-  .generator-settings-select {
-    top: 122px;
-    left: 141px;
-    position: absolute;
-  }
-  .generator-settings-textarea {
-    top: 163px;
-    left: 144px;
-    width: 59px;
-    position: absolute;
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-  }
-  .generator-settings-textarea1 {
-    top: 68px;
-    left: 175px;
-    width: 59px;
-    position: absolute;
-    padding-top: 0px;
-    padding-left: 0px;
-    padding-right: 0px;
-    padding-bottom: 0px;
-  }
-  .generator-settings-text01 {
-    top: 314px;
-    left: 5px;
-    color: rgb(255, 255, 255);
-    position: absolute;
-  }
-  .generator-settings-text02 {
-    top: 169px;
-    left: 3px;
-    color: #ffffff;
-    position: absolute;
-  }
-  .generator-settings-text03 {
-    top: 220px;
-    left: 5px;
-    color: #ffffff;
-    position: absolute;
-  }
-  .generator-settings-checkbox {
-    top: 613px;
-    left: 177px;
-    position: absolute;
-  }
-  .generator-settings-text04 {
-    top: 36px;
-    left: 7px;
-    color: rgb(255, 255, 255);
-    position: absolute;
-  }
-  .generator-settings-text05 {
-    top: 461px;
-    left: 3px;
-    color: #ffffff;
-    position: absolute;
-  }
-  .generator-settings-text08 {
-    left: 62px;
-    color: #ffffff;
-    bottom: 113px;
-    position: absolute;
-  }
-  .generator-settings-text09 {
-    top: 410px;
-    left: 8px;
-    color: rgb(255, 255, 255);
-    position: absolute;
-  }
-  .generator-settings-text10 {
-    top: 76px;
-    left: 7px;
-    color: white;
-    position: absolute;
-  }
-  .generator-settings-text11 {
-    top: 121px;
-    left: 7px;
-    color: #ffffff;
-    position: absolute;
-  }
-  .generator-settings-text12 {
-    top: 266px;
-    left: 3px;
-    color: #ffffff;
-    position: absolute;
-  }
-  .generator-settings-checkbox1 {
-    top: 268px;
-    left: 192px;
-    position: absolute;
-  }
-  .generator-settings-container2 {
-    width: 181px;
-    height: 1080px;
-    display: flex;
-    position: relative;
-    align-self: flex-start;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: #0055FF;
-  }
-  .generator-settings-button {
-    color: rgb(128, 170, 255);
-    width: 181px;
-    height: 90px;
-    opacity: 1;
-    font-size: 24px;
-    border-color: #80AAFF;
-    border-width: 3px;
-    text-transform: capitalize;
-    background-color: rgb(0, 85, 255);
-  }
-  .generator-settings-text13 {
-    text-align: center;
-  }
-  .generator-settings-button1 {
-    color: rgb(128, 170, 255);
-    width: 181px;
-    height: 90px;
-    opacity: 1;
-    border-color: #80AAFF;
-    border-width: 3px;
-    background-color: rgb(0, 85, 255);
-  }
-  .generator-settings-text16 {
-    font-size: 24px;
-    text-align: center;
-  }
-  .generator-settings-button2 {
-    color: rgb(128, 170, 255);
-    width: 181px;
-    height: 90px;
-    opacity: 1;
-    font-size: 24px;
-    border-color: #80AAFF;
-    border-width: 3px;
-    background-color: rgb(0, 85, 255);
-  }
-  .generator-settings-button3 {
-    color: rgb(128, 170, 255);
-    right: 0px;
-    width: 181px;
-    bottom: 0px;
-    height: 90px;
-    opacity: 1;
-    position: absolute;
-    border-color: #80AAFF;
-    border-width: 3px;
-    background-color: rgb(0, 85, 255);
-  }
-  .generator-settings-text22 {
-    font-size: 24px;
-  }
-  .generator-settings-button4 {
-    left: 935px;
-    width: 160px;
-    bottom: 42px;
-    height: 160px;
-    position: absolute;
-    border-radius: 80px;
-    background-color: rgb(26, 143, 221);
-  }
+ .generator-settings-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  background-color: #ffffff;
+}
+.generator-settings-container1 {
+  right: 0px;
+  width: 518px;
+  bottom: 0px;
+  height: 739px;
+  display: flex;
+  position: relative;
+  align-self: flex-end;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #001f3e;
+}
+.generator-settings-text {
+  color: rgb(255, 255, 255);
+  font-size: 32px;
+}
+.generator-settings-select {
+  top: 122px;
+  left: 141px;
+  position: relative;
+}
+.generator-settings-textarea {
+  top: 163px;
+  left: 144px;
+  width: 59px;
+  position: relative;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+}
+.generator-settings-textarea1 {
+  top: 68px;
+  left: 175px;
+  width: 59px;
+  position: relative;
+  padding-top: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-bottom: 0px;
+}
+.generator-settings-text01 {
+  top: 314px;
+  left: 5px;
+  color: rgb(255, 255, 255);
+  position: absolute;
+}
+.generator-settings-text02 {
+  top: 169px;
+  left: 3px;
+  color: #ffffff;
+  position: absolute;
+}
+.generator-settings-text03 {
+  top: 220px;
+  left: 5px;
+  color: #ffffff;
+  position: absolute;
+}
+.generator-settings-checkbox {
+  top: 613px;
+  left: 177px;
+  position: absolute;
+}
+.generator-settings-text04 {
+  top: 36px;
+  left: 7px;
+  color: rgb(255, 255, 255);
+  position: absolute;
+}
+.generator-settings-text05 {
+  top: 461px;
+  left: 3px;
+  color: #ffffff;
+  position: absolute;
+}
+.generator-settings-text08 {
+  left: 62px;
+  color: #ffffff;
+  bottom: 113px;
+  position: absolute;
+}
+.generator-settings-text09 {
+  top: 410px;
+  left: 8px;
+  color: rgb(255, 255, 255);
+  position: absolute;
+}
+.generator-settings-text10 {
+  top: 76px;
+  left: 7px;
+  color: white;
+  position: absolute;
+}
+.generator-settings-text11 {
+  top: 121px;
+  left: 7px;
+  color: #ffffff;
+  position: relative;
+}
+.generator-settings-text12 {
+  top: 266px;
+  left: 3px;
+  color: #ffffff;
+  position: relative;
+}
+.generator-settings-checkbox1 {
+  top: 268px;
+  left: 192px;
+  position: relative;
+}
+.generator-settings-container2 {
+  width: 181px;
+  height: 1080px;
+  display: flex;
+  position: relative;
+  align-self: flex-start;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: #0055FF;
+}
+.generator-settings-button {
+  color: rgb(128, 170, 255);
+  width: 181px;
+  height: 90px;
+  opacity: 1;
+  font-size: 24px;
+  border-color: #80AAFF;
+  border-width: 3px;
+  text-transform: capitalize;
+  background-color: rgb(0, 85, 255);
+}
+.generator-settings-text13 {
+  text-align: center;
+}
+.generator-settings-button1 {
+  color: rgb(128, 170, 255);
+  width: 181px;
+  height: 90px;
+  opacity: 1;
+  border-color: #80AAFF;
+  border-width: 3px;
+  background-color: rgb(0, 85, 255);
+}
+.generator-settings-text16 {
+  font-size: 24px;
+  text-align: center;
+}
+.generator-settings-button2 {
+  color: rgb(128, 170, 255);
+  width: 181px;
+  height: 90px;
+  opacity: 1;
+  font-size: 24px;
+  border-color: #80AAFF;
+  border-width: 3px;
+  background-color: rgb(0, 85, 255);
+}
+.generator-settings-button3 {
+  color: rgb(128, 170, 255);
+  right: 0px;
+  width: 181px;
+  bottom: 0px;
+  height: 90px;
+  opacity: 1;
+  position: relative;
+  border-color: #80AAFF;
+  border-width: 3px;
+  background-color: rgb(0, 85, 255);
+}
+.generator-settings-text22 {
+  font-size: 24px;
+}
+.generator-settings-button4 {
+  left: 935px;
+  width: 160px;
+  bottom: 42px;
+  height: 160px;
+  position: relative;
+  border-radius: 80px;
+  background-color: rgb(26, 143, 221);
+}
   </style>
   
+
