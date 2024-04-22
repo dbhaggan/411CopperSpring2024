@@ -1,7 +1,7 @@
 # 411CopperSpring2024
 ---
 # Setup the Django environment locally on Windows
-1. Clone the 411CopperSpring2024 Repository to your local machine. 
+1. Clone the 411CopperSpring2024 Repository to your local machine.  
 
 2. Create a folder inside the 411CopperSpring2024 repo you just cloned.
    ```mkdir virtualenv```

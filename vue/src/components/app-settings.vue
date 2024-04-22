@@ -63,19 +63,19 @@ export default {
   align-items: flex-start;
   flex-direction: column;
   justify-content: flex-end;
-  background-color: #003e7d;
+  background-color: #ffffff;
 }
 .app-settings-text {
   top: 60px;
   left: 826px;
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   font-size: 4em;
 }
 .app-settings-text01 {
   top: 177px;
   left: 167px;
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   font-size: 36px;
   text-decoration: underline;
@@ -105,7 +105,7 @@ export default {
 .app-settings-text05 {
   top: 334px;
   left: 156px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   position: absolute;
   font-size: 36px;
   text-decoration: underline;
@@ -113,7 +113,7 @@ export default {
 .app-settings-text08 {
   top: 551px;
   left: 167px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   position: absolute;
   font-size: 36px;
   text-decoration: underline;
@@ -121,7 +121,7 @@ export default {
 .app-settings-text09 {
   top: 748px;
   left: 154px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   position: absolute;
   font-size: 36px;
   text-decoration: underline;
@@ -129,14 +129,14 @@ export default {
 .app-settings-text10 {
   top: 383px;
   left: 161px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   position: absolute;
   font-size: 24px;
 }
 .app-settings-text11 {
   top: 467px;
   left: 158px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   position: absolute;
   font-size: 24px;
 }
@@ -172,7 +172,7 @@ export default {
 .app-settings-text12 {
   top: 606px;
   left: 170px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   position: absolute;
   font-size: 24px;
 }
@@ -184,7 +184,7 @@ export default {
 .app-settings-text13 {
   top: 648px;
   left: 167px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   position: absolute;
   font-size: 24px;
 }
@@ -196,13 +196,13 @@ export default {
 .app-settings-text16 {
   top: 808px;
   left: 162px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   position: absolute;
   font-size: 24px;
 }
 .app-settings-text17 {
   left: 165px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   bottom: 77px;
   position: absolute;
   font-size: 24px;

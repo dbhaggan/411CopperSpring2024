@@ -1,9 +1,9 @@
 <template>
   <!DOCTYPE html>
   <html>
-    <body style="background-color: #003e7d">
+    <body style="background-color: #ffffff">
       <div>
-        <link href="./practice.css" rel="stylesheet" />
+        <link href="../assets/practice.css" rel="stylesheet" />
         <div class="practice-container">
           <div class="practice-container1">
             <button type="button" class="practice-button button">
@@ -19,23 +19,26 @@
               </span>
             </button>
             <button type="button" class="practice-button2 button">
-              <span>
-                <span>Settings</span>
-                <br />
-              </span>
+              <RouterLink to="/generator-settings">
+                <span>
+                  <span>Settings</span>
+                  <br />
+                </span>
+              </RouterLink>
             </button>
             <button type="button" class="practice-button3 button"> 
-              <span class="practice-text09">
-                <span>Home</span>
-                <br />
-              </span>
+              <RouterLink to="/home">
+                <span class="practice-text09">
+                  <span>Home</span>
+                  <br />
+                </span>
+              </RouterLink>
             </button>
             <div id="generatedScore"></div> 
           </div>
           <button type="button" class="practice-button4 button" v-on:click = "runSheetGenerator">
             <span>
-              <br />
-              <br />
+              Play
             </span>
           </button>
         </div>
@@ -534,7 +537,7 @@ export default {
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  background-color: #003e7d;
+  background-color: #ffffff;
 }
 .practice-container1 {
   width: 181px;

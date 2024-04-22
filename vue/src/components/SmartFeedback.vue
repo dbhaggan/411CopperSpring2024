@@ -1,21 +1,19 @@
 <template>
   <!DOCTYPE html>
   <html>
-    <body style="background-color: #003e7d">
+    <body> <!--style="background-color: #ffffff">-->
       <div>
-        <link href="./feedback.css" rel="stylesheet" />
+        <link href="../assets/feedback.css" rel="stylesheet" />
         <div class="feedback-container">
-          <span class="feedback-text">Feedback Report</span>
-          <span class="feedback-text01">Play Time:</span>
-          <span class="feedback-text02">Missed Notes:</span>
-          <span class="feedback-text03">Accuracy:</span>
-          <span class="feedback-text04">Tempo:</span>
-          <span class="feedback-text05"
-            >Here&apos;s what our AI had to say!</span
-          >
-          <span class="feedback-text06">Note Consistency:</span>
-          <span class="feedback-text07">Dynamics:</span>
-          <span class="feedback-text08">Tips:</span>
+          <span class="feedback-text">Feedback Report </span> 
+          <span class="feedback-text01">Play Time: </span> 
+          <span class="feedback-text02">Missed Notes: </span> 
+          <span class="feedback-text03">Accuracy: </span> 
+          <span class="feedback-text04">Tempo: </span> 
+          <span class="feedback-text05">Here&apos;s what our AI had to say!</span>
+          <span class="feedback-text06">Note Consistency: </span>
+          <span class="feedback-text07">Dynamics: </span>
+          <span class="feedback-text08">Tips: </span>
           <div class="feedback-container1">
             <button type="button" class="feedback-button button">
               <span class="feedback-text09">
@@ -36,15 +34,18 @@
               </span>
             </button>
             <button type="button" class="feedback-button3 button">
-              <span class="feedback-text18">
-                <span>Home</span>
-                <br />
-              </span>
+              <RouterLink to="/home">
+                <span class="feedback-text18">
+                  <span>Home</span>
+                  <br />
+                </span>
+              </RouterLink>
             </button>
           </div>
         </div>
       </div>
     </body>
+    <RouterView/>
   </html>
 </template>
 
@@ -63,7 +64,7 @@ export default {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: #003e7d;
+  background-color: #ffffff;
 }
 .text {
   top: 34px;
@@ -83,7 +84,7 @@ export default {
 .text02 {
   top: 382px;
   left: 738px;
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   font-size: 28px;
 }
@@ -104,7 +105,7 @@ export default {
 .text05 {
   top: 216px;
   left: 835px;
-  color: #ffffff;
+  color: #000000;
   position: absolute;
   font-size: 28px;
 }
