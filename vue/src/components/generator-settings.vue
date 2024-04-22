@@ -631,7 +631,7 @@
             createMeasureForSnareDrum(section3); 
         }
         else if(initialInstrument === "glock"){
-            createMeasureForGlock(section1);     
+            createMeasureForGlock(section1);       
             createMeasureForSnareDrum(section2); 
             createMeasureForGlock(section3);  
         }
