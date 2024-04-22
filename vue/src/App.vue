@@ -8,7 +8,9 @@
       <router-link to="/app-settings">App Settings</router-link> |
       <router-link to="/practice">Practice</router-link> |
       <router-link to="/generator-settings">Generator Settings</router-link> |
-      <router-link to="/feedback">Feedback</router-link>
+      <router-link to="/feedback">Feedback</router-link> |
+      <router-link to="/instrument">Instrument</router-link> |
+      <router-link to="/request">Request</router-link>  
     </nav>
     <!--<h2>Users</h2>-->
      <!-- <div v-if="!loaded">Loading users...</div>

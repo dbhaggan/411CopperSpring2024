@@ -6,6 +6,8 @@ import SmartFeedback from '../components/SmartFeedback.vue'
 import Vexflowcomponent from '../components/PracticePage.vue'
 import GeneratorSettingsPage from '../components/generator-settings.vue'
 import AppSettingsPage from '../components/app-settings.vue'
+import InstrumentRequest from '../components/InstrumentRequest.vue'
+import InstrumentPage from '../components/instrument-selection.vue'
 
 const routes = [
     {
@@ -28,6 +30,12 @@ const routes = [
     },
     {
         path: "/feedback", name: "feedback", component: SmartFeedback
+    },
+    {
+        path: "/instrument", name: "instrument", component: InstrumentPage
+    },
+    {
+        path: "/request", name: "request", component: InstrumentRequest
     }
 ]
 
