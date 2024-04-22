@@ -105,7 +105,7 @@ export default {
   bottom: 0px;
   height: 739px;
   display: flex;
-  position: absolute;
+  position: relative;
   align-self: flex-end;
   align-items: center;
   flex-direction: column;
@@ -119,13 +119,13 @@ export default {
 .generator-settings-select {
   top: 122px;
   left: 141px;
-  position: absolute;
+  position: relative;
 }
 .generator-settings-textarea {
   top: 163px;
   left: 144px;
   width: 59px;
-  position: absolute;
+  position: relative;
   padding-top: 0px;
   padding-left: 0px;
   padding-right: 0px;
@@ -135,7 +135,7 @@ export default {
   top: 68px;
   left: 175px;
   width: 59px;
-  position: absolute;
+  position: relative;
   padding-top: 0px;
   padding-left: 0px;
   padding-right: 0px;
@@ -198,18 +198,18 @@ export default {
   top: 121px;
   left: 7px;
   color: #ffffff;
-  position: absolute;
+  position: relative;
 }
 .generator-settings-text12 {
   top: 266px;
   left: 3px;
   color: #ffffff;
-  position: absolute;
+  position: relative;
 }
 .generator-settings-checkbox1 {
   top: 268px;
   left: 192px;
-  position: absolute;
+  position: relative;
 }
 .generator-settings-container2 {
   width: 181px;
@@ -266,7 +266,7 @@ export default {
   bottom: 0px;
   height: 90px;
   opacity: 1;
-  position: absolute;
+  position: relative;
   border-color: #80AAFF;
   border-width: 3px;
   background-color: rgb(0, 85, 255);
@@ -279,7 +279,7 @@ export default {
   width: 160px;
   bottom: 42px;
   height: 160px;
-  position: absolute;
+  position: relative;
   border-radius: 80px;
   background-color: rgb(26, 143, 221);
 }

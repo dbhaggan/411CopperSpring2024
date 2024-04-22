@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'Signup',
+  name: 'SignupPage',
   props: {},
   metaInfo: {
     title: 'signup - PercussAtSight',

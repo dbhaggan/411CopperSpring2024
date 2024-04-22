@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'LoginPage',
   props: {},
   metaInfo: {
     title: 'login - PercussAtSight',
