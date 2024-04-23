@@ -1,41 +1,13 @@
 <template>
   <!DOCTYPE html>
   <html>
-    <body style="background-color: #003e7d">
+    <body style="background-color: #ffffff">
       <div>
-        <link href="./practice.css" rel="stylesheet" />
+        <link href="../assets/practice.css" rel="stylesheet" />
         <div class="practice-container">
-          <div class="practice-container1">
-            <button type="button" class="practice-button button">
-              <span class="practice-text">
-                <span>Practice</span>
-                <br />
-              </span>
-            </button>
-            <button type="button" class="practice-button1 button">
-              <span class="practice-text03">
-                <span>Collaborative Learning</span>
-                <br />
-              </span>
-            </button>
-            <button type="button" class="practice-button2 button">
-              <span>
-                <span>Settings</span>
-                <br />
-              </span>
-            </button>
-            <button type="button" class="practice-button3 button"> 
-              <span class="practice-text09">
-                <span>Home</span>
-                <br />
-              </span>
-            </button>
-            <div id="generatedScore"></div> 
-          </div>
           <button type="button" class="practice-button4 button" v-on:click = "runSheetGenerator">
             <span>
-              <br />
-              <br />
+              Play
             </span>
           </button>
         </div>
@@ -49,9 +21,20 @@
 
 export default {
   name: 'VexflowComponent',
+  beforeRouteLeave(to, from, next) {
+      this.handleDivDeletion(); 
+      next(); 
+  }, 
   methods: {  
   //mounted(){
 
+    handleDivDeletion() {
+        let existingScore = document.getElementById("generatedScore"); 
+        if(existingScore){
+        existingScore.parentNode.removeChild(existingScore); 
+        } 
+      }, 
+    
     runSheetGenerator (){ 
 
       let existingScore = document.getElementById("generatedScore"); 
@@ -534,67 +517,14 @@ export default {
   min-height: 100vh;
   align-items: center;
   flex-direction: column;
-  background-color: #003e7d;
-}
-.practice-container1 {
-  width: 181px;
-  height: 1080px;
-  display: flex;
-  position: relative;
-  align-self: flex-start;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-color: #0055ff;
-}
-.practice-button {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  font-size: 24px;
-  border-color: #80aaff;
-  border-width: 3px;
-  text-transform: capitalize;
-  background-color: rgb(0, 85, 255);
+  background-color: #ffffff;
 }
 .practice-text {
   text-align: center;
 }
-.practice-button1 {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  border-color: #80aaff;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
-}
 .practice-text03 {
   font-size: 24px;
   text-align: center;
-}
-.practice-button2 {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  font-size: 24px;
-  border-color: #80aaff;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
-}
-.practice-button3 {
-  color: rgb(128, 170, 255);
-  right: 0px;
-  width: 181px;
-  bottom: 0px;
-  height: 90px;
-  opacity: 1;
-  position: absolute;
-  border-color: #80aaff;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
 }
 .practice-text09 {
   font-size: 24px;
@@ -609,3 +539,5 @@ export default {
   background-color: rgb(26, 143, 221);
 }
 </style>
+
+

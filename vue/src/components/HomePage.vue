@@ -9,25 +9,28 @@
       <meta property="twitter:card" content="summary_large_image" />
     </head>
     <body>
-      <link rel="stylesheet" href="./style.css" />
+      <link rel="stylesheet" href="../assets/style.css" />
       <div>
-        <link href="./homepage.css" rel="stylesheet" />
-        test
+        <link href="../assets/homepage.css" rel="stylesheet" />
         <div class="homepage-container">
           <div class="homepage-logo-placement">
             <div class="homepage-container1">
-              <a href="login.html" class="homepage-login button">Login</a>
-              <a href="signup.html" class="homepage-sign-up button">Sign-up</a>
+              <!--<a href="login.html" class="homepage-login button">Login</a> -->
+              <RouterLink to="/login" class="homepage-login button">Login</RouterLink>
+              <!--<a href="signup.html" class="homepage-sign-up button">Sign-up</a>-->
+              <RouterLink to="/signup" class="homepage-sign-up button">Sign Up</RouterLink>
               <button name="practice" class="homepage-practice button">
-                Practice
+                <RouterLink to="/practice" name="practice">Practice</RouterLink>
               </button>
-              <a href="homepage.html" class="homepage-navlink">
+               <!-- <a href="homepage.html" class="homepage-navlink"> -->
+              <RouterLink to="/home">
                 <img
                   alt="logo"
                   src="../assets/PercussAtSight_Logo.png"
                   class="homepage-image"
                 />
-              </a>
+              </RouterLink>
+             <!--</a>--> 
             </div>
           </div>
           <img
@@ -40,7 +43,14 @@
       </div>
     </body>
   </html>
+  <RouterView />
 </template>
+
+<script>
+  export default {
+    name: "HomePage"
+  }
+</script>
 
 <style>
 .homepage-container {
@@ -70,7 +80,7 @@
 .homepage-login {
   top: 53px;
   left: left;
-  color: white;
+  color: #000000;
   right: 290px;
   width: var(--dl-size-size-large);
   position: absolute;
@@ -79,11 +89,11 @@
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: #1e2f86;
+  background-color: #ffffff;
 }
 .homepage-sign-up {
   top: 53px;
-  color: white;
+  color: #000000;
   right: 146px;
   width: var(--dl-size-size-large);
   position: absolute;
@@ -92,11 +102,11 @@
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: #1e2f86;
+  background-color: #ffffff;
 }
 .homepage-practice {
   top: 53px;
-  color: white;
+  color: #000000;
   right: 0px;
   width: var(--dl-size-size-large);
   position: absolute;
@@ -105,7 +115,7 @@
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: #1e2f86;
+  background-color: #ffffff;
 }
 .homepage-navlink {
   display: contents;

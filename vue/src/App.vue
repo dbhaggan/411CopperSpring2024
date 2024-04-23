@@ -1,17 +1,19 @@
 <template>
   <div id="app">
-    <img alt="PercussAtSight" src="./assets/logo.png" />
+    <img alt="PercussAtSight" src="./assets/logo.png" width="400px"/>
     <nav>
-      <router-link to="/home">Home</router-link> |
+      <router-link to="/home" name="Home">Home</router-link> |
       <router-link to="/login">Login</router-link> |
       <router-link to="/signup">Sign Up</router-link> |
       <router-link to="/app-settings">App Settings</router-link> |
       <router-link to="/practice">Practice</router-link> |
       <router-link to="/generator-settings">Generator Settings</router-link> |
-      <router-link to="/feedback">Feedback</router-link>
+      <router-link to="/feedback">Feedback</router-link> |
+      <router-link to="/instrument">Instrument</router-link> |
+      <router-link to="/request">Request</router-link>  
     </nav>
-    <h2>Users</h2>
-    <div v-if="!loaded">Loading users...</div>
+    <!--<h2>Users</h2>-->
+     <!-- <div v-if="!loaded">Loading users...</div>
     <div v-if="loaded">
       <div v-for="user in users" :key="user.id">
         <ul>
@@ -21,7 +23,7 @@
           <li>{{ user.emailAddress }}</li>
         </ul>
       </div>
-    </div>
+    </div>-->
   </div>
   <router-view/>
 </template>
@@ -30,7 +32,7 @@
 import axios from "axios";
 // import app-settings from './components/app-settings.vue'
 // import generator-settings from './components/generator-settings.vue'
-//import homepage from "./components/homepage.vue";
+// import HomePage from "./components/HomePage.vue";
 // import instrument-selection from './components/instrument-selection.vue'
 //import login from "./components/login.vue";
 //import signup from "./components/signup.vue";
@@ -44,12 +46,8 @@ export default {
     // app-settings,
     //SmartFeedback,
     // generator-settings,
-    //homepage,
-    // instrument-selection,
-    //login,
-    //PracticePage,
-    //signup,
-  },
+    // HomePage,
+},
 
   data() {
     return {
