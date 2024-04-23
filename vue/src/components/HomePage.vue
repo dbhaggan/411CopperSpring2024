@@ -80,7 +80,7 @@
 .homepage-login {
   top: 53px;
   left: left;
-  color: white;
+  color: #000000;
   right: 290px;
   width: var(--dl-size-size-large);
   position: absolute;
@@ -89,11 +89,11 @@
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: #1e2f86;
+  background-color: #ffffff;
 }
 .homepage-sign-up {
   top: 53px;
-  color: white;
+  color: #000000;
   right: 146px;
   width: var(--dl-size-size-large);
   position: absolute;
@@ -102,11 +102,11 @@
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: #1e2f86;
+  background-color: #ffffff;
 }
 .homepage-practice {
   top: 53px;
-  color: white;
+  color: #000000;
   right: 0px;
   width: var(--dl-size-size-large);
   position: absolute;
@@ -115,7 +115,7 @@
   font-family: "Arial";
   font-weight: 700;
   text-decoration: none;
-  background-color: #1e2f86;
+  background-color: #ffffff;
 }
 .homepage-navlink {
   display: contents;
