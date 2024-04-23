@@ -22,7 +22,7 @@
           class="signup-textinput2 input"
         /><label class="signup-text">First Name:</label
         ><label class="signup-text1">Email:</label
-        ><label class="signup-text2">Password:</label
+        ><label class="signup-text2">Last Name:</label
         ><button type="submit" class="signup-button button">Sign-Up</button></div
       ></div
     ></div

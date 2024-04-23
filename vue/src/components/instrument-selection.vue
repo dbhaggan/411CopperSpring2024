@@ -24,13 +24,14 @@
       </button>
     </div>
     <button type="button" class="request-instrument button">
-      Don&apos;t see your instrument? Request to add it!
+      <RouterLink to="/request">Don&apos;t see your instrument? Request to add it!</RouterLink>
     </button>
   </div>
 </div>
 
 </body>
 </html>
+<RouterView />
 </template>
 
 <script>

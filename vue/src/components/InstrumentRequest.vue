@@ -4,12 +4,10 @@
         <router-link to="/" class="instrument-request-navlink">
           <img
             alt="image"
-            src="/percussatsight_logo-1500h.png"
-            class="instrument-request-image" />
-        </router-link>
-      </div>
-      <div class="instrument-request-container3">
-        <input
+            src="../assets/PercussAtSight_Logo.png"
+            class="instrument-request-image" /></router-link></div
+      ><div class="instrument-request-container3"
+        ><input
           type="text"
           placeholder="Instrument Name"
           class="instrument-request-textinput input"/>

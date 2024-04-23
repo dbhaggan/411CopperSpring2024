@@ -166,7 +166,7 @@
         let octavePool = [];  
         
           if(this.octaveInputArray.length === 0 && this.tempOctaveArray.length === 0) {
-            alert("Please pick an Octave (enter a number between 1-7) \n (and pick an Instrument if not selecte already)");           
+            alert("Please pick an Octave (enter a number between 1-7) \n (and pick an Instrument if not selected already)");           
           } 
           if(this.octaveInputArray.length === 0) {
             octavePool = [...this.tempOctaveArray];    
