@@ -21,24 +21,24 @@ def format_notes(note_names):
     return ' '.join(note_names)
 
 # Example audio files
-correct_audio_file = 'music_sample.wav'
-incorrect_audio_file = 'Incorrectly_Played_Sample.wav'
+#correct_audio_file = 'music_sample.wav'
+#incorrect_audio_file = 'Incorrectly_Played_Sample.wav'
 
 # Extract notes from audio files
-correct_notes = extract_notes(correct_audio_file)
-incorrect_notes = extract_notes(incorrect_audio_file)
+#correct_notes = extract_notes(correct_audio_file)
+#incorrect_notes = extract_notes(incorrect_audio_file)
 
 # Filter and replace notes
-correct_notes_filtered = filter_notes(correct_notes)
-incorrect_notes_filtered = filter_notes(incorrect_notes)
+#correct_notes_filtered = filter_notes(correct_notes)
+#incorrect_notes_filtered = filter_notes(incorrect_notes)
 
 # Format notes as strings
-correct_notes_str = format_notes(correct_notes_filtered)
-incorrect_notes_str = format_notes(incorrect_notes_filtered)
+#correct_notes_str = format_notes(correct_notes_filtered)
+#incorrect_notes_str = format_notes(incorrect_notes_filtered)
 
 # Print final output
-print("Final Output:\n")
-print("For Correctly Played Example:\n")
-print(correct_notes_str)
-print("\nFor Incorrectly Played Example:\n")
-print(incorrect_notes_str)
+#print("Final Output:\n")
+#print("For Correctly Played Example:\n")
+#print(correct_notes_str)
+#print("\nFor Incorrectly Played Example:\n")
+#print(incorrect_notes_str)
