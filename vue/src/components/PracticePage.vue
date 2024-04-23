@@ -21,9 +21,20 @@
 
 export default {
   name: 'VexflowComponent',
+  beforeRouteLeave(to, from, next) {
+      this.handleDivDeletion(); 
+      next(); 
+  }, 
   methods: {  
   //mounted(){
 
+    handleDivDeletion() {
+        let existingScore = document.getElementById("generatedScore"); 
+        if(existingScore){
+        existingScore.parentNode.removeChild(existingScore); 
+        } 
+      }, 
+    
     runSheetGenerator (){ 
 
       let existingScore = document.getElementById("generatedScore"); 
@@ -528,3 +539,5 @@ export default {
   background-color: rgb(26, 143, 221);
 }
 </style>
+
+
