@@ -6,27 +6,24 @@
 <div>
   <link href="./instrument-selection.css" rel="stylesheet" />
   <div class="instrument-selection-container">
-    <div class="instrument-selection-container1">
-      <button type="button" class="instrument-selection-button button">
-        <span>
-          <span>[Instrument 1]</span>
-          <br />
-        </span>
+    <div class="instrument-selection-scrolling-container">
+      <button type="button" class="instrument-1 button">
+        [Instrument 1]
       </button>
-      <button type="button" class="instrument-selection-button01 button">
+      <button type="button" class="instrument-2 button">
         [Instrument 2]
       </button>
-      <button type="button" class="instrument-selection-button02 button">
+      <button type="button" class="instrument-3 button">
         [Instrument 3]
       </button>
-      <button type="button" class="instrument-selection-button03 button">
+      <button type="button" class="instrument-4 button">
         [Instrument 4]
       </button>
-      <button type="button" class="instrument-selection-button04 button">
+      <button type="button" class="instrument-5 button">
         [Instrument 5]
       </button>
     </div>
-    <button type="button" class="instrument-selection-button09 button">
+    <button type="button" class="request-instrument button">
       Don&apos;t see your instrument? Request to add it!
     </button>
   </div>
@@ -47,14 +44,13 @@ export default {
   width: 100%;
   display: flex;
   overflow: auto;
-  min-height: 100vh;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
   background-color: #ffffff;
 }
-.instrument-selection-container1 {
-  top: 186px;
+.instrument-selection-scrolling-container {
+  top: 400px;
   flex: 0 0 auto;
   left: 346px;
   width: 1457px;
@@ -65,28 +61,26 @@ export default {
   justify-content: center;
   scroll-behavior: smooth;
 }
-.instrument-selection-button {
+.instrument-1 {
   top: 0px;
   left: 55px;
   width: 226px;
-  bottom: 0px;
   height: 226px;
   margin: auto;
   position: absolute;
   font-size: 29px;
 }
-.instrument-selection-button01 {
+.instrument-2 {
   top: 0px;
   left: 349px;
   width: 226px;
-  bottom: 0px;
   height: 226px;
   margin: auto;
   position: absolute;
   font-size: 28px;
 }
-.instrument-selection-button02 {
-  top: 49px;
+.instrument-3 {
+  top: 0px;
   left: 637px;
   width: 226px;
   height: 226px;
@@ -94,8 +88,8 @@ export default {
   position: absolute;
   font-size: 28px;
 }
-.instrument-selection-button03 {
-  top: 49px;
+.instrument-4 {
+  top: 0px;
   left: 909px;
   width: 226px;
   height: 226px;
@@ -103,10 +97,10 @@ export default {
   position: absolute;
   font-size: 28px;
 }
-.instrument-selection-button04 {
+.instrument-5 {
+  top: 0px;
   right: 37px;
   width: 226px;
-  bottom: 56px;
   height: 226px;
   margin: auto;
   position: absolute;
@@ -122,11 +116,11 @@ export default {
 .instrument-selection-text12 {
   font-size: 24px;
 }
-.instrument-selection-button09 {
+.request-instrument {
   left: 903px;
   color: rgb(255, 255, 255);
   width: 233px;
-  bottom: 231px;
+  top: 700px;
   height: 95px;
   position: absolute;
   font-size: 18px;

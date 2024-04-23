@@ -1,25 +1,26 @@
 <template>
-  <div class="instrument-request-container"
-    ><div class="instrument-request-container1"
-      ><div class="instrument-request-container2"
-        ><router-link to="/" class="instrument-request-navlink"
-          ><img
+  <div class="instrument-request-container">
+      <div class="instrument-request-container2">
+        <router-link to="/" class="instrument-request-navlink">
+          <img
             alt="image"
             src="/percussatsight_logo-1500h.png"
-            class="instrument-request-image" /></router-link></div
-      ><div class="instrument-request-container3"
-        ><input
+            class="instrument-request-image" />
+        </router-link>
+      </div>
+      <div class="instrument-request-container3">
+        <input
           type="text"
           placeholder="Instrument Name"
-          class="instrument-request-textinput input"
-        /><label class="instrument-request-text"
-          >What instrument would you like to add?</label
-        ><button type="submit" class="instrument-request-button button"
-          >Request</button
-        ></div
-      ></div
-    ></div
-  >
+          class="instrument-request-textinput input"/>
+          <label class="instrument-request-text">
+            What instrument would you like to add?
+          </label>
+          <button type="submit" class="instrument-request-button button">
+            Request
+          </button>
+      </div>
+  </div>
 </template>
 
 <script>
@@ -43,16 +44,6 @@ export default {
   width: 100%;
   display: flex;
   overflow: auto;
-  min-height: 100vh;
-  align-items: center;
-  flex-direction: column;
-}
-.instrument-request-container1 {
-  width: 100%;
-  display: flex;
-  overflow: auto;
-  position: relative;
-  min-height: 100vh;
   align-items: center;
   flex-direction: column;
 }
