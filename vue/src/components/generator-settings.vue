@@ -2,7 +2,8 @@
   <div>
     <link href="../assets/generator-settings.css" rel="stylesheet" />
     <div class="generator-settings-container">
-      <div id="generatedScore"></div> 
+      
+        <div id="generatedScore"></div> 
       <div class="generator-settings-container1">
         <span class="generator-settings-text">Settings</span>
         <select class="generator-settings-select" v-model = "selectedClef">
@@ -114,8 +115,14 @@
         selectedClef: '', 
         selectedInstrVar: '', 
         conceptIsolationVar: '', 
+        showDiv: true, 
+        
       }
     }, 
+    beforeRouteLeave(to, from, next) {
+      this.handleDivDeletion(); 
+      next(); 
+  },
     watch: {
       selectedClef(newValue) {
         this.performActionBasedOnClef(newValue); 
@@ -123,6 +130,13 @@
     },
     methods:{
 
+      handleDivDeletion() {
+        let existingScore = document.getElementById("generatedScore"); 
+        if(existingScore){
+        existingScore.parentNode.removeChild(existingScore); 
+        } 
+      }, 
+      
       performActionBasedOnClef(clef) {
         if (clef === 'percussion') {
           this.selectedClef = 'percussion'
@@ -849,4 +863,7 @@
 }
   </style>
   
+
+
+
 
