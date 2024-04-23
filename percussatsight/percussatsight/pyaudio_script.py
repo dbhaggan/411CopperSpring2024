@@ -1,7 +1,7 @@
 import pyaudio
 import wave
 
-# defining th audio parameters
+# defining audio parameters
 FORMAT = pyaudio.paInt16
 CHANNELS = 2
 RATE = 44100
