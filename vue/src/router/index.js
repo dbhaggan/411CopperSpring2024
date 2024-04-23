@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from '../components/HomePage.vue'
 import LoginPage from '../components/Login.vue'
-import SignupComponent from '../components/SignUp.vue'
+import SignupPage from '../components/SignUp.vue'
 import SmartFeedback from '../components/SmartFeedback.vue'
 import Vexflowcomponent from '../components/PracticePage.vue'
 import GeneratorSettingsPage from '../components/generator-settings.vue'
@@ -11,13 +11,16 @@ import InstrumentPage from '../components/instrument-selection.vue'
 
 const routes = [
     {
+        path: "/", name: "/", component: HomePage
+    },
+    {
         path: "/home", name: "home", component: HomePage
     },
     {
         path: "/login", name: "login", component: LoginPage
     },
     {
-        path: "/signup", name: "signup", component: SignupComponent
+        path: "/signup", name: "signup", component: SignupPage
     },
     {
         path: "/app-settings", name: "app-settings", component: AppSettingsPage
