@@ -8,7 +8,18 @@
           <p>Audio score</p>
           <div id="exampleAudioScore"></div> 
           <p>MIDI score</p>
-          <div id="exampleMIDIScore"></div> 
+          <div id="exampleMIDIScore"></div>         
+            <div>
+              <button @click="fetchData" class="feedback-button">Generate Feedback Report</button>
+              <div v-if="feedbackData"> 
+                <p style=""> Feedback Report </p>
+                <p style="font-size: large;color: green;padding: 500px 300px"> Correct Notes: {{ feedbackData.correct_notes }} </p>
+                <p style="font-size: large;color: red;padding: 500px 300px"> Incorrect Notes: {{ feedbackData.incorrect_notes }}</p>
+              </div>
+              <div v-else>
+                <p>Data cannot be retrieved - Press the button </p>
+              </div>
+            </div>
           <span class="feedback-text">Feedback Report </span> 
           <span class="feedback-text01">Play Time: </span> 
           <span class="feedback-text02">Missed Notes: </span> 
@@ -19,6 +30,7 @@
           <span class="feedback-text07">Dynamics: </span>
           <span class="feedback-text08">Tips: </span>
         </div>
+
       </div>
     </body>
     <RouterView/>
@@ -26,6 +38,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 
 /* global Vex */
 export default {
@@ -34,7 +47,23 @@ export default {
     this.displayAudioExample();
     this.displayMidiExample(); 
   },
-    methods: {
+  data() {
+    return {
+        feedbackData: null,
+        showData: false
+    };
+  },
+  methods: {
+    fetchData() {
+      axios.get('http://localhost:8080/api-feedback')
+        .then(response => {
+          this.feedbackData = response.data;
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    },
+
     displayAudioExample(){
 
       const {        
@@ -211,6 +240,7 @@ export default {
 </script>
 
 <style>
+
 .container {
   width: 100%;
   display: flex;
