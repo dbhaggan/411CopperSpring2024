@@ -1,19 +1,19 @@
 <template>
 <div>
   <div class="app-settings-container">
-    <h1 class="app-settings-text">Settings</h1>
-    <span class="trial-info">Trial Info:</span>
+    <h1 class="title-text">Settings</h1>
+    <span class="trial-info-text">Trial Info:</span>
     <button type="button" class="subscribe button">
       Become a Subscriber!
     </button>
-    <span class="subscription-info">
+    <span class="subscription-info-text">
       <span>Subscription Info:</span>
       <br />
     </span>
-    <span class="app-settings-text08">Profile Info:</span>
-    <span class="app-settings-text09">Peripheral Settings:</span>
-    <span class="app-settings-text10">Subscription Plan:</span>
-    <span class="app-settings-text11">Payment Info:</span>
+    <span class="profile-info-text">Profile Info:</span>
+    <span class="peripheral-settings-text">Peripheral Settings:</span>
+    <span class="subscription-plan-text">Subscription Plan: _______________</span>
+    <span class="payment-info-text">Payment Info: ****************************</span>
     <button type="button" class="change-plan button">
       Change Your Plan?
     </button>
@@ -23,23 +23,24 @@
     <button type="button" class="change-payment button">
       Change Payment Details
     </button>
-    <span class="app-settings-text12">Username:</span>
+    <span class="username-text">Username: ____________</span>
     <button type="button" class="edit button">Edit</button>
-    <span class="app-settings-text13">
-      <span>Email:</span>
+    <span class="email-text">
+      <span>Email: *************@*********</span>
       <br />
     </span>
     <button type="button" class="change-password button">
       Change Password
     </button>
-    <span class="app-settings-text16">MIDI Device:</span>
-    <span class="app-settings-text17">Microphone:</span>
+    <span class="midi-device-text">MIDI Device:</span>
+    <span class="microphone-text">Microphone:</span>
     <button type="button" class="change-device-1 button">
       Change Device
     </button>
     <button type="button" class="change-device-2 button">
       Change Device
     </button>
+    <span class="buffer-text">Help! I'm trapped in a drum practice website!</span>
   </div>
 </div>
 </template>
@@ -55,80 +56,80 @@ export default {
   width: 100%;
   display: flex;
   overflow: auto;
-  min-height: 100vh;
+  /*min-height: 700px;*/
   align-items: flex-start;
   flex-direction: column;
   justify-content: flex-end;
   background-color: #ffffff;
 }
-.app-settings-text {
-  top: 60px;
-  left: 826px;
+.title-text {
+  top: 360px;
+  left: 810px;
   color: #000000;
   position: absolute;
   font-size: 4em;
 }
-.trial-info {
-  top: 177px;
-  left: 167px;
+.trial-info-text {
+  top: 520px;
+  left: 160px;
   color: #000000;
   position: absolute;
   font-size: 36px;
   text-decoration: underline;
 }
 .subscribe {
-  top: 227px;
+  top: 595px;
   left: 160px;
   color: #000000;
   font-size: 16px;
-  width: 175px;
-  height: 27px;
+  width: 185px;
+  height: 35px;
   display: flex;
   position: absolute;
   flex-direction: row;
-  background-color: #ffffff;
+  background-color: #dddddd;
 }
-.subscription-info {
-  top: 334px;
-  left: 156px;
+.subscription-info-text {
+  top: 670px;
+  left: 160px;
   color: #000000;
   position: absolute;
   font-size: 36px;
   text-decoration: underline;
 }
-.app-settings-text08 {
-  top: 551px;
-  left: 167px;
+.profile-info-text {
+  top: 890px;
+  left: 160px;
   color: #000000;
   position: absolute;
   font-size: 36px;
   text-decoration: underline;
 }
-.app-settings-text09 {
-  top: 748px;
-  left: 154px;
+.peripheral-settings-text {
+  top: 1080px;
+  left: 160px;
   color: #000000;
   position: absolute;
   font-size: 36px;
   text-decoration: underline;
 }
-.app-settings-text10 {
-  top: 383px;
-  left: 161px;
+.subscription-plan-text {
+  top: 725px;
+  left: 160px;
   color: #000000;
   position: absolute;
   font-size: 24px;
 }
-.app-settings-text11 {
-  top: 467px;
-  left: 158px;
+.payment-info-text {
+  top: 835px;
+  left: 160px;
   color: #000000;
   position: absolute;
   font-size: 24px;
 }
 .change-plan {
-  top: 418px;
-  left: 157px;
+  top: 780px;
+  left: 160px;
   color: #000000;
   width: 157px;
   height: 38px;
@@ -138,10 +139,10 @@ export default {
   padding-left: 0px;
   padding-right: 0px;
   padding-bottom: 0px;
-  background-color: #ffffff;
+  background-color: #dddddd;
 }
 .cancel {
-  top: 417px;
+  top: 780px;
   left: 363px;
   font-size: 16px;
   color: #000000;
@@ -150,82 +151,89 @@ export default {
   position: absolute;
   padding-left: 0px;
   padding-right: 0px;
-  background-color: #ffffff;
+  background-color: #dddddd;
 }
 .change-payment {
-  top: 463px;
-  left: 636px;
+  top: 835px;
+  left: 590px;
   color: #000000;
   font-size: 16px;
   width: 200px;
   height: 40px;
   position: absolute;
-  background-color: #ffffff;
+  background-color: #dddddd;
 }
-.app-settings-text12 {
-  top: 606px;
-  left: 170px;
+.username-text {
+  top: 952px;
+  left: 160px;
   color: #000000;
   position: absolute;
   font-size: 24px;
 }
 .edit {
-  top: 597px;
+  top: 952px;
   left: 466px;
   font-size: 16px;
   width: 74px;
   height: 30px;
   color: #000000;
-  background-color: #ffffff;
+  background-color: #dddddd;
   position: absolute;
 }
-.app-settings-text13 {
-  top: 648px;
-  left: 167px;
+.email-text {
+  top: 994px;
+  left: 160px;
   color: #000000;
   position: absolute;
   font-size: 24px;
 }
 .change-password {
-  top: 686px;
-  left: 168px;
+  top: 1023px;
+  left: 160px;
   font-size: 16px;
   width: 200px;
   height: 40px;
   position: absolute;
   color: #000000;
-  background-color: #ffffff;
+  background-color: #dddddd;
 }
-.app-settings-text16 {
-  top: 808px;
-  left: 162px;
+.midi-device-text {
+  top: 1125px;
+  left: 160px;
   color: #000000;
   position: absolute;
   font-size: 24px;
 }
-.app-settings-text17 {
-  left: 165px;
+.microphone-text {
+  top: 1215px;
+  left: 160px;
   color: #000000;
-  bottom: 221px;
   position: absolute;
   font-size: 24px;
 }
 .change-device-1 {
-  left: 156px;
-  bottom: 265px;
+  top: 1170px;
+  left: 160px;
   height: 40px;
   font-size: 16px;
   position: absolute;
   color: #000000;
-  background-color: #ffffff;
+  background-color: #dddddd;
 }
 .change-device-2 {
+  top: 1260px;
   left: 160px;
-  bottom: 160px;
   height: 40px;
   font-size: 16px;
   position: absolute;
   color: #000000;
-  background-color: #ffffff;
+  background-color: #dddddd;
+}
+.buffer-text {
+  top: 1350px;
+  left: 0px;
+  color: #ffffff;
+  position: absolute;
+  font-size: 9px;
 }
 </style>
