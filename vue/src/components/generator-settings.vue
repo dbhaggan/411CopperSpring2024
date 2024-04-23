@@ -115,7 +115,6 @@
         selectedClef: '', 
         selectedInstrVar: '', 
         conceptIsolationVar: '', 
-        showDiv: true, 
         
       }
     }, 
@@ -866,4 +865,6 @@
 
 
 
+
+ 
 
