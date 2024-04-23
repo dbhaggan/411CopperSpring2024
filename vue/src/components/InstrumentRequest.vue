@@ -1,24 +1,22 @@
 <template>
-  <div class="login-container"
-    ><div class="login-container1"
-      ><div class="login-container2"
-        ><router-link to="/" class="login-navlink"
+  <div class="instrument-request-container"
+    ><div class="instrument-request-container1"
+      ><div class="instrument-request-container2"
+        ><router-link to="/" class="instrument-request-navlink"
           ><img
             alt="image"
-            src="../assets/PercussAtSight_Logo.png"
-            class="login-image" /></router-link></div
-      ><div class="login-container3"
+            src="/percussatsight_logo-1500h.png"
+            class="instrument-request-image" /></router-link></div
+      ><div class="instrument-request-container3"
         ><input
           type="text"
-          placeholder="Password"
-          class="login-textinput input"
-        /><input
-          type="text"
-          placeholder="Username "
-          class="login-textinput1 input"
-        /><label class="login-text">Username:</label
-        ><label class="login-text1">Password:</label
-        ><button type="submit" class="login-button button">Log-In</button></div
+          placeholder="Instrument Name"
+          class="instrument-request-textinput input"
+        /><label class="instrument-request-text"
+          >What instrument would you like to add?</label
+        ><button type="submit" class="instrument-request-button button"
+          >Request</button
+        ></div
       ></div
     ></div
   >
@@ -26,14 +24,14 @@
 
 <script>
 export default {
-  name: 'LoginPage',
+  name: 'InstrumentRequest',
   props: {},
   metaInfo: {
-    title: 'login - PercussAtSight',
+    title: 'InstrumentRequest - PercussAtSight',
     meta: [
       {
         property: 'og:title',
-        content: 'login - PercussAtSight',
+        content: 'InstrumentRequest - PercussAtSight',
       },
     ],
   },
@@ -41,7 +39,7 @@ export default {
 </script>
 
 <style scoped>
-.login-container {
+.instrument-request-container {
   width: 100%;
   display: flex;
   overflow: auto;
@@ -49,7 +47,7 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-.login-container1 {
+.instrument-request-container1 {
   width: 100%;
   display: flex;
   overflow: auto;
@@ -58,7 +56,7 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-.login-container2 {
+.instrument-request-container2 {
   flex: 0 0 auto;
   width: 100%;
   height: 100%;
@@ -67,15 +65,15 @@ export default {
   justify-content: center;
   background-color: var(--dl-color-gray-white);
 }
-.login-navlink {
+.instrument-request-navlink {
   display: contents;
 }
-.login-image {
+.instrument-request-image {
   width: 400px;
   object-fit: cover;
   text-decoration: none;
 }
-.login-container3 {
+.instrument-request-container3 {
   width: 760px;
   height: 727px;
   display: flex;
@@ -85,8 +83,8 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
-.login-textinput {
-  top: 395px;
+.instrument-request-textinput {
+  top: 313px;
   left: 0px;
   right: 0px;
   width: 252px;
@@ -94,31 +92,16 @@ export default {
   margin: auto;
   position: absolute;
 }
-.login-textinput1 {
-  top: 195px;
-  left: 0px;
-  right: 0px;
-  width: 252px;
-  height: 72px;
-  margin: auto;
-  position: absolute;
-}
-.login-text {
-  top: 151px;
-  left: 298px;
+.instrument-request-text {
+  top: 249px;
+  color: var(--dl-color-gray-black);
+  right: 75px;
   margin: auto;
   position: absolute;
   font-size: 32px;
 }
-.login-text1 {
-  top: 358px;
-  left: 298px;
-  margin: auto;
-  position: absolute;
-  font-size: 32px;
-}
-.login-button {
-  top: 503px;
+.instrument-request-button {
+  top: 413px;
   left: 0px;
   right: 0px;
   width: 164px;
