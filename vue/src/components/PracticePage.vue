@@ -542,7 +542,7 @@ export default {
 .practice-button4 {
   left: 935px;
   width: 160px;
-  bottom: 42px;
+  top: 600px;
   height: 160px;
   position: absolute;
   border-radius: 80px;

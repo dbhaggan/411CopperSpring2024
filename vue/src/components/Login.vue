@@ -1,27 +1,21 @@
 <template>
-  <div class="login-container"
-    ><div class="login-container1"
-      ><div class="login-container2"
-        ><router-link to="/" class="login-navlink"
-          ><img
-            alt="image"
-            src="../assets/PercussAtSight_Logo.png"
-            class="login-image" /></router-link></div
-      ><div class="login-container3"
-        ><input
+  <div class="login-container">
+    <div class="login-container1">
+      <div class="login-container3">
+        <input
           type="text"
           placeholder="Password"
-          class="login-textinput input"
-        /><input
+          class="login-textinput input" />
+        <input
           type="text"
           placeholder="Username "
-          class="login-textinput1 input"
-        /><label class="login-text">Username:</label
-        ><label class="login-text1">Password:</label
-        ><button type="submit" class="login-button button">Log-In</button></div
-      ></div
-    ></div
-  >
+          class="login-textinput1 input" />
+        <label class="login-text">Username:</label>
+        <label class="login-text1">Password:</label>
+        <button type="submit" class="login-button button">Log-In</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -45,7 +39,6 @@ export default {
   width: 100%;
   display: flex;
   overflow: auto;
-  min-height: 100vh;
   align-items: center;
   flex-direction: column;
 }
@@ -54,21 +47,8 @@ export default {
   display: flex;
   overflow: auto;
   position: relative;
-  min-height: 100vh;
   align-items: center;
   flex-direction: column;
-}
-.login-container2 {
-  flex: 0 0 auto;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--dl-color-gray-white);
-}
-.login-navlink {
-  display: contents;
 }
 .login-image {
   width: 400px;
@@ -90,7 +70,7 @@ export default {
   left: 0px;
   right: 0px;
   width: 252px;
-  height: 72px;
+  height: 36px;
   margin: auto;
   position: absolute;
 }
@@ -99,7 +79,7 @@ export default {
   left: 0px;
   right: 0px;
   width: 252px;
-  height: 72px;
+  height: 36px;
   margin: auto;
   position: absolute;
 }

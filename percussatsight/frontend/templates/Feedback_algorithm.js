@@ -47,6 +47,25 @@ function noteByNoteAnalysis(sheet_orig, sheet_comp) { //compares two pieces of s
     return comp; //return the array
 }
 
+function error_to_score(error, strictness=1) { //takes error, and converts that to a numerical score (optional: specify strictness, a positive number)
+  return 100*(1-Math.tanh(strictness*error))+"%";
+}
+
+var audio_sheet_orig = [new Note(0,'8','D',6,6), new Note(0.75,'8','D',7,6), new Note(1.5,'8','G',7,6), new Note(2.25,'8','A',7,6), new Note(3,'q','B',7,6), new Note(3.75,'q','G',7,6)];
+
+var midi_sheet_orig = [new Note(0,'8','C',3,6), new Note(0.6,'q','A',3,6), new Note(1.2,'8','C',3,6), new Note(1.8,'q','C',4,6), new Note(2.4,'q','D',4,6)];
+
+
+var audio_sheet_user = [new Note(0,'8','D',6,6), new Note(0.74679,'8','D',7,6), new Note(1.49535,'8','G',7,6), new Note(2.25050,'8','A',7,6), new Note(2.99385,'q','B',7,6), new Note(3.74076,'q','F',7,6)];
+
+var midi_sheet_user = [new Note(0,'8','C',3,6), new Note(0.61758,'q','A',3,6), new Note(1.27523,'8','C',3,6), new Note(1.86144,'q','B',4,6), new Note(2.40894,'q','D',4,6)];
+
+
+console.log("Audio: "+error_to_score(compareSheetMusic(audio_sheet_orig, audio_sheet_user)));
+console.log("MIDI: "+error_to_score(compareSheetMusic(midi_sheet_orig, midi_sheet_user)));
+
+
+
 /*var sheet1 = [];
 var sheet2 = [];
 var dev = 0.05;
@@ -57,4 +76,5 @@ for(var n=0;n<64;n++) {
 }
 
 console.log(compareSheetMusic(sheet1, sheet2));
-console.log(noteByNoteAnalysis(sheet1, sheet2));*/
+console.log(noteByNoteAnalysis(sheet1, sheet2));
+console.log(error_to_score(compareSheetMusic(sheet1,sheet2)));*/
