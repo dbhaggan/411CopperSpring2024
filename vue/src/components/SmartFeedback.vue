@@ -13,14 +13,6 @@
               <button @click="fetchData" class="feedback-button" v-on:click = "generateExampleNumericalScore">
                 Generate Feedback Report
               </button>
-              <div v-if="feedbackData"> 
-                <p style=""> Feedback Report </p>
-                <p style="font-size: large;color: green;padding: 500px 300px"> Correct Notes: {{ feedbackData.correct_notes }} </p>
-                <p style="font-size: large;color: red;padding: 500px 300px"> Incorrect Notes: {{ feedbackData.incorrect_notes }}</p>
-              </div>
-              <div v-else>
-                <p>Data cannot be retrieved - Press the button </p>
-              </div>
             </div>
           <span class="feedback-report-text">Feedback Report </span> 
           <span class="playtime-text">Play Time: </span> 
