@@ -55,8 +55,7 @@
       </div>
       <button type="button" class="practice-button4 button" v-on:click = "runSheetGenerator"> 
         <span>
-          <br />
-          <br />
+          Generate Music
         </span>
       </button>
     </div>
