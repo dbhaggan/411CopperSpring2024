@@ -496,8 +496,18 @@ export default {
       // Positioning score in middle of page 
       const scorePosition = document.getElementById('generatedScore');
       const centerScore = () => {
-      scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
-      scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
+        scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
+        scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
+        /*const windowWidth = window.innerWidth; //CHRIS, tried centering the sheet music, did not work...
+        const windowHeight = window.innerHeight;
+        const scoreWidth = scorePosition.clientWidth;
+        const scoreHeight = scorePosition.clientHeight;
+        
+        const marginLeft = 0.5 * (windowWidth - scoreWidth);
+        const marginTop = 0.5 * (windowHeight - scoreHeight);
+        
+        scorePosition.style.marginLeft = marginLeft + 'px';
+        scorePosition.style.marginTop = marginTop + 'px';*/
       }
 
       centerScore();
