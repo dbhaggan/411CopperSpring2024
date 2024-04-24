@@ -15,14 +15,6 @@
         <div class="homepage-container">
           <div class="homepage-logo-placement">
             <div class="homepage-container1">
-              <!--<a href="login.html" class="homepage-login button">Login</a> -->
-              <RouterLink to="/login" class="homepage-login button">Login</RouterLink>
-              <!--<a href="signup.html" class="homepage-sign-up button">Sign-up</a>-->
-              <RouterLink to="/signup" class="homepage-sign-up button">Sign Up</RouterLink>
-              <button name="practice" class="homepage-practice button">
-                <RouterLink to="/practice" name="practice">Practice</RouterLink>
-              </button>
-               <!-- <a href="homepage.html" class="homepage-navlink"> -->
               <RouterLink to="/home">
                 <img
                   alt="logo"
@@ -76,46 +68,6 @@
   align-items: center;
   justify-content: center;
   background-image: white;
-}
-.homepage-login {
-  top: 53px;
-  left: left;
-  color: white;
-  right: 290px;
-  width: var(--dl-size-size-large);
-  position: absolute;
-  align-self: center;
-  font-style: normal;
-  font-family: "Arial";
-  font-weight: 700;
-  text-decoration: none;
-  background-color: #1e2f86;
-}
-.homepage-sign-up {
-  top: 53px;
-  color: white;
-  right: 146px;
-  width: var(--dl-size-size-large);
-  position: absolute;
-  align-self: center;
-  font-style: normal;
-  font-family: "Arial";
-  font-weight: 700;
-  text-decoration: none;
-  background-color: #1e2f86;
-}
-.homepage-practice {
-  top: 53px;
-  color: white;
-  right: 0px;
-  width: var(--dl-size-size-large);
-  position: absolute;
-  align-self: center;
-  font-style: normal;
-  font-family: "Arial";
-  font-weight: 700;
-  text-decoration: none;
-  background-color: #1e2f86;
 }
 .homepage-navlink {
   display: contents;

@@ -5,37 +5,6 @@
       <div>
         <link href="../assets/practice.css" rel="stylesheet" />
         <div class="practice-container">
-          <div class="practice-container1">
-            <button type="button" class="practice-button button">
-              <span class="practice-text">
-                <span>Practice</span>
-                <br />
-              </span>
-            </button>
-            <button type="button" class="practice-button1 button">
-              <span class="practice-text03">
-                <span>Collaborative Learning</span>
-                <br />
-              </span>
-            </button>
-            <button type="button" class="practice-button2 button">
-              <RouterLink to="/generator-settings">
-                <span>
-                  <span>Settings</span>
-                  <br />
-                </span>
-              </RouterLink>
-            </button>
-            <button type="button" class="practice-button3 button"> 
-              <RouterLink to="/home">
-                <span class="practice-text09">
-                  <span>Home</span>
-                  <br />
-                </span>
-              </RouterLink>
-            </button>
-            <div id="generatedScore"></div> 
-          </div>
           <button type="button" class="practice-button4 button" v-on:click = "runSheetGenerator">
             <span>
               Play
@@ -527,8 +496,18 @@ export default {
       // Positioning score in middle of page 
       const scorePosition = document.getElementById('generatedScore');
       const centerScore = () => {
-      scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
-      scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
+        scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
+        scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
+        /*const windowWidth = window.innerWidth; //CHRIS, tried centering the sheet music, did not work...
+        const windowHeight = window.innerHeight;
+        const scoreWidth = scorePosition.clientWidth;
+        const scoreHeight = scorePosition.clientHeight;
+        
+        const marginLeft = 0.5 * (windowWidth - scoreWidth);
+        const marginTop = 0.5 * (windowHeight - scoreHeight);
+        
+        scorePosition.style.marginLeft = marginLeft + 'px';
+        scorePosition.style.marginTop = marginTop + 'px';*/
       }
 
       centerScore();
@@ -550,65 +529,12 @@ export default {
   flex-direction: column;
   background-color: #ffffff;
 }
-.practice-container1 {
-  width: 181px;
-  height: 1080px;
-  display: flex;
-  position: relative;
-  align-self: flex-start;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-color: #0055ff;
-}
-.practice-button {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  font-size: 24px;
-  border-color: #80aaff;
-  border-width: 3px;
-  text-transform: capitalize;
-  background-color: rgb(0, 85, 255);
-}
 .practice-text {
   text-align: center;
-}
-.practice-button1 {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  border-color: #80aaff;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
 }
 .practice-text03 {
   font-size: 24px;
   text-align: center;
-}
-.practice-button2 {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  font-size: 24px;
-  border-color: #80aaff;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
-}
-.practice-button3 {
-  color: rgb(128, 170, 255);
-  right: 0px;
-  width: 181px;
-  bottom: 0px;
-  height: 90px;
-  opacity: 1;
-  position: absolute;
-  border-color: #80aaff;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
 }
 .practice-text09 {
   font-size: 24px;
@@ -616,10 +542,12 @@ export default {
 .practice-button4 {
   left: 935px;
   width: 160px;
-  bottom: 42px;
+  top: 600px;
   height: 160px;
   position: absolute;
   border-radius: 80px;
   background-color: rgb(26, 143, 221);
 }
 </style>
+
+

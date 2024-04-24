@@ -53,32 +53,6 @@
         />
         <label for = "checkbox">{{ checked }}</label> 
       </div>
-      <div class="generator-settings-container2">
-        <button type="button" class="generator-settings-button button">
-          <span class="generator-settings-text13">
-            <span>Practice</span>
-            <br />
-          </span>
-        </button>
-        <button type="button" class="generator-settings-button1 button">
-          <span class="generator-settings-text16">
-            <span>Collaborative Learning</span>
-            <br />
-          </span>
-        </button>
-        <button type="button" class="generator-settings-button2 button">
-          <span>
-            <span>Settings</span>
-            <br />
-          </span>
-        </button>
-        <button type="button" class="generator-settings-button3 button">
-          <span class="generator-settings-text22">
-            <span>Home</span>
-            <br />
-          </span>
-        </button>
-      </div>
       <button type="button" class="practice-button4 button" v-on:click = "runSheetGenerator"> 
         <span>
           <br />
@@ -192,7 +166,7 @@
         let octavePool = [];  
         
           if(this.octaveInputArray.length === 0 && this.tempOctaveArray.length === 0) {
-            alert("Please pick an Octave (enter a number between 1-7) \n (and pick an Instrument if not selecte already)");           
+            alert("Please pick an Octave (enter a number between 1-7) \n (and pick an Instrument if not selected already)");           
           } 
           if(this.octaveInputArray.length === 0) {
             octavePool = [...this.tempOctaveArray];    
@@ -671,7 +645,6 @@
   width: 100%;
   display: flex;
   overflow: auto;
-  min-height: 100vh;
   align-items: center;
   flex-direction: column;
   background-color: #ffffff;
@@ -788,65 +761,12 @@
   left: 192px;
   position: relative;
 }
-.generator-settings-container2 {
-  width: 181px;
-  height: 1080px;
-  display: flex;
-  position: relative;
-  align-self: flex-start;
-  align-items: center;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-color: #0055FF;
-}
-.generator-settings-button {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  font-size: 24px;
-  border-color: #80AAFF;
-  border-width: 3px;
-  text-transform: capitalize;
-  background-color: rgb(0, 85, 255);
-}
 .generator-settings-text13 {
   text-align: center;
-}
-.generator-settings-button1 {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  border-color: #80AAFF;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
 }
 .generator-settings-text16 {
   font-size: 24px;
   text-align: center;
-}
-.generator-settings-button2 {
-  color: rgb(128, 170, 255);
-  width: 181px;
-  height: 90px;
-  opacity: 1;
-  font-size: 24px;
-  border-color: #80AAFF;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
-}
-.generator-settings-button3 {
-  color: rgb(128, 170, 255);
-  right: 0px;
-  width: 181px;
-  bottom: 0px;
-  height: 90px;
-  opacity: 1;
-  position: relative;
-  border-color: #80AAFF;
-  border-width: 3px;
-  background-color: rgb(0, 85, 255);
 }
 .generator-settings-text22 {
   font-size: 24px;
