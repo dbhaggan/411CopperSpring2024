@@ -6,11 +6,13 @@
         <link href="../assets/feedback.css" rel="stylesheet" />
         <div class="feedback-container">
           <p>Audio score</p>
-          <div id="exampleAudioScore"></div> 
+          <div id="exampleAudioScore"></div>
           <p>MIDI score</p>
-          <div id="exampleMIDIScore"></div>         
+          <div id="exampleMIDIScore"></div>
             <div>
-              <button @click="fetchData" class="feedback-button">Generate Feedback Report</button>
+              <button @click="fetchData" class="feedback-button" v-on:click = "generateExampleNumericalScore">
+                Generate Feedback Report
+              </button>
               <div v-if="feedbackData"> 
                 <p style=""> Feedback Report </p>
                 <p style="font-size: large;color: green;padding: 500px 300px"> Correct Notes: {{ feedbackData.correct_notes }} </p>
@@ -20,17 +22,24 @@
                 <p>Data cannot be retrieved - Press the button </p>
               </div>
             </div>
-          <span class="feedback-text">Feedback Report </span> 
-          <span class="feedback-text01">Play Time: </span> 
-          <span class="feedback-text02">Missed Notes: </span> 
-          <span class="feedback-text03">Accuracy: </span> 
-          <span class="feedback-text04">Tempo: </span> 
-          <span class="feedback-text05">Here&apos;s what our AI had to say!</span>
-          <span class="feedback-text06">Note Consistency: </span>
-          <span class="feedback-text07">Dynamics: </span>
-          <span class="feedback-text08">Tips: </span>
+          <span class="feedback-report-text">Feedback Report </span> 
+          <span class="playtime-text">Play Time: </span> 
+          <span class="missed-notes-text">Missed Notes: </span> 
+          <span class="accuracy-text">Accuracy: </span> 
+          <span class="tempo-text">Tempo: </span> 
+          <span class="ai-text">Here&apos;s what our AI had to say!</span>
+          <span class="note-consistency-text">Note Consistency: </span>
+          <span class="dynamics-text">Dynamics: </span>
+          <span class="tips-text">Tips: </span>
+          <div v-if="showScores">
+            <p>Numerical score for audio piece: {{ audioScore }}</p>
+            <p>Numerical score for midi piece: {{ midiScore }}</p>
+          </div>
+          <div v-else>
+            <p>Numerical score for audio piece: Not yet generated</p>
+            <p>Numerical score for midi piece: Not yet generated</p>
+          </div>
         </div>
-
       </div>
     </body>
     <RouterView/>
@@ -41,6 +50,7 @@
 import axios from 'axios';
 
 /* global Vex */
+/* eslint-disable no-unused-vars */
 export default {
   name: 'SmartFeedback',
   mounted(){
@@ -50,7 +60,10 @@ export default {
   data() {
     return {
         feedbackData: null,
-        showData: false
+        showData: false,
+        audioScore: 0,
+        midiScore: 0,
+        showScores: false
     };
   },
   methods: {
@@ -72,7 +85,7 @@ export default {
       const div = document.getElementById('exampleAudioScore');
       const renderer = new Renderer(div, Renderer.Backends.SVG);
 
-      renderer.resize(600, 600);
+      renderer.resize(600, 300);
       const context = renderer.getContext();
       const stave = new Stave(10, 40, 420);
       stave.addClef("treble").addTimeSignature('4/4');
@@ -134,18 +147,18 @@ export default {
       }); 
 
       beams.forEach((b) => {
-      b.setContext(context).draw();
+        b.setContext(context).draw();
       });
 
       beams2.forEach((b) => {
-      b.setContext(context).draw();
+        b.setContext(context).draw();
       });
 
       // Positioning score in middle of page 
       const scorePosition = document.getElementById('exampleAudioScore');
       const centerScore = () => {
-      scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
-      scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
+        scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
+        scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
       }
 
       centerScore();
@@ -161,7 +174,7 @@ export default {
       const div = document.getElementById('exampleMIDIScore');
       const renderer = new Renderer(div, Renderer.Backends.SVG);
 
-      renderer.resize(600, 600);
+      renderer.resize(600, 300);
       const context = renderer.getContext();
       const stave = new Stave(10, 40, 420);
       stave.addClef("treble").addTimeSignature('4/4');
@@ -223,16 +236,84 @@ export default {
       // Positioning score in middle of page 
       const scorePosition = document.getElementById('exampleMIDIScore');
       const centerScore = () => {
-      scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
-      scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
+        scorePosition.style.marginLeft = window.innerWidth/1.75 - scorePosition.clientWidth/1.75 + 'px'; 
+        scorePosition.style.marginTop = window.innerHeight/40- scorePosition.clientHeight/40 + 'px'; 
       }
 
       centerScore();
       window.addEventListener('resize', centerScore); 
 
+    },
+    
+    /* eslint-disable no-unused-vars */
+    generateExampleNumericalScore() {
+        
+        class Note { //class that encodes a Note
+            constructor(time, duration, note, octave, scale) {
+                this.time=time; this.duration=duration; //(in seconds)
+               this.note=note; this.octave=octave; this.scale=scale;
+            }
+            
+            getPitch() { //combines note and octave into the objective pitch
+                return this.octave*this.scale+this.note;
+            }
+            
+            timeDiff(note2) { //difference between two notes in terms of time
+                return Math.abs(this.time-note2.time);
+            }
+        }
+
+        function comparePercussionNotes(note1_orig, note2_orig, note1_comp, note2_comp) {
+            return Math.abs(Math.log( note1_orig.timeDiff(note2_orig) / note1_comp.timeDiff(note2_comp)));
+            //EXPLANATION: Human perception of time is logarithmic. That is to say, if you were supposed to play two notes 1 second apart,
+            //but you mess up, playing them 1/4 second apart is twice as bad as playing them 1/2 second apart. This code reflects that,
+            //judging the time between notes on a logarithmic scale.
+        }
+
+        function compareSheetMusic(sheet_orig, sheet_comp) { //compares two arrays that represent sheet music
+            if(sheet_orig.length!=sheet_comp.length) {
+                throw new Error("Sheets must have the same number of notes!"); //We cannot yet process music with missing or added notes.
+                //Doing so would require implementation of the Myers diff algorithm, which is very intricate and complicated.
+            }
+            
+            var err = 0; //initialize error to 0
+            for(var n=1;n<sheet_orig.length;n++) { //loop through all sets of notes
+                err += comparePercussionNotes(sheet_orig[n-1],sheet_orig[n],sheet_comp[n-1],sheet_comp[n]); //for each pair of notes, add how bad they match up on the original vs the one we're comparing
+            }
+            
+            return err / (sheet_orig.length-1); //divide by # of pairs of notes & return
+        }
+
+        function noteByNoteAnalysis(sheet_orig, sheet_comp) { //compares two pieces of sheet music and returns an array saying how bad each pair of sequential notes is
+            if(sheet_orig.length!=sheet_comp.length) {
+                throw new Error("Sheets must have the same number of notes!");
+            }
+            
+            var comp = []; //array of all the note-by-note comparisons
+            for(var n=0;n<sheet_orig.length-1;n++) { //loop through all sets of notes
+                comp[n] = comparePercussionNotes(sheet_orig[n],sheet_orig[n+1],sheet_comp[n],sheet_comp[n+1]);
+            }
+            
+            return comp; //return the array
+        }
+
+        function error_to_score(error, strictness=1) { //takes error, and converts that to a numerical score (optional: specify strictness, a positive number)
+          return 100*(1-Math.tanh(strictness*error))+"%";
+        }
+
+        var audio_sheet_orig = [new Note(0,'8','D',6,6), new Note(0.75,'8','D',7,6), new Note(1.5,'8','G',7,6), new Note(2.25,'8','A',7,6), new Note(3,'q','B',7,6), new Note(3.75,'q','G',7,6)];
+
+        var midi_sheet_orig = [new Note(0,'8','C',3,6), new Note(0.6,'q','A',3,6), new Note(1.2,'8','C',3,6), new Note(1.8,'q','C',4,6), new Note(2.4,'q','D',4,6)];
+
+
+        var audio_sheet_user = [new Note(0,'8','D',6,6), new Note(0.74679,'8','D',7,6), new Note(1.49535,'8','G',7,6), new Note(2.25050,'8','A',7,6), new Note(2.99385,'q','B',7,6), new Note(3.74076,'q','F',7,6)];
+
+        var midi_sheet_user = [new Note(0,'8','C',3,6), new Note(0.61758,'q','A',3,6), new Note(1.27523,'8','C',3,6), new Note(1.86144,'q','B',4,6), new Note(2.40894,'q','D',4,6)];
+        
+        this.audioScore = error_to_score(compareSheetMusic(audio_sheet_orig, audio_sheet_user));
+        this.midiScore  = error_to_score(compareSheetMusic( midi_sheet_orig,  midi_sheet_user));
+        this.showScores = true;
     }
-
-
   },
 
 };

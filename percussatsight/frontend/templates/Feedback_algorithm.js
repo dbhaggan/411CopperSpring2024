@@ -51,6 +51,10 @@ function error_to_score(error, strictness=1) { //takes error, and converts that 
   return 100*(1-Math.tanh(strictness*error))+"%";
 }
 
+
+
+///HERE WE HAVE THE CODE FOR THE SPECIFIC SHEET MUSIC JEREMIAH GENERATED
+
 var audio_sheet_orig = [new Note(0,'8','D',6,6), new Note(0.75,'8','D',7,6), new Note(1.5,'8','G',7,6), new Note(2.25,'8','A',7,6), new Note(3,'q','B',7,6), new Note(3.75,'q','G',7,6)];
 
 var midi_sheet_orig = [new Note(0,'8','C',3,6), new Note(0.6,'q','A',3,6), new Note(1.2,'8','C',3,6), new Note(1.8,'q','C',4,6), new Note(2.4,'q','D',4,6)];
@@ -66,10 +70,12 @@ console.log("MIDI: "+error_to_score(compareSheetMusic(midi_sheet_orig, midi_shee
 
 
 
+///HERE WE HAVE THE CODE TO PROVE THIS WORKS FOR ANY TWO PIECES OF SHEET MUSIC
+
 /*var sheet1 = [];
 var sheet2 = [];
-var dev = 0.05;
-var freq = 0.6;
+var dev = 0.05;  ///THIS IS HOW BAD THE PERCUSSIONIST IS
+var freq = 0.6;  ///THIS IS THE BPS (beats per second)
 for(var n=0;n<64;n++) {
     sheet1[n] = new Note(n*freq, 0.2, 'c', 0, 7);
     sheet2[n] = new Note(n*freq+dev*(2*Math.random()-1), 0.2, 'c', 0, 7);
