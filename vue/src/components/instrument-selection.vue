@@ -8,19 +8,19 @@
   <div class="instrument-selection-container">
     <div class="instrument-selection-scrolling-container">
       <button type="button" class="instrument-1 button">
-        [Instrument 1]
+        <img src="../assets/timpani.jpg" alt="timpani drum" width="200px" />
       </button>
       <button type="button" class="instrument-2 button">
-        [Instrument 2]
+        <img src="../assets/marimba.png" alt="marimba" width="200px" />
       </button>
       <button type="button" class="instrument-3 button">
-        [Instrument 3]
+        <img src="../assets/glockenspiel.jpg" alt="bells (glockenspiel)" width="200px" />
       </button>
       <button type="button" class="instrument-4 button">
-        [Instrument 4]
+        <img src="../assets/snare drum.jpg" alt="snare drum" width="200px" />
       </button>
       <button type="button" class="instrument-5 button">
-        [Instrument 5]
+        <img src="../assets/drum set.jpg" alt="drum set" width="200px" />
       </button>
     </div>
     <button type="button" class="request-instrument button">
@@ -68,6 +68,7 @@ export default {
   width: 226px;
   height: 226px;
   margin: auto;
+  background-color: #ffffff;
   position: absolute;
   font-size: 29px;
 }
@@ -77,6 +78,7 @@ export default {
   width: 226px;
   height: 226px;
   margin: auto;
+  background-color: #ffffff;
   position: absolute;
   font-size: 28px;
 }
@@ -86,6 +88,7 @@ export default {
   width: 226px;
   height: 226px;
   margin: auto;
+  background-color: #ffffff;
   position: absolute;
   font-size: 28px;
 }
@@ -95,6 +98,7 @@ export default {
   width: 226px;
   height: 226px;
   margin: auto;
+  background-color: #ffffff;
   position: absolute;
   font-size: 28px;
 }
@@ -104,6 +108,7 @@ export default {
   width: 226px;
   height: 226px;
   margin: auto;
+  background-color: #ffffff;
   position: absolute;
   font-size: 28px;
 }
@@ -119,13 +124,13 @@ export default {
 }
 .request-instrument {
   left: 903px;
-  color: rgb(255, 255, 255);
+  color: #000000;
   width: 233px;
   top: 700px;
   height: 95px;
   position: absolute;
   font-size: 18px;
   text-align: center;
-  background-color: rgb(0, 0, 0);
+  background-color: #dddddd;
 }
 </style>
